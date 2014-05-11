@@ -1,0 +1,168 @@
+\documentclass{mycourse}
+\usepackage[all]{xy}
+\usepackage{array}
+%\usepackage[a4paper,left=1 cm,right= 1cm, top=1cm, bottom=2cm] {geometry}
+
+% Für Text zwischen enumerate-items aber ohne Bezug zu einem bestimmten item.
+\makeatletter
+\newcommand{\interitemtext}[1]{%
+\begin{list}{}
+{\itemindent=0mm\labelsep=0mm
+\labelwidth=0mm\leftmargin=0mm
+\addtolength{\leftmargin}{-8mm}}
+\item #1
+\end{list}}
+\makeatother
+
+\ifthenelse{\isundefined{\psmallmatrix}}{
+	\newenvironment{psmallmatrix}{\left(\begin{smallmatrix}}{\end{smallmatrix}\right)}
+}{}
+
+\newcommand{\dist}{\operatorname{dist}}
+\renewcommand{\ref}[1]{\hyperref[#1]{#1}}
+
+\title{Mathematische Methoden der Quantenmechanik}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Lineare Operatoren}
+\section{Spektrum linearer Operatoren}
+Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot, \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. $D=D(A)$ mit \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
+
+Die \emph{Resolventenmenge} $\rho(A)$ von $A$ ist definiert als $\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv $(z-A)^{-1}$ ist beschränkt}\}.$
+
+Die \emph{Resolvente} von $A$ ist die Abbildung $R=R_A: \rho(A) \to \mathcal L(H)$, gegeben durch $R(z)=(z-A)^{-1}$.
+
+Das \emph{Spektrum} $\sigma(A)$ von $A$ ist definiert durch $\sigma(A)=\C\setminus \rho(A)$. Man zerlegt $\sigma(A)$ in
+\begin{seg}[Punktsprektum]
+Das \emph{Punktspektrum} ist gegeben durch
+\[
+\sigma_p(A)=\{z\in \C |\, (z-A): D\to H \text{ nicht injektiv}\}= \text{Menge der Eigenwerte.}
+\]
+\end{seg}
+\begin{seg}[stetiges Spektrum]
+Das \emph{kontinuierliche Spektrum} ist gegeben durch
+\[
+\sigma_c(A)=\{z\in \C|\, (z-A): D\to H \text{ injektiv, nicht surjektiv aber } \overline{(z-A)D}= H\}
+\]
+\end{seg}
+\begin{seg}[Resdual-Spektrum]
+Das \emph{Residual-Spektrum} oder auch \emph{Rest-Spektrum} ist gegeben durch
+\[
+\sigma_r(A)=\{z\in \C|\, (z-A):D \to H \text{ injektiv, aber } \overline{(z-A)D}\neq H\}.
+\]
+\end{seg}
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Falls $A$ abgeschlossen, d.h. wenn $\Gamma_A= \{(\phi, A\phi)|\, \phi \in D\}$ abgeschlossen ist in $H\times H$, und $z-A: D \to H$ bijektiv ist, dann ist $z-A$ und somit auch $(z-A)^{-1}$ abgeschlossen. Nach dem Graphensatz ist somit $(z-A)^{-1}$ beschränkt. D.h. wenn $A$ abgeschlossen ist, dann $\rho(A)=\{z\in \C|\, z-A: D \to H \text{ bijektiv}\}$. Umgekehrt wenn $\rho(A) \neq \emptyset$ dann existiert $z\in \C$, so dass $(z-A):D\to H$ bijektiv und $(z-A)^{-1}$ beschränkt und somit abgeschlossen ist, dann
+\[
+\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv}\}.
+\]
+Umgekehrt wenn $\rho(A)\neq \emptyset$, dann existiert $z\in \C$, so dass $(z-A):D\to H$ bijektiv und $(z-A)^{-1}$ beschränkt und somit abgeschlossen ist. Es folgt, dass $(z-A)$ und daher auch $A$ abgeschlossen ist.
+\item wenn $A$ abgeschlossen ist, dann $\sigma(A)=\sigma_p(A) \dot\cup \sigma_c(A) \dot\cup \sigma_r(A)$.
+\end{enumerate}
+\end{nt*}
+\begin{ex*}
+\begin{enumerate}[1)]
+\item Sei $H= l^2(\N_0)=\{(x_n)_{n=0}^\infty |\, x_n \in \C,\, \sum_{n=0}^\infty|x_n|^2<\infty\}$ und sei $A: H\to H$ gegeben durch $A(x_0, x_1, x_2,...)=(x_1, x_2,...)$. Dann ist $A\in \mathcal L(H)$ mit $\|A\|=1$
+\[
+\sigma_p(A)=\{z\in \C|\, |z|<1\}, \quad \sigma_c(A)=\{z\in \C|\, |z|=1\}, \quad \sigma_r(A)=\emptyset.
+\]
+Der Beweis ist eine leichte Übung.
+\item $H=L^2(\R)$, $D=\{\phi\in L^2(\R)| \phi'\in L^2\}$ und $A\phi=-i \phi'$. Dann $\sigma(A)=\sigma_c(A)=\R$. Entsprechend $\sigma_p(A)=\sigma_r(A)= \emptyset$. Beweis ist eine leichte Übung.
+\end{enumerate}
+\end{ex*}
+\begin{st}\label{1.1}
+Sei $A: D \subset H\to H$ ein lin. Operator mit Resolvente $R$. Dann gilt
+\begin{enumerate}[a)]
+\item $R(z)-R(w)=(w-z) R(z) R(w)$,
+\item $R(z) R(w)=R(w) R(z)$,
+\item $R(z) A\subset A R(z)=zR(z)-I$
+\end{enumerate}
+für alle $z,w\in \rho(A)$.
+\end{st}
+\begin{proof}
+siehe Satz 1.1 aus dem Skript.
+\end{proof}
+\begin{st} \label{1.2} Sei $A$ ein linearer Operator in $H$. Dann ist $\rho(A)$ offen, $\sigma(A)$ abgeschlossen und $R: \rho(A) \to \mathcal L(H)$ ist analytisch genauer: ist $z_0\in \rho(A)$, dann $B(z_0, \| R(z_0)\|^{-1}) \subset \rho(A)$ und in dieser Kreisscheibe gilt
+\[
+R(z)=\sum_{n=0}^\infty (-1)^n R(z_0)^{n+1} (z-z_0)^n.
+\]
+Es gilt außerdem $\|R(z_0)\|\ge \frac{1}{\dist(z_0, \sigma(A))}$.
+\end{st}
+\begin{proof}
+siehe Satz 1.2 aus dem Skript.
+\end{proof}
+\begin{seg}[Erinnerung]
+Sind $A,B$ lineare Operatoren in $H$, dann heißt $B$ \emph{Erweiterung} von $A$ falls $D(A) \subset D(B)$ und $A\phi=B\phi$ für alle $\phi \in D(A)$. Der Operator $A$ \emph{vertauscht} mit $L\in \mathcal L(H)$, falls $LA\subset AL$, d.h. $LD(A)\subset D(A)$ und für alle $\phi \in D(A)$ gilt $LA\phi=AL\phi$.
+\end{seg}
+\begin{st}
+Sei $A$ ein linearer Operator in $H$, $z_0\in \rho(A)$ und $L\in \mathcal L(H)$. Dann gilt $LR(z_0)=R(z_0)L \implies LA \subset AL \implies LR(z)=R(z)L$ für alle $z\in \rho(A)$.
+\end{st}
+\begin{proof}
+siehe Satz 1.4 aus dem Skript.
+\end{proof}
+
+Sei $P\in \mathcal L(H)$ ein Projektor (d.h. $P^2=P$), dann ist auch $(I-P)$ ein Projektor und $H=M \oplus N$, wobei $M=PH=\ker(I-P)$ und $N=(1-P)H=\ker(P)$. D.h. jeder Vektor $\phi\in H$ lässt sich eindeutig zerlegen in $\phi=\phi_1+\phi_2$ mit $\phi_1\in M$ und $\phi_2\in N$. Dabei gilt $\phi_1=P\phi$ und $\phi_2=(1-P)\phi$.
+
+Ist $A$ ein linearer Operator in $H$ welcher mit den Projektoren $P$ vertauscht, also $PA\subset AP$. Dann wird $A$ durch $M=PH, N=(I-P)H$ zerlegt in die beiden Operatoren
+\[
+A_p:=A \upharpoonright PH: PD(A) \to PH, \quad A \upharpoonright \bar PH: \bar P D(A) \to \bar{P}H
+\] 
+wobei $\bar P:=I-P$.
+\begin{lem}\label{1.4}
+Ist $A$ ein abgeschlossener linearer Operator in $H$ und $p\in \mathcal L(H)$ ein Projektion mit $PA \subset AP$. Dann gilt $\sigma(A)=\sigma(A_p)\dot\cup \sigma(A_{\bar{P}})$.
+\end{lem}
+\begin{proof}
+Sei $z\in \C$. Dann ist $(z-A):D(A) \to H$ genau dann bijektiv, wenn $z-A_P: PD(A)\to PH$ und $z-A_{\bar{P}}:\bar P D(A) \to \bar P H$ bijektiv sind. Also $\rho(A)=\rho(A_p) \cap \rho(A_{\bar P})$ und somit $\sigma(A)=\sigma(A_P) \cup \sigma(A_{\bar P})$. Tatsächlich gilt
+\[
+(z-A_P)^{-1}=(z-A)^{-1} \upharpoonright PH, \quad (z-A_{\bar P})^{-1} = (z-A)^{-1} \upharpoonright \bar P.
+\]
+\end{proof}
+\section{Rieszprojektoren und Laurentreihe der Resolvente}
+\subsection{Der Riesz-Projektor}
+Sei $A$ ein abgeschlossener linearer Operator in $H$ und sei $\lambda\in \sigma(A)$ ein isolierter Punkt des Spektrums von $A$. D.h. es gibt ein $\eps>0$ so, dass $\overline{B_\eps(\lambda)} \cap \sigma(A)=\{\lambda\}$. Wir definieren den \emph{Riesz-Projektor} $P$ durch
+\[
+P:= \frac{1}{2\pi i} \oint_{|z-\lambda|=\eps} R(z) \, \dx[z],
+\]
+wobei das Integral als Riemannintegral aufgefasst ist.  
+\begin{st}\label{1.5}
+\begin{enumerate}[a)]
+\item $P$ ist ein Projektor.
+\item $PA\subset AP=\frac{1}{2\phi} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
+\item $\sigma(A_P)=\{\lambda\}$,\quad $\sigma(A_{\bar P})=\sigma(A) \setminus \{\lambda\}$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+Siehe Satz 1.6 des Skripts. Man merke an, dass $\sigma(A)=\{\lambda\} \dot\cup (\sigma(A)\setminus\{\lambda\})$ in zwei abgeschlossene Teile zerfällt.
+\end{proof}
+\begin{nt*}
+Satz \ref{1.5} lässt sich verallgemeinern. Falls $\sigma(A)$ in zwei disjunkte abgeschlossene Teile $\sigma_1$ und $\sigma_2$ zerfällt. D.h. $\sigma(A)=\sigma_1\cup \sigma_2$ mit $\sigma_1\cap \sigma_2=\emptyset$ und $\sigma_1, \sigma_2$ abgeschlossen, wobei $\sigma_1$ kompakt ist und $P\in \mathcal L(H)$ definiert wird durch
+\[
+P=\frac{1}{2\pi i} \oint_\gamma (z-A)^{-1} \, \dx[z],
+\]
+wobei die Windungszahl $n(\gamma, z)=1$ für $z\in \sigma_1$ und $n(\gamma,z)=0$ für $z\in \sigma_2$ und $\tr(\gamma)\subset \rho(A)$. Dann gilt
+\begin{st}\label{1.6}
+\begin{enumerate}[a)]
+\item $P$ ist ein Projektor.
+\item $PA\subset AP=\frac{1}{2\phi} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
+\item $\sigma(A_P)=\sigma_1$,\quad $\sigma(A_{\bar P})=\sigma_2$.
+\end{enumerate}
+\end{st}
+\end{nt*}
+\subsection{Laurentreihe der Resolventen}
+Nach Satz \ref{1.5} gilt für $z\in B_\eps(\lambda)\setminus\{\lambda\}$
+\[
+(z-A)^{-1}=(z-A)^{-1}P+(z-A)^{-1}\bar P=(z-A_P)^{-1} P + (z- A_{\bar P})^{-1} \bar P,
+\]
+wobei $A_P$ und $A_{\bar P}$ die Einschränkungen von $A$ auf $PH$ bzw. $PH$ sind. Ausserdem ist $\sigma(A_p)=\{\lambda\}$, $\sigma(A_{\bar P}) \subset \sigma(A) \setminus\{\lambda\}$. Also gilt
+\[
+(z-A_P)^{-1} = \sum_{n\ge 0} \frac{(A_P-\lambda)^n}{(z-\lambda)^{n+1}}, \quad (z-A_{\bar P})^{-1} \stackrel{\ref{1.2}}=(-1)^n (\lambda-A^n)^{-n-1} (z-\lambda)^n
+\]
+für alle $z\in B_\eps(\lambda)\setminus\{\lambda\}$. Hierbei sei anzumerken, dass die Laurentreihenentwicklung konvergiert, da der Spektralradius von $(A_P-\lambda)$ gerade $0$ ist. (Näheres siehe Appendix)
+\end{document}
