@@ -1,0 +1,40 @@
+# Notes and stuff
+note
+notes
+*tmp*
+
+# Configs
+config.tex
+
+# Subdirectories
+ana3/hmenke
+cp
+pse
+test
+
+# Temporary files
+*.swp
+*~
+
+# LaTeX build files
+*.pdf
+*.aux
+*.fdb_latexmk
+*.out
+*.thm
+*.toc
+*.fls
+*.log
+*dot2tex*.tex
+*dot2tex*.dot
+*.dvi
+*.synctex.gz
+*.bbl
+*.blg
+
+# Other crap
+octave-core
+
+# some binary-files
+*.tar.bz2
+*.png
