@@ -19,7 +19,7 @@
 }{}
 
 \newcommand{\dist}{\operatorname{dist}}
-\renewcommand{\ref}[1]{\hyperref[#1]{#1}}
+%\renewcommand{\ref}[1]{\hyperref[#1]{#1}}
 
 \title{Mathematische Methoden der Quantenmechanik}
 \author{}
@@ -32,7 +32,7 @@
 
 \chapter{Lineare Operatoren}
 \section{Spektrum linearer Operatoren}
-Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot, \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. $D=D(A)$ mit \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
+Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. $D=D(A)$ mit \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
 
 Die \emph{Resolventenmenge} $\rho(A)$ von $A$ ist definiert als $\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv $(z-A)^{-1}$ ist beschränkt}\}.$
 
@@ -165,4 +165,112 @@ wobei $A_P$ und $A_{\bar P}$ die Einschränkungen von $A$ auf $PH$ bzw. $PH$ sin
 (z-A_P)^{-1} = \sum_{n\ge 0} \frac{(A_P-\lambda)^n}{(z-\lambda)^{n+1}}, \quad (z-A_{\bar P})^{-1} \stackrel{\ref{1.2}}=(-1)^n (\lambda-A^n)^{-n-1} (z-\lambda)^n
 \]
 für alle $z\in B_\eps(\lambda)\setminus\{\lambda\}$. Hierbei sei anzumerken, dass die Laurentreihenentwicklung konvergiert, da der Spektralradius von $(A_P-\lambda)$ gerade $0$ ist. (Näheres siehe Appendix)
+\begin{st}
+Für $0<|z-\lambda|<\eps$ gilt
+\[
+R(z)=\sum_{n=1}^\infty D^n(z-\lambda)^{-n-1} + \frac{P}{z-\lambda} + S(z), \quad S(z)=\sum_{n=0}^\infty (-1)^n S(\lambda)^n (z-\lambda)^n,
+\]
+wobei $D:=(A_P-\lambda)P=(A-\lambda)P$ und $S(z):= (z-A_{\bar P})^{-1}\bar P$ die reduzierte Resolvente ist.
+\end{st}
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Da der Hauptteil von $R(z)$, d.h.
+\[
+\sum_{n=1}^\infty D^n(z-\lambda)^{-n-1} + \frac{D}{z-\lambda},
+\]
+konvergent ist für alle $z\neq \lambda$, gilt $\limsup_{n\to \infty} \|D^n\|^{1/n}=0$. Man sagt: $D$ sei \emph{quasi-nilpotent}.
+\item Falls $D$ nilpotent ist, d.h. $D^m=0$ für ein $m\in N$ und $D^{m-1}\neq 0$. Dann ist $\lambda$ ein Eigenwert von $A$. 
+\begin{proof}
+Wähle $\phi \neq 0$ mit $D^{m-1}\phi\neq0$. Dann ist $D(D^{m-1}\phi)=0$, d.h.
+\[
+(A-\lambda) (D^{m-1} \phi)=(A-\lambda) P(D^{m-1} \phi)= D^m \phi =0
+\]
+\end{proof}
+\item Falls $m:= \dim(PH)<\infty$, dann ist $D^m=0$ und somit $\lambda$ ein Eigenwert von $A$. (Übung)
+
+Dann heißt $\lambda$ ein \emph{diskreter Eigenwert} von $A$. Das Komplement der diskreten Eigenwerte innerhalb $\sigma(A)$ heißt \emph{wesentliches Spektrum} von $A$.
+\end{enumerate}
+\end{nt*}
+\section{Der adjungierte Operator}
+Sei $A:D\subset H\to H$ ein \emph{dicht definierter} linearer Operator, d.h. $\overline{D}=H$ (z.B. $D=H$). Der zu $A$ \emph{adjungierte Operator} $A^*: D(A^*)\subset H \to H$ ist wie folgt definiert. 
+
+Wir sagen $\phi \in D(A^*)$ wenn $\phi^*\in H$ existiert, so dass $\langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle$ für alle $\eta \in D(A)$. Dann ist $\phi^*$ durch $\phi$ eindeutig bestimmt (da $\overline{D(A)}=H$) und man definiert $A^* \phi:= \phi^*$. Die Abbildung $\phi \mapsto A^*\phi$ ist linear. (Übung)
+
+Nach Frechet-Riesz (genaueres siehe Übung) gilt
+\[
+D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig auf } D(A)\}
+\]
+
+\begin{st}
+\begin{enumerate}[a)]
+\item $A\subset B \implies A^*\supset B^*$.
+\item $A^*$ ist abgeschlossen.
+\item $\ker A^*=(R-A)^\orth$. 
+\end{enumerate}
+\end{st}
+\begin{proof}
+a) wurde in der Übung gezeigt. b) wird in Satz 2.1 aus dem Skript bewiesen. Und c) wird in Satz 2.2 aus dem Skript gezeigt.
+\end{proof}
+\begin{st}
+Ist A \emph{abgeschlossen}, dann ist $A^*$ dicht definiert und 
+\end{st}
+\appendix
+\chapter{Appendix}
+\section{Beschränkte Operatoren}
+Ein (linearer) Operator $A:H\to H$ heißt \emph{beschränkt}, falls es ein $C\ge 0$ gibt mit $\|Ax\| \le C\|x\|$ für alle $x\in H$. Dazu sind äquivalent
+\begin{enumerate}[a)]
+\item $A$ ist beschränkt,
+\item $A$ ist stetig,
+\item $A$ ist stetig im Punkt $x=0$.
+\end{enumerate} 
+Wir definieren eine Norm in $\mathcal L(H)=\{A: H\to H| A \text{ linear und beschränkt}\}$ durch
+\[
+\|A\|=\sup_{x\in H, \|x\|=1} \|Ax\|= \sup_{\|x\|\le 1} \|Ax\|=\sup_{x,y\in H, \|x\|=\|y\|=1} |\langle y, Ax\rangle\|.
+\]
+Damit wird $\mathcal L(H)$ zum Banachraum.
+\begin{st}[Neumannreihe]
+Sei $A\in \mathcal L(H)$ und 
+$\sum_{n=0}^\infty A^n$ sei konvergent (z.B. für $\|A\|<1$). Dann ist $I-A: H\to H$ bijektiv und
+\[
+(I-A)^{-1}=\sum_{n=0}^\infty A^n=I+A+A^2+...
+\]
+\end{st}
+\begin{st}
+Sei $A\in \mathcal L(H)$, dann ist $\sigma(A)\subset \{z\in \C |\, |z|\le \|A\| \}$ und für $|z| < \|A\|$ gilt
+\begin{equation}
+(z-A)^{-1}=\sum_{n=0}^\infty \frac{A^n}{z^{n+1}} \label{A.1}
+\end{equation}
+\end{st}
+\begin{nt*}
+\eqref{A.1} gilt für alle $z$  mit
+\[
+|z| > \lim_{n\to \infty} \|A^n\|^{1/n}=\sup_{w\in \sigma(A)} |w|.
+\]
+Wir bezeichnen mit $r(A):= \sup_{w\in \sigma(A)} |w|$ den \emph{Spektralradius} von $A$.
+\end{nt*}
+\begin{proof}
+Wendet man das Wurzelkriterium auf die Reihe $\sum \frac{A^n}{z^{n+1}}$ an, so ergibt sich
+\[
+\limsup_{n\to \infty} \big \|\frac{A^n}{z^n} \big \|^{1/n} <1 \iff \limsup_{n\to \infty} \|A^n\|^{1/n}< |z|.
+\]
+Man kann zudem zeigen, dass
+\[
+\limsup\|A^n\|^{1/n} = \lim_{n\to \infty} \|A^n\|^{1/n}=\sup_{w\in \sigma(A)} |w|.
+\]
+\end{proof}
+\begin{st} \label{A.3}
+Sei $A:D\subset H\to H$ dicht definiert $(\bar D=H)$ und sei $A$ beschränkt. Dann existiert genau ein beschränkter Operator $B\in \mathcal L(H)$ mit $Ax=Bx$ für alle $x\in D$. Es gilt $\|B\|=\|A\|$
+\end{st}
+\begin{proof}[Beweisidee:]
+Sei $x\in H$ und $(x_n)$ eine Folge in $D$ mit $x_n \to x$. Dann ist $(Ax_n)$ eine Cauchy-Folge, also existiert $Bx:= \lim_{n\to \infty} Ax_n$. $B$ ist wohldefiniert und linear.
+\end{proof}
+\begin{ex*}
+Betrachte die Fouriertransformation $\mathcal F: \mathcal S(\R^n)\to S(\R^n)$, wobei $\mathcal S(\R^n)$ den Schwartzraum bezeichne. Dann gilt
+\[
+\mathcal F\phi(p)=(2\pi)^{-n/2} \int e^{-ipx} \phi(x) \dx.
+\]
+Dann ist $\mathcal F \phi\in \mathcal S(\R^n)\subset L^2(\R^n)$ und $\|\mathcal F \phi\|=\|\phi\|$ für alle $\phi \in S(\R^n)$. 
+
+Nach Satz \ref{A.3} existiert genau eine beschränkte Fortsetzung $\mathcal F: L^2(\R^n) \to L^2(\R^n)$.
+\end{ex*}
 \end{document}
