@@ -19,6 +19,7 @@
 }{}
 
 \newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Ran}{\operatorname{Ran}}
 %\renewcommand{\ref}[1]{\hyperref[#1]{#1}}
 
 \title{Mathematische Methoden der Quantenmechanik}
@@ -212,8 +213,148 @@ D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig 
 a) wurde in der Übung gezeigt. b) wird in Satz 2.1 aus dem Skript bewiesen. Und c) wird in Satz 2.2 aus dem Skript gezeigt.
 \end{proof}
 \begin{st}
-Ist A \emph{abgeschlossen}, dann ist $A^*$ dicht definiert und 
+Ist A \emph{abgeschlossen}, dann ist $A^*$ dicht definiert und $(A^*)^*=A$.
 \end{st}
+\begin{proof}
+Es ist
+\begin{align*}
+(\phi, \phi^*)\in \Gamma(A^*) &\iff \langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle, \, \forall \eta\in D(A)\\ &\iff D=\langle \phi, A\eta\rangle - \langle \phi^*, \eta\rangle \\ &\iff (\phi, \phi^*) \orth (A\eta, - \eta)
+\end{align*}
+bezüglich des Skalarprodukts $\langle (\phi_1, \phi_2), (\psi_1, \psi_2)\rangle=\langle \phi_1, \psi_1\rangle + \langle \phi_2, \psi_2\rangle$ von $H\times H$. Sei $V:H\times H \to H \times H$ definiert durch $V(\phi, \psi)=(\psi, -\phi)$. Dann ist $V^2=1$ und $V$ ist unitär. Für jeden Teilraum $E\subset H\times H$ gilt also $(VE)^\orth = V(E^\orth)$. (Übung)
+
+Somit gilt
+\begin{align*}
+(\phi, \phi^*) \in \Gamma(A^*) &\iff (\phi, \phi^*) \orth V(\eta, A\eta), \, \forall \eta\in D(A)\\
+&\iff (\phi, \phi^*)\in (V\Gamma(A))^\orth.
+\end{align*}
+D.h. $\Gamma(A^*)=(V\Gamma(A))^\orth=V\Gamma(A)^\orth$. Da $\Gamma(A)$ abgeschlossen ist folgt 
+\end{proof}
+
+\chapter{Analytische Störungstheorie}
+\setcounter{thm}{13}
+\begin{st}
+Sei $A\subset A^*$. Dann sind äquivalent:
+\begin{enumerate}[a)]
+\item $A$ ist wesentlich selbstadjungiert.
+\item $\overline{\Ran(z_\pm -A)}=H$ für ein $z_+\in \C_+$ und ein $z_-\in \C_-$.
+\item $\ker(z_\pm - A^*)= \{0\}$ für $z_\pm \in \C_\pm$
+\end{enumerate}
+\end{st}
+\begin{proof}
+Folgt mit Lemma 12, Theorem 3 und Satz 1.8 c)
+\end{proof}
+
+\begin{st}[Nelson]
+Sei $U: \R \to \mathcal L(H)$ eine s.s.u.G. mit Erzeuger $A$ und sei $D\subset D(A)$ mit $\overline{D}=H$ und $U(t)D\subset D$ für alle $t\in \R$. Dann gilt $A=\overline{A \upharpoonright D}$. Insbesondere ist $A\upharpoonright D$ wesentlich selbstadjungiert.
+\end{st}
+\begin{proof}
+Siehe Satz 4.3 aus dem Skript. Im Beweis wird Satz 2.8 aus dem Skript verwendet. 
+\end{proof}
+
+\section{Translationsgruppe und Impulsoperator}
+Sei $H=L^2(\R)$ und sei $U$ die s.s.u.G. definiert durch $(U(t)\phi)(x)=\phi(x-t)$. Sei $D=C_0^\infty(\R)$. Dann $\overline{D}=H, U(t)D \subset D$ und
+\[
+i \frac{d}{dt} U(t) \phi\mid_{t=0}= -i \phi'(x), \quad \phi \in D.
+\]
+Mit anderen Worten: Wenn $A$ der Erzeuger von $U$ ist
+dann gilt $D\subset D(A)$ und $B:=A\upharpoonright D=-i \frac{d}{dx} \upharpoonright D$. Mit dem Satz von Nelson folgt 
+\[
+A=-i \frac{d}{dx} \upharpoonright C_0^\infty(\R)
+\]
+dem \emph{Impulsoperator} in der Quantenmechanik. Zum Beweis  zeigen wir, dass für $\phi \in D$ gilt
+\[
+\|i \frac{U(t) \phi- \phi}{t} - B\phi \|^2 = \|\frac{U(t) \phi - \phi}{t} + i B\phi \|^2 =\int \big| \underbrace{\frac{\phi(x-t)-\phi}{t} + \phi'(x)}_{\to 0, (t\to 0)}\big|^2 \dx \to 0,
+\]
+wobei $t\to 0$ mit dem Satz über majorisierte Konvergenz.
+
+\section{Rotationsgruppe und Drehimpuls}
+Für jedes $R\in SO(3)$ definieren wir als $U(R): L^2(\R^3) \to L^2(\R^3)$ durch
+\[
+(U(R)\phi)(x):= \phi(R^{-1}x).
+\]
+$U(R)$ ist unitär und es gilt  $U(R_1 R_2)=U(R_1) U(R_2)$. D.h. $R\mapsto U(R)$ ist eine Darstellung von $SO(3)$ auf $L^2(\R^3)$. Dei Rotation $R_t\in SO(3)$ um eine feste Achse $e\in \R^3$ mit Winkel $t\in \R$ bilden eine einparametrige (abelsche Untergruppe von $SO(3)$. Es gilt $R_{s+t}=R_s R_t$ und $\frac{d}{dt} R_t x|_{t=0}=e \land x$. 
+
+Sei $U(t)\in \mathcal L(L^2(\R^3))$ definiert durch
+\[
+(U(t)\phi)(x)=\phi(R_t^{-1}x)=\phi(R_{-t} x).
+\]
+Dann ist $U(t)$ unitär und $U(t+s)=U(t) U(s)$. Zum Beweis der Stetigkeit genügt es zu zeigen, dass $U(t)$ auf $C_0^\infty (\R^3)=:D$ stark differenzierbar (und somit stark setig) ist. Es gilt $\overline{D}=H$ und $U(t)D\subset D$ für alle $t\in \R$. Wir zeigen nun noch dass $t\mapsto U(t)\phi$ differenzierbar für alle $\phi\in D$. Um einen Kandidaten für $\lim_{t\to 0}$ zu finden, differenzieren wir die Funktion $(U(t)\phi)(x)=\phi(R_{-t} x)$ partiell nach $t$. 
+
+Für $\phi\in C_0^\infty(\R^3)$ gilt:
+\begin{align*}
+i \frac{\delta}{\delta t} \phi(R_{-t}x)|_{t=0} &= i \nabla \phi(x) \cdot \frac{d}{dt} R_{-t} x|_{t=0}\\
+&=-i \nabla \phi(x) \cdot (e \land x) = (e\land x) \cdot (-i \nabla \phi(x))\\&= e\cdot (x \land(-i \nabla \phi(x)) =: (B\phi)(x).
+\end{align*}
+Wie im obigem Beispiel zeigt man  nun, dass 
+\[
+\|i \frac{U(t)\phi- \phi}{t} - B\phi\| \to 0
+\]
+mit Hilfe mit majorisierter Konvergenz. Aus dem Theorem von Nelson folgt, dass $\overline{B}$ der Erzeuger von $U$ ist. Formal ist
+\[
+B=\vec e \cdot \vec L, \quad \vec L=x \land (-i \nabla) =(L_1, L_2, L_3)
+\]
+Die drei Komponenten $L_1, L_2, L_3$ von $\vec L$ heißen \emph{Drehimpulsoperatoren}. Wir haben gezeigt: Der Abschluss von $L_k=\vec e_k \cdot \vec L \upharpoonright C_0^\infty$ erzeugt die "`Drehungen"' um die $k$-Achse. $\vec e_k$ ist dabei der $k$-ter Vektor der Standardbasis von $\R^3$.
+
+\chapter{Nichtentartete Schrödingergleichungen}
+
+\section{Existenz des Propagators}
+Sei $I\subset \R$ ein Intervall und sei $A: I \mapsto \mathcal L(H)$ stark stetig mit $A(t)^*=A(t)$. Wir schreiben das AWP
+\[
+i \dot \phi = A(t) \phi, \phi(s)=\eta \in H
+\]
+als Integralgleichung:
+\[
+\phi(t)=\eta-i \int_\rho^t A(t_1) \phi(t_1) \dx[t_1]
+\]
+die wir iterieren. Im Konvergenzfall bekommen wir $\phi(t)=U(t,s) \eta$ wobei
+\begin{align*}
+U(t,s) \eta&= \eta- i \int_s^t A(t_1) \eta \dx[t_1]+ ... \\
+&= \eta + \sum_{n=1}^\infty (-i)^n \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] ... \int_s^{t_{n-1}} \dx[t_n] A(t_1)... A(t_n) \eta\\
+&=T \exp(-i \int_s^t A(\tau) \dx[\tau])
+\end{align*}
+siehe physikalische Linteratur. $T$ entspricht dabei der Zeitordnung. Man bezeichnet die Reihe als \emph{Dysan-Reihe}.
+\subsection{Dysan-Reihe}
+Wir werden zeigen, dass $U(t,s)$ folgende Eigenschaften hat
+\begin{enumerate}[a)]
+\item $U(t,s)$ ist unitär.
+\item $U(t, t)=1$ und $U(r,s)U(s,t)= U(r,t)$
+\item $(t,s)\mapsto U(t,s) \eta$ stetig auf $J\times J$ für alle $\eta \in H$.
+\end{enumerate}
+Jede Familie $U(t,s)\in \mathcal L(H)$ mit den Eigenschaften (a), (b), (c) heißt unitärer \emph{Propagator} oder unitäres  \emph{Evolutionssystem}.
+
+\begin{st}
+Sei $A: J \to  \mathcal L(H), A(t)^*=A(t)$ und sei $t\mapsto A(t)$ stark stetig. Dann wird durch die Dysanreihe ein unitärer Propagator $U(t,s)$ definiert so, dass für alle $\phi \in H$ und $s,t \in I$
+\begin{equation} \label{3.1}
+i \frac{d}{dt} U(t,s)\phi = A(t) U(t,s) \phi, \quad i \frac{d}{ds} U(t,s) \phi = - U(t,s) A(s) \phi.
+\end{equation}
+Insbesonder löst $\phi(t)=U(t,s) \eta$ das AWP 
+\[
+i \dot \phi = A(t) \phi, \quad \phi_s=\eta.
+\]
+\end{st}
+\begin{proof}
+Sei $I \subset J$ ein kompaktes Teilintervall und $M= \sup_{\tau \in I} \|A(\tau)\|$. Aus $\sup_{\tau \in I} \|A(\tau) \phi\|<\infty$ und dem Prinzip über die gleichmäßige Beschränktheit 
+\fixme
+
+Also gilt für alle $s, t \in I, s<t$
+\[
+\int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] ... \int_s^{t_{n-1}} \dx[t_n] \|A(t_1) \cdots A(t_n) \eta\| \le M^n \frac{(t-s)^n}{n!} \|\eta\| \le \frac{(M|I|)^n}{n!} \| \eta\|
+\]
+wobei $|I|$ die Länge des Intervalls $I$ sei. Also ist die Dysanreihe absolut und gleichmäßig konvergenz für $s,t$ aus einem kompakten Teilintervall von $J$. Dasselbe gilt für die gliedweise nach $s$ oder $t$ differenzierte Dysanreihe. Daraus folgen  Eigenschaft (c) und \eqref{3.1} denn
+\begin{align*}
+\frac{d}{ds} \int_s^t \dx[t_1] \int_{s}^{t_1} \dx[t_2] ... \int_s^{t_{n-1}} \dx[t_n]  A(t_1)...A(t_n) \eta. =- \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] ... \int_s^{t_{n-2}} \dx[t_{n-1}] A(t_1)... A(t_{n-1})A(s) \eta
+\end{align*}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
 \appendix
 \chapter{Appendix}
 \section{Beschränkte Operatoren}
@@ -273,4 +414,7 @@ Dann ist $\mathcal F \phi\in \mathcal S(\R^n)\subset L^2(\R^n)$ und $\|\mathcal 
 
 Nach Satz \ref{A.3} existiert genau eine beschränkte Fortsetzung $\mathcal F: L^2(\R^n) \to L^2(\R^n)$.
 \end{ex*}
+
+
+
 \end{document}
