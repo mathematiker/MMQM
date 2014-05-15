@@ -20,7 +20,7 @@
 
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\Ran}{\operatorname{Ran}}
-%\renewcommand{\ref}[1]{\hyperref[#1]{#1}}
+\renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
 
 \title{Mathematische Methoden der Quantenmechanik}
 \author{}
@@ -342,12 +342,121 @@ Also gilt für alle $s, t \in I, s<t$
 \]
 wobei $|I|$ die Länge des Intervalls $I$ sei. Also ist die Dysanreihe absolut und gleichmäßig konvergenz für $s,t$ aus einem kompakten Teilintervall von $J$. Dasselbe gilt für die gliedweise nach $s$ oder $t$ differenzierte Dysanreihe. Daraus folgen  Eigenschaft (c) und \eqref{3.1} denn
 \begin{align*}
-\frac{d}{ds} \int_s^t \dx[t_1] \int_{s}^{t_1} \dx[t_2] ... \int_s^{t_{n-1}} \dx[t_n]  A(t_1)...A(t_n) \eta. =- \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] ... \int_s^{t_{n-2}} \dx[t_{n-1}] A(t_1)... A(t_{n-1})A(s) \eta
+&\frac{d}{ds} \int_s^t \dx[t_1] \int_{s}^{t_1} \dx[t_2] ... \int_s^{t_{n-1}} \dx[t_n]  A(t_1)...A(t_n) \eta \\ &=- \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] ... \int_s^{t_{n-2}} \dx[t_{n-1}] A(t_1)... A(t_{n-1})A(s) \eta
 \end{align*}
-
+Nach \eqref{3.1} gilt
+\[
+i \frac{d}{dr} U(t,r) U(r,s)\eta= U(t,r)(-A(r)+A(r)) U(r,s))\eta=0.
+\]
+Also ist
+\[
+U(t,s)=U(t,s) \underbrace{U(s,s)}_{I}= U(t,r) U(r,s)
+\]
+für alle $r\in \R$. Also ist (b) gezeigt. Insbesondere gilt
+\[
+U(t,s) U(s,t)=U(t,t)=I=U(s,t) U(t,s).
+\]
+Also ist $U(t,s)$ bijektiv mit Inverse $U(s,t)$. Aus $A(t)^*=A(t)$ folgt:
+\[
+\frac{d}{dt} \|U(t,s) \eta\|^2=\frac{d}{dt} \< U(t,s) \eta, U(t,s) \eta \> = \< -iA(t) U(t,s)\eta, U(t,s) \eta\rangle + c.c.=0. 
+\]
+Hierbei bezeichne c.c. dem komplex konjugierten des vorigen. \fixme
 \end{proof}
 
+\begin{lem}\label{3.2}
+Sei $U(t)$ eine s.s.u.G. mit Erzeuger $A$ und sei $t\mapsto \phi(t)\in H$ stetig auf $J\ni 0$. Dann ist auch
+\[
+\Phi(t)=\int_0^t U(t-s) \phi(s) \, \dx[s] = \int_0^t U(s) \phi(t-s) \, \dx[s]
+\]
+stetig. Falls $\phi$ stetig differenzierbar ist, dann ist  auch $\Phi$ stetig differnzierbar und $\phi(t) \in D(A)$ für alle $t\in \R$ und
+\[
+\dot \Phi(t)=U(t) \phi(0)+ \int_0^t U(t-s) \dot \phi(s) \, \dx[s]=\phi(t)-iA\underbrace{\int_0^t U(t-s) \phi(s) \, \dx[s]}_{\Phi(t)}
+\]
+\end{lem}
+\begin{proof}
+Es ist
+\begin{equation}\label{3.2}
+\Phi(t+\eps)-\Phi(t)=\int_0^t U(s) (\phi(t+\eps-s) - \phi(t-s))\, \dx[s] + \int_t^{t+\eps} U(s) \phi(t+\eps-s) \, \dx[s].
+\end{equation}
+Es folgt
+\[
+\| \Phi(t+\eps)- \Phi(t)\| \le \int_0^t \|\phi(t+\eps-s)- \phi(t-s) \| \dx[s] + \int_t^{t+\eps} \|\phi(t+\eps-s)\| \,\dx[s] \to 0
+\]
+mit $\eps \to 0$. Sei nun $\phi(t)$ stetig differenzierbar. Nach \eqref{3.2} folgt
+\begin{align*}
+\frac{1}{\eps} ( \phi(t+\eps)-\phi(t)) &= \int_0^t U(s) \frac{1}{\eps} ( \phi(t+\eps-s)-\phi(t-s))\,\dx[s]\\
+&+ \frac{1}{\eps} \int_t^{t+\eps} U(s) \phi(t+\eps-s)\, \dx[s] \\ &\to \int_0^t U(s)\dot \phi(t-s) \dx[s] + U(t) \phi(0)
+\end{align*}
+für $\eps\to 0$. Dies ist stetig und hängt von $t$ ab nach dem zuvor bewiesenen. 
+Eine zweite Darstellung von $\Phi$ ist gegeben durch
+\[
+\Phi(t+ \eps)-\Phi(t) = \int_0^t (U(t+\eps-s)-U(t-s)) \phi(s) \, \dx[s] + \int_t^{t+\eps} U(t+\eps-s) \phi(s) \, \dx[s].
+\]
+Und damit
+\[
+\frac{1}{\eps} (\Phi(t+\eps)-\Phi(t))= \frac{1}{\eps}(U(\eps)-1) \int_0^t U(t-s) \phi(s) \, \dx[s] + \frac{1}{\eps} \int_{t}^{t+\eps} U(t+\eps-s) \phi(s) \, \dx[s],
+\]
+wobei
+\[
+\frac{1}{\eps} \int_t^{t+\eps} U(t+\eps-s) \phi(s) \, \dx[s] \stackrel{\eps\to 0} \longrightarrow U(0) \phi(t) = \phi(t).
+\]
+Also ist $\phi(t) \in D(A)$ und
+\[
+\dot \phi(t)=\phi(t)-i A\phi(t).
+\]
+\end{proof}
+\begin{st}[R.S. Phillips 1953]
+Sei $A_0=A_0^*$ Erzeuger einer unitären Gruppe $U_0$ und sei $t\to B(t)\in \mathcal L(H)$, $t\in J\subset \R$ \emph{stark stetig differenzierbar}. Dann existiert ein unitärer Propagator $U(t,s)$ mit
+$U(t,s) D(A_0)\subset D(A_0)$ und wenn $\eta \in D(A_0)$ gilt
+\[
+i\frac{d}{dt} U(t,s)\eta= A(t) U(t, s) \eta
+\]
+mit $A(t)=A_0+B(t)$. Außerdem gilt
+\begin{align*}
+U(t,s)&=U_0(t-s)-i \int_s^t \dx[t_1] U_0(t-t_1) B(t_1) U(t_1-s) \eta \\ &+(-i)^2 \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] U_0(t-t_1) B(t_1) U_0(t_1-t_2) B(t_2) U_0(t_2-s)\eta+ ...
+\end{align*}
+was sich für $A_0=0$ auf die bekannte Dysan-Reihe aus Satz \ref{3.1} reduziert.
+\end{st}
+\begin{nt*}
+Man kann zeigen (siehe Phillips 1953) dass starke Stetigeit von $B(t)$ im Allgemeinen nicht hinreichend ist.
+\end{nt*}
+\begin{proof}
+Wir merken an, dass $U_0(t,s)=U_0(t-s)$. Wir definieren
+\[
+U_1(t,s)\phi= U_0(t,s)\phi-i \int_s^t U_0(t,r) B(r) U_0(r,s) \phi\, \dx[r]
+\]
+und weiter
+\[
+U_n(t,s) \phi = U_0(t,s) \phi-i \int_s^t U_0(t,r) B(r) U_{n-1}(r,s) \phi \dx[r].
+\]
+Weiter definiere $W_0(t,s)=U_0(t-s)$  und 
+\[
+W_n(t,s)\eta= (U_n(t,s)-U_{n-1}(t,s))\eta= -i \int_s^t U_0(t,r) B(r) W_{n-1} (r,s) \eta \, \dx[s].
+\] 
+Nach Annahme über $B$ ist $r\mapsto B(r) U_0(r,s) \phi$ stetig. Also ist auch $t\mapsto U_1(t,s) \phi$ stetig nach Lemma \ref{3.2}.  Induktiv folgt mit Lemma \ref{3.2}, dass $t\mapsto U_n(t,s) \phi$ stetig ist für alle $n\in \N$. Insbesondere sind obige Integrale als Riemann-Integrale wohldefiniert. Wie im Beweis von Satz \ref{3.1} zeigt man nun, dass
+\[
+\|W_n(t,s)\| \le \frac{M^n}{n!} |I|^n,
+\]
+wobei $I\subset J$ kompaktes Intervall, $t,s\in I$ und $M=\sup_{t\in I} \| B(t) \| < \infty$. Also konvergiert die Reihe
+\[
+U(t,s)=\sum_{n=0}^\infty W_n(t,s)=\lim_{n\to \infty} U_n(t,s)
+\]
+in $\mathcal L(H)$ absolut und lokal bezüglich $t,s$ gleichmäßig. Da $U_n(t,s) \phi$ stetig in $t$ (und $s$) ist, ist auch $U(t,s)\phi$ stetig in $(t,s)\in J\times J$. Außerdem $U(t,t)=I$, denn $U_n(t,t)=I$.
+Aus der Rekursionsbeziehung für $U_n(t,s)$ folgt im Grenzwert $n\to \infty$, dass
+\[
+U(t,s) \phi= U_0(t,s)\phi-i \int_s^t U_0(t,r) B(r) U(r,s) \phi\, \dx[r]
+\]
+Annahme: Für $\phi \in D(A)$ sei $t\mapsto U(t,s) \phi$ stetig differenzierbar. Dann ist auch $r\mapsto B(r) U(r,s) \phi$ stetig differenzierbar und aus Lemma \ref{3.2} folgt, dass
+\[
+\int_s^t U_0(t,r) B(r) U(r,s) \phi \, \dx[r] \in D(A_0)
+\]
+also auch $U(t,s)\phi \in D(A_0)$ und nach Lemma \ref{3.2}
+\[
+\frac{d}{dt} U(t,s) \phi=-i (A_0 +B(t)) U(t,s) \phi
+\]
+Es bleibt zu zeigen, dass $t\mapsto U(t,s)\phi$ in $C^1$ ist für $\phi\in D(A)$.
 
+\end{proof}
 
 
 
