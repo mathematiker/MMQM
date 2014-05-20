@@ -405,6 +405,14 @@ Also ist $\phi(t) \in D(A)$ und
 \dot \phi(t)=\phi(t)-i A\phi(t).
 \]
 \end{proof}
+Im Folgenden verwenden wir eine kleine Abwandlung dieses Lemmas
+\begin{lem*}
+$U$ ein s.s.U.G. mit Erzeuger $A$ und sei $\gamma: J \to H$ stetig. Dann ist auch
+\[
+\Phi(t,s)=\int_s^t U(t-r) \gamma(r) \, \dx[r]=\int_0^{t-s} U(r) \gamma(t-r) \,\dx[r]
+\]
+stetig auf $J\times J$. Falls $\gamma$ von der Klasse $C^1$ ist 
+\end{lem*}
 \begin{st}[R.S. Phillips 1953]
 Sei $A_0=A_0^*$ Erzeuger einer unitären Gruppe $U_0$ und sei $t\to B(t)\in \mathcal L(H)$, $t\in J\subset \R$ \emph{stark stetig differenzierbar}. Dann existiert ein unitärer Propagator $U(t,s)$ mit
 $U(t,s) D(A_0)\subset D(A_0)$ und wenn $\eta \in D(A_0)$ gilt
@@ -454,9 +462,143 @@ also auch $U(t,s)\phi \in D(A_0)$ und nach Lemma \ref{3.2}
 \[
 \frac{d}{dt} U(t,s) \phi=-i (A_0 +B(t)) U(t,s) \phi
 \]
-Es bleibt zu zeigen, dass $t\mapsto U(t,s)\phi$ in $C^1$ ist für $\phi\in D(A)$.
+Es bleibt zu zeigen, dass $t\mapsto U(t,s)\phi$ in $C^1$ ist für $\phi\in D(A)$. Es gilt
+\[
+t \mapsto W_0(t,s) \phi = U_0(t,s) \phi
+\]
+ist stetig differenzierbar und
+\[
+\frac{\delta}{\delta t} W_0(t,s) \phi = U_0(t,s) (iA_0) \phi,
+\]
+was bezüglich $f$ stetig ist. Falls $t\mapsto W_{n-1} (t,s) \phi$ von der Klasse $C^1$, dan auch
+\[
+W_n(t,s) \phi=-i \int_s^t \dx[r] U_0(t,r) B(r) W_{n-1}(r,s) \phi
+\]
+nach Lemma \ref{3.2}, $W_n(t,s) \phi \in D(A_0)$ und
+\begin{align*}
+\dot W_n(t,s) \phi &= U_0(t,s) B(s) W_{n-1}(s, s) \phi\\
+&- i\int_s^t U_0(r,t) \dot B(r) W_{n-1}(r,s) \phi \\
+& -i\int_s^t U_0(t,r) B(r) \dot W_{n-1} (r,s) \phi \, \dx[r]. 
+\end{align*}
 
+Daraus folgt:
+\[
+\|\dot W_1(t,s)  \phi \| \le M \phi\| + |t-s| M \| \phi \| + |t-s| M \| A_0 \phi\|
+\]
+wobei $M:= \sup_{r\in I} \{ \|B(r) \| + \| \dot B(r) \| \} < \infty$. Für $n \ge 2$ gilt
+\begin{align*}
+\| \dot W_n(t,s) \phi \| &\le M \int_s^t( \|W_{n-1}(r,s) \phi \| + \| \dot W_{n-1} (r,s) \phi \|) \,\dx[r] \\ &\le M^n \frac{ |t-s|^n}{n!} \| \phi \| + M \int_s^t \| \dot W_{n-1}(r,s) \phi \| \dx[r].
+\end{align*}
+Mittels Induktion.
+\begin{seg}[Induktionsannahme]
+\[
+\|\dot W_{n}(t,s) \phi \| \le  \frac{M^n}{(n-1)!}(|t-s|^n + |t-s|^{n-1}) \| \phi \|_A
+\]
+mit $\| \phi\|_A= \|\phi\|+ \|A \phi \|$. Die Annahme ist erfüllt für $n=1$ 
+\end{seg}
+\begin{seg}[Induktionsschritt]
+Für $n\ge 2$ folgt
+\begin{align*}
+\| \dot W_n(t,s) \phi \| &\le \frac{M^n}{n!} |t-s|^n \| \phi \| \\
+&+ M \int_s^t \frac{M^{n-1}}{(n-1)!} (|r-s|^{n-1} + |r-s|^{n-2}) \| \phi\|_A \, \dx[r]\\
+&\le \big[M^n(t-s)^n (\underbrace{\frac{1}{n!} + \frac{1}{(n-2)! n}}_{=\frac{1}{(n-1)!}})+ M^n \frac{|t-s|^{n-1}}{(n-1)!} \big] \| \phi\|_A.  
+\end{align*}
+\end{seg}
+Es folgt, dass die Reihe $\sum_{n} \dot W_n(t,s) \phi$ absolut und gleichmäßig konvergent ist für $t,s\in I$. Also gilt
+\[
+\dot U(t,s) \phi = \sum_{n\ge 0 } \dot W_n(t,s) \phi
+\]
+was bezüglich $t,s$ stetig. Also ist $t \mapsto U(t,s) \phi$ stetig differenzierbar für $\phi \in D(A)$. Dass $U(t,s)$ ein unitärer Propagator ist, ist eine Übungsaufgabe.
 \end{proof}
+
+\begin{nt*}
+\fixme Mit letzteren Satz folgt
+\begin{align*}
+U(t,s) \phi- U_0(t,s) \phi &= U_0(t, r) U(r,s) \phi\big|_{r=s}^{r=t}\\
+&= \int_{s}^t \frac{\delta}{\delta r} U_0(t,r) U(r,s) \phi \, \dx[r]\\&= \int_s^t U_0(t,r) (iA_0-i(A_0+B(r))) U(r,s) \phi \, \dx[r] \\ &= -i \int_s^t U_0(t,r) B(r) U(r,s) \phi \, \dx[r].
+\end{align*}
+Dies kann man iterieren und erhält
+\begin{align*}
+U(t,s) \phi &= U_0(t,s) \phi - i \int_s^t U_0(t,r) B(r) U_0(r,s) \phi \, \dx[r] \\ &+ (-i)^2 \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] U_0(t, t_1) B(t_1) ....
+= \sum_{n=0}^\infty W_n(t,s) \phi.
+\end{align*}
+\end{nt*}
+
+\begin{st}[Kato 1953] \label{3.4}
+Sei $A(t): D \subset H \to H,$ $t\in J$ eine Familie von selbstadjungierte Operatoren mit $D(A(t))=D$ für alle $t\in J$. Falls $t \mapsto A(t) \phi$ auf $J$ stetig differenzierbar ist für alle $\phi \in D$. Dann existiert ein unitärer Propagator $U: J \times J \to \mathcal L(H)$ mit
+\begin{enumerate}[(i)]
+\item $U(t,s) D\subset D$ für alle $t,s \in J$
+\item Für $\phi\in D$
+\[
+\frac{d}{dt} U(t,s) \phi = - i A(t) U(t,s) \phi, \quad \frac{d}{ds} U(t,s) \phi= U(t,s) iA(s) \phi.
+\]
+\end{enumerate} 
+\end{st}
+\begin{proof}
+s. Yosida: Functional Analysis, siehe auch Pazy, Engel und Nagel
+\end{proof}
+\begin{nt*}
+Die zweite Gleichung von (ii) folgt aus der ersten
+\begin{align*}
+\frac{1}{\eps} ( U(t,s+\eps) \phi - U(t,s) \phi) &= U(t, s+\eps) \frac{1}{\eps} (\phi-U(s+\eps, s) \phi)\\
+&= - U(t,s) \underbrace{\frac{1}{\eps} (U(s+\eps) \phi- \phi)}_{\to -iA(s) U(s,s) \phi}) \\ 
+&\longrightarrow U(t,s) i A(s) \phi 
+\end{align*}
+für $\eps \to 0$.
+\end{nt*}
+
+\section{Das Adiabatische Theorem}
+Sei $H(s), s\in [0,1]$ eine Familie von selbstadjungierten Operatoren in $H$ mit $D(H(s))=D$. Für jedes $s\in I$ sei
+\[
+\sigma(H(s)) = \sigma_1(s) \cup \sigma_2(s)
+\]
+wobei $\sigma_1(s) \cap \sigma_2(s) = \emptyset$ und
+\[
+\inf_{s\in I} \dist( \sigma_1(s), \sigma_2(s)) >0.
+\]
+Z. B. kann $\sigma_1(s)=\{E(s)\}$ wobei $E(s)$ diskreter Eigenwert von $H(s)$ ist. Sei
+\[
+P(s)=\frac{1}{2\pi i} \oint_\gamma (z-H(s))^{-1} \, \dx[z]
+\]
+mit $\gamma$ wie in der Figur:
+\fixme[fig1]
+
+
+Auch $\gamma$ hängt von $s$ ab.
+
+Wir studieren die Lösung von
+\begin{equation}\label{3.3}
+i \dot \phi = H(\frac{t}{\tau}) \phi,\quad \phi(0)= P(0) \phi(0)
+\end{equation}
+für $t\in [0, \tau]$ im Grenzwert $\tau \to \infty$. Das Ziel ist zu zeigen, dass
+\[
+\sup_{t\in [0, \tau]} \| (1- P(t)) \phi(t) \| \to 0
+\]
+für $\tau \to \infty$. Dass heißt Überänge von $P(0) H$ nach $(1- P(t))H$ sind unmöglich (beziehungsweise sehr unwahrscheinlich) im Grenzwert $\tau \to \infty$. Wir definieren $s=\frac{t}{\tau}$, dann wird \eqref{3.3} äquivalent zu
+\[
+i \dot \phi(s) = \tau H(s) \phi(s), \quad \phi(0)= P(0) \phi(0)
+\]
+wobei $s\in [0,1]$. Wir nehmen an:
+\begin{enumerate}[(i)]
+\item $s\to H(s) \phi$ ist $C^1$ für alle $\phi\in D$
+\item $s\mapsto P(s)$ ist von der Klasse $C^2(I)$.
+\end{enumerate}
+Annahme (ii) kann aus mehr Regularität von $s\mapsto H(s) \phi$ hergeleitet werden. Annahme (i) garantiert nach dem Satz von Kato \ref{3.4} die Existenz des Propagators $U(t,s)$ mit
+\[
+i \frac{d}{dt} U(t,s) \phi= \tau H(s) U(t,s) \phi, \quad U(t,t) = I.
+\]
+Wir definieren eine \emph{adiabatische} Evolution $U_A(t,s)$ durch die Schrödingergleichung zu $\tau H_A(s)$ wobei
+\[
+H_A(s):= H(s) + \frac{i}{\tau} [\dot P(s), P(s)].
+\]
+\begin{lem} Für alle $t,s \in I, \tau >0$ ist
+\[
+U_A(t,s) P(s) = P(t) U_A(t,s).
+\]
+\end{lem}
+
+
+
 
 
 
