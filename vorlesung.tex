@@ -591,16 +591,149 @@ Wir definieren eine \emph{adiabatische} Evolution $U_A(t,s)$ durch die Schrödin
 \[
 H_A(s):= H(s) + \frac{i}{\tau} [\dot P(s), P(s)].
 \]
+wobei $[\dot P, P]:= \dot P P - P \dot P$ den Kommutator definiert.
 \begin{lem} Für alle $t,s \in I, \tau >0$ ist
 \[
 U_A(t,s) P(s) = P(t) U_A(t,s).
 \]
 \end{lem}
+\begin{proof}
+Aus $P=P^2$ folgt $\dot P=\dot P + P \dot P$ und somit auch
+\[
+P\dot P = P \dot P P + P \dot P.
+\]
+Und damit $P\dot P P =0$ (d.h. $\dot P P = (1-P) \dot PP$). Es folgt, im \emph{schwachen} Sinn,
+\begin{align*}
+\frac{d}{dt} U_A(s,t) P(t) U_A(t,s)&= U_A(s,t) (i \tau H_A(t) P+ \dot P(t)-P i\tau H_A(t))U_A(t,s)\\
+&=U(s,t)(-[\dot P, P] P+ \dot P + P [\dot P, P])_t U_A(t,s)\\
+&= U_A(s,t) (\underbrace{-\dot P P + \dot P - P \dot P}_{-(\dot P P + P \dot P) + \dot P=0}) U_A(t,s)=0.
+\end{align*}
+Es folgt
+\[
+U_A(s,t) P(t) U_A(t,s) = U_A(s,t) P(t) U_A(t,s)\big|_{t=s} = P(s).
+\]
+Und es folgt $U_A(s,t)P(t)=P(s) U_A(s,t)$.
+\end{proof}
+
+\begin{lem}\label{3.6}
+Ist $J\subset \R$ ein Intervall und $B: J \mapsto \mathcal L(H)$ stark stetig differenzierbar, dann ist $s\mapsto B(s)$ norm-stetig. (Allgemeiner gilt: Ist $t\mapsto B(s) \phi$ von der Klasse $C^{k+1}$ für alle $\phi \in H$, dann ist $s\mapsto B(s)$ von der Klasse $C^k$ bezüglich der Operatornorm).
+\end{lem}
+
+\begin{proof}
+Für alle $\phi\in H$ gilt:
+\[
+B(t) \phi - B(s) \phi = \int_s^t \dot B(r) \phi\, \dx[r]
+\]
+wobei $\dot B(r) \phi = \frac{d}{dr} B(r) \phi$ stetig bezüglich $r$ ist. Also gilt ($s\in J$ fest)
+\[
+\sup_{|r-s|\le \eps} \| \dot B(r) \| < \infty
+\]
+und somit $M_\eps:= \sup\|_{|r-s|\le \eps} \dot B(r)\| < \infty$ nach dem Prinzip über gleichmäßige Beschränktheit. Also
+\[
+\| B(t) \phi - B(s) \phi \| \le \big | \int_s^t \overbrace{\| \dot B(r) \phi\|}^{\le M_\eps \| \phi\|} \, \dx[r]\big | \le | t-s| M_\eps\| \phi\|
+\]
+für $|t-s|\le \eps$. D.h.
+\[
+\| B(t)-B(s)\| \le |t-s| M_\eps \to 0
+\]
+für $t\to s$.
+\end{proof}
 
 
+\begin{lem}\label{3.7}
+Sei $s\mapsto H(s) \phi$ stetig differenzierbar für alle $\phi \in D$. (Ann. (i)) und sei $z\in \C$. Dann ist $\{s\in I | z\in \rho(H(s))\}$ offen, $s\mapsto (z-H(s))^{-1}$ ist stark stetig differenzierbar und
+\[
+\frac{d}{ds} (z-H(s))^{-1}\phi = (z_H(s))^{-1} \dot H(s) (z- H(s))^{-1} \phi.
+\]
+\end{lem}
+\begin{proof}
+Sei $s\in I$ fest mit $z\in \rho(H(s))$. Dann gilt für $t\in I$
+\begin{align*}
+(z-H(t)) &= (z- H(s) - (H(t)-H(s))\\
+&= (1-(H(t)-H(s)) R(s))(z-H(s))
+\end{align*}
+wobei $t\mapsto H(t) R(s)$ stark stetig differenzierbar und somit, nach Lemma \ref{3.6}, norm-stetig ist. D.h.
+\[
+\|(H(t)-H(s)) R(s)\|= \|H(t) R(s)- H(s) R(s) \| <1
+\]
+für $|t-s|$ klein genug. Für solche $t$ ist $z\in \rho(H(t))$ und
+\[
+(z- H(t))^{-1} = (z-H(s))^{-1} (1-\underbrace{(H(t)-H(s)) R(s)}_{=B(t)})^{-1}
+\]
+Da die Abbildung $B\mapsto B^{-1}$ stetig ist auf der offenen Menge der invertierbaren Elemente von $\mathcal L(H)$, folgt dass $t\mapsto (z-H(t))^{-1}$ norm-stetig ist. Somit gilt für alle $\phi \in H$
+\begin{align*}
+\frac{1}{h} [(z-H(s+h))^{-1} &- (z-H(s))^{-1}]\phi\\
+&=(z-H(s+h))^{-1} [ \frac{H(s+h)-H(s)}{h}] (z-H(s))^{-1}\phi \\
+&\to (z-H(s))^{-1} \dot H(s) (z-H(s))^{-1} \phi
+\end{align*}
+mit $h\to 0$, was stetig von $s$ abhängt. (Übung)
+\end{proof}
+\begin{lem}\label{3.8}
+Für $s\in I$ sei
+\[
+X(s):= - \frac{1}{2\pi i} \oint_\gamma(z-H(s))^{-1} \dot P(s) (z-H(s))^{-1} \, \dx[z]
+\]
+wobei $\gamma$ wie in der Definition von $P$ gewählt wird. Dann gilt
+\begin{enumerate}[(i)]
+\item $[H,X]=[\dot P, P]$ auf $D$
+\item $s\mapsto \chi(s)$ ist stark stetig differenzierbar.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Im schwachen Sinn, d.h. für Skalarprodukte mit Vektoren $\psi, \phi \in D$:
+\begin{align*}
+[H,X] &= - \frac{1}{2\pi i} \oint_\gamma [H, (z-H)^{-1} \dot P(z-H)^{-1} ]\,\dx[z]\\ 
+&= \frac{1}{2\pi i} \oint_\gamma [ z-H, (z-H)^{-1} \dot P (z-H)^{-1} ] \, \dx[z]\\
+&= \frac{1}{2\pi i} \oint_\gamma (\dot P(z-H)^{-1} - (z-H)^{-1} - (z-H)^{-1} \dot P)\, \dx[z] \\
+&= \dot P P - P\dot P= [\dot P, P]
+\end{align*}
+Und es folgt (i). (ii) folgt aus $P\in C^2(I, \mathcal L))$ und Lemma \ref{3.7}.
+\end{proof}
+\begin{st}[Adiabatische Theorem] \label{3.9}
+Sei $U(s)=U(s,0)$, $U_A(s) = U_A(s,0)$. Dann gilt
+\[
+\sup_{s\in I} \| U(s) - U_A(s)\| = \mathcal O(\frac{1}{\tau})
+\]
+für $\tau \to \infty$.
+\end{st}
+\begin{proof}
+$\| U(s)-U_A(s)\| = \|1- U(s)^* U_A(s)\|$ wobei für jedes $\phi \in D$,
+\begin{align*}
+U(s)^* U_A(s) \phi - \phi &= \int_0^s U(t)^*(i\tau H(t) - i \tau H_A(t)) U_A(t) \phi \, \dx[t]\\
+ &= \int_0^s U(t)^* [\dot P, P] U_A(t) \phi \, \dx[t]\\
+ &= \int_0^s U(t)^* [H,X] U(t)) U(t)^* U_A(t) \phi \dx[t] 
+\end{align*}
+wobei 
+\begin{align*}
+\frac{d}{dt} U(t)^* X(t) U(t) &= U(t)^* [i \tau H, X] U(t) + U^* (t) \dot X U(t) \\
+&= U(t)^*[i \tau H, X] U(t) + U^*(t) \dot X U(t).
+\end{align*}
+Es ist
+\[
+U^*[H,X] U= \frac{1}{i \tau} \frac{d}{dt} U^* X U - \frac{1}{i \tau} U^* \dot X U.
+\]
+Also 
+\begin{align*}
+&U^*(s) U_A(s) \phi - \phi= \frac{1}{i \tau} \int_0^s \frac{d}{dt} ( U^* X U) U^* U_A \phi \, \dx[t] - \frac{1}{i \tau} \int_0^s U^* \dot X U \, \dx[t] \\
+&\stackrel{\text{part. Int.}}= \frac{1}{i \tau} U^* X U_A(s) \phi - \frac{1}{i \tau} \int_0^s U^* X [\dot P, P] U_A \phi \, \dx[t]- \frac{1}{i\tau} \int_0^s U^* \dot X U \phi\, \dx[t]
+\end{align*}
+Daraus folgt
 
-
-
+\[
+\| U(s) - U_A(s) \| \le \frac{1}{ \tau} \sup_{s\in I} ( \| X(s)\| + \| X [\dot P, P] \| + \| \dot X\| )
+\]
+\end{proof}
+\begin{kor}\label{3.10}
+Es gilt
+\[
+\sup_{s\in I}\| (1-P(s)) U(s) P(0)\| = \mathcal O(\frac{1}{\tau})
+\]
+für $\tau \to \infty$. Es folgt
+\begin{align*}
+\|(1-P(s))U(s) P(0)\| &\stackrel{Lem. \ref{8.5}}= \|(1-P(s))(U(s)-U_A(s))P(0)\| \le \|U(s)-U_A(s)\| = \mathcal O(\frac{1}{\tau})
+\end{align*}
+nach Theorem \ref{3.9}.
+\end{kor}
 
 
 
