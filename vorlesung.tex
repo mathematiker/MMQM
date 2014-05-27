@@ -728,12 +728,124 @@ Es gilt
 \[
 \sup_{s\in I}\| (1-P(s)) U(s) P(0)\| = \mathcal O(\frac{1}{\tau})
 \]
-für $\tau \to \infty$. Es folgt
+für $\tau \to \infty$.
+\end{kor} 
+\begin{proof}
+Es folgt
 \begin{align*}
-\|(1-P(s))U(s) P(0)\| &\stackrel{Lem. \ref{8.5}}= \|(1-P(s))(U(s)-U_A(s))P(0)\| \le \|U(s)-U_A(s)\| = \mathcal O(\frac{1}{\tau})
+\|(1-P(s))U(s) P(0)\| &\stackrel{Lem. \ref{8.5}}= \|(1-P(s))(U(s)-U_A(s))P(0)\|\\ &\le \|U(s)-U_A(s)\| = \mathcal O(\frac{1}{\tau})
 \end{align*}
 nach Theorem \ref{3.9}.
-\end{kor}
+\end{proof}
+
+Es gilt $U_A(t,s) P(s)=P(t) U_A(T,s)$. Wir betrachten Schrödingergleichung der Form
+\[
+i \dot \phi = H(t/ \tau) \phi, \quad s=t/\tau, \quad \frac{d}{ds} = \tau \frac{d}{dt}
+\]
+mit $\tilde \phi = \phi(t) = \phi(\tau s)$ und erhalten die Modifikation
+\[
+i \frac{d}{ds} \tilde \phi = \tau \dot \phi (\tau s) = \tau H(s)  \phi(\tau s) = \tau H(s) \tilde \phi(s)
+\]
+
+\begin{seg}[Annahm]
+für alle $\phi \in D$ ist $H(s) \phi$ stetig differenzierbar in S, dann gibt es ein $U(t_1, t_2)$.
+Und ein großes \fixme[fig2].
+\end{seg}
+
+\subsection{Adiabatisches Theorem ohne spektrale Lücke}
+
+\begin{seg}[Annahmen]
+$I=[0,1]$
+\begin{enumerate}[i]
+\item $s\mapsto H(s) \phi$ ist in $C^1(I)$ für alle $\phi \in D$.
+\item Es gibt eine Abbildung $P: I \to \mathcal L(H)$ ist von der Klasse $C^2(I)$ mit $P^2= P= P^*$ und $P(S) H \subset D$ und $H(s) P(s)= E(s) P(s)$ wobei $E(s) \in \R$. Für fast alle $s\in I$ sei $P(s)$ der Projektor auf den Eigenraum von $H(s)$ zu $E(s)$.
+\item $\dim P(s) H < \infty$.
+\end{enumerate}
+\end{seg}
+
+\begin{thm}[Bornemann/Avrau und Elgert 1998]
+Unter obigen Annahmen gilt
+\[
+\sup_{s\in I} \| U(s) - U_A(s) \| \to 0
+\]
+für $\tau \to \infty$.
+\end{thm}
+\begin{proof}
+Wie im Beweis von Theorem 9 gilt:
+\begin{align*}
+U(s)^* U_A(s) \phi - \phi &= \int_0^s U^*[\dot P, P] U_A \phi \, \dx[r]\\
+&= \int_0^s U^*([H, X_\eps] - Y_\eps) U_A\phi \dx[r]\\
+&= \int_0^s U^*[H, X_\eps] U_A \phi \dx[r] - \int_0^s U^* Y_\eps U_A \phi \dx[r]\\
+&\stack{\text{vgl. Thm } \ref{3.9}}= \frac{1}{i \tau} U^* X_\eps U_A \phi \big |_0^s - \frac{1}{i\tau} \int_0^s U^* X_\eps [\dot P, P] U_A \phi \, \dx[r]\\
+&- \frac{1}{i\tau} \int_0^s U^* \dot X U_A \phi \, \dx[r] - \int_0^s U^* X_\eps U_A \phi \, \dx[r].
+\end{align*}
+wobei $\eps >0$ und $X_\eps$ wie in Blatt 7 gewählt. Also ist
+\begin{align*}
+\sup_{s\in I} \| U(s) - U_A(s)\| &\le \frac{1}{\tau} \sup_s( 2 \| X_\eps(s)\| + \| X_\eps \dot P P\| \\
+&+ \int_0^1 \dx[r] ( \| \dot X_\eps \|/\tau + \| Y_\eps\|).
+\end{align*}
+Wir erinnern, dass $P\dot P P=0$, wobei
+$\int_0^1\| Y_\eps\|\, \dx[r]$ für $\eps\to 0$ da $\| Y_\eps(r)\| \to 0$ für fast alle $r\in [0,1]$ (vgl. Blatt 7). Also wähle erst $\eps>0$ klein, dann für gegeben $\eps$ fest $\tau$ groß. Dann folgt die Behauptung.
+\end{proof}
+
+\subsection{Anwendungen}
+
+\begin{enumerate}[1)]
+\item \fixme[fig4]
+$P(s)$ sei spektraler Projektor zu $E(s)$ für $s\neq s_0$ und $E(s)$ sei diskreter Eigenwert.
+\item Eingebetteter Eigenwert \fixme[fig4]
+$E(s)=\inf \sigma(H(s))$ ein Eigenwert endlicher Vielfachheit und sei $P(s)$ Eigenprojektor zu $E(s)$.
+\end{enumerate}
+
+\chapter{Schrödingeroperatoren}
+
+\section{Multiplikations- und Differentialoperatoren}
+Sei $( \Omega, \mu)$ ein $\sigma$-endlicher Maßraum (z.B. $\Omega = \R^n$, $\mu$ das Lebesgue-Maß). Sei $f: \Omega \to \C$ messbar und sei
+\[
+M_f : D(M_f) \subset L^2( \Omega) \to L^2( \Omega)
+\]
+definiert durch $M_f \phi:= f\phi$ wobei $D(M_f)=\{ \phi \in L^2| f\phi \in L^2(\Omega)\}.$
+
+\begin{st}\label{4.1}
+\begin{enumerate}[a)]
+\item $M_f$ ist dicht definiert und $M_{\bar f} = M_f^*$
+\item Das Spektrum von $M_f$ ist der wesentliche Wertebereich von $f$, d.h.
+\[
+\sigma(M_f) =\{z\in \C| \forall \eps >0, \mu(f^{-1} (B_\eps (z))>0\}
+\]
+\end{enumerate}
+\begin{nt*}
+Falls $f\in L^\infty(\Omega)$, dann 
+\[
+D(M_f) = L^2(\Omega) \text{ und } \| M_f\| \le \| f\|_\infty.
+\]
+\end{nt*}
+\end{st}
+\begin{proof}
+siehe Satz 3.1 im Vorlesungsskript.
+\end{proof}
+
+\section{Differentialoperatoren}
+Sei $\mathcal F. \mathcal L^2(\R^n) \to L^2(\R^n)$ die Fouriertransformation und sei $f: \R^n \to \C$ messbar. Dann gilt
+\[
+f(-i \nabla) = \mathcal F^{-1} M_f \mathcal F.
+\]
+Dabei sei 
+\begin{align*}
+D(f(-i \nabla)&=\{\phi \in L^2| \hat \phi \in D(M_f)\}\\
+&=\{ \phi \in L^2| f \hat \phi \in L^2( \Omega)\}.
+\end{align*}
+Dann ist nach Satz \ref{4.1}, $f(-i \nabla)$ dicht definiert, abgeschlossen und $\sigma(f(-\nabla))=\sigma(M_f)$.
+
+Der \emph{Laplace-Operator} $\nabla$ definiert durch
+\[
+- \nabla = \mathcal F^{-1} M_f \mathcal F, \quad f(p)=p^2
+\]
+ist selbstadjungiert auf
+\[
+D(-\nabla)=\{\phi \in L^2| \int| p^2 \hat \phi (p)|^2 \, \dx[p] < \infty\}=H^2(\R^n)
+\]
+und $\sigma(- \nabla) = [0, \infty)$. 
 
 
 
