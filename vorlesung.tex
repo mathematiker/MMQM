@@ -832,20 +832,175 @@ f(-i \nabla) = \mathcal F^{-1} M_f \mathcal F.
 \]
 Dabei sei 
 \begin{align*}
-D(f(-i \nabla)&=\{\phi \in L^2| \hat \phi \in D(M_f)\}\\
+D(-i \nabla)&=\{\phi \in L^2| \hat \phi \in D(M_f)\}\\
 &=\{ \phi \in L^2| f \hat \phi \in L^2( \Omega)\}.
 \end{align*}
 Dann ist nach Satz \ref{4.1}, $f(-i \nabla)$ dicht definiert, abgeschlossen und $\sigma(f(-\nabla))=\sigma(M_f)$.
 
-Der \emph{Laplace-Operator} $\nabla$ definiert durch
+Der \emph{Laplace-Operator} $\Delta$ definiert durch
 \[
-- \nabla = \mathcal F^{-1} M_f \mathcal F, \quad f(p)=p^2
+- \Delta = \mathcal F^{-1} M_f \mathcal F, \quad f(p)=p^2
 \]
 ist selbstadjungiert auf
 \[
-D(-\nabla)=\{\phi \in L^2| \int| p^2 \hat \phi (p)|^2 \, \dx[p] < \infty\}=H^2(\R^n)
+D(-\Delta)=\{\phi \in L^2| \int| p^2 \hat \phi (p)|^2 \, \dx[p] < \infty\}=H^2(\R^n).
 \]
-und $\sigma(- \nabla) = [0, \infty)$. 
+und $\sigma(- \Delta) = [0, \infty)$. Die \emph{Resolvente} $R(z)=(z+\Delta)^{-1}$ durch
+\[
+R(z)=\mathcal F^{-1} \frac{1}{z-p^2} \mathcal F.
+\]    
+Für $n\le 3$ ist $\hat G_z(p):= (z-p^2)^{-1}$ quadrat-integrierbar. Somit ist $G_z:=F^{-1} \hat G_z \in L^2(\R^n)$ und es gilt (Übung)
+\[
+(R(z) \phi)(x)=\int G_z(x-y) \phi(y) \, \dx[y]
+\]
+Für $n=3$ und $z\in \C\setminus [0,\infty)$ ist
+\[
+G_z(x) = \frac{1}{4\pi |x|} e^{-\sqrt{-z}|x|}, \quad \Re \sqrt{-z} >0.
+\]
+Die \emph{unitäre Gruppe} $U(t)$ welche durch $- \Delta$ erzeugt wird ist gegeben durch
+\[
+U(t)=\mathcal F^{-1} e^{ip^2 t} \mathcal F.
+\]
+Für $\psi \in L^1\cap L^2(\R^n)$ und $\pm t >0$ gilt
+\[
+(U(t)\psi)(x)=\frac{e^{\mp i \pi}}{(4\pi |t|)^{n/2}} \int e^{i(x-y)^2/(4t)} \psi(y) \, \dx[y]
+\]
+
+\section{Sobolevräume}
+Für $s\ge 0$ definieren wir
+\[
+H^s(\R^n) = \{u \in L^2| |p|^s \hat u(p) \text{ ist quadratintegrierbar}\}
+\]
+und für $u,v\in H^s(\R^n)$
+\[
+\langle u, v \rangle_S = \in \overline{\hat u(p)} \hat v(p) (1+p^2)^s \, \dx[p].
+\]
+Nach Plancherel ist $H^0(\R^n)=L^2(\R^n)$ und
+\[
+s>t \ge 0 \implies H^s(\R^n) \subset H^t(\R^n) \subset L^2(\R^n).
+\]
+\begin{lem}\label{4.2}
+Sei $\hat u: \R^n \to \C$ eine gegebene $L^1$-Funktion und sei $k\in \N$. Falls $|p|^k \hat U(p)$ integrierbar ist, dann ist
+\[
+u(x)=\int e^{ipx} \hat u(p) \, \dx[p]
+\]
+stetig und $k$ Mal stetig differenzierbar und
+\[
+\delta^\alpha u(x) = \int e^{ipx} (ip)^\alpha \hat u (p) \, \dx[p]
+\]
+für $|\alpha| \le k$ mit$\alpha=(\alpha_1,..., \alpha_n) \in \N_0^n$.
+\end{lem}
+\begin{proof}
+Übung: Verwende Riemann-Lebesgue, Lebesgue Majorisierte Konvergenz und $|e^{is} -1|\le |s|$.
+\end{proof}
+
+\begin{st}[Sobolev-Lemma]\label{4.3}
+Sei $u\in H^s(\R^n)$ und $k\in \N_0$ mit $k<s- \frac{n}{2}$. Dann gilt für alle $\alpha: |\alpha|\le k$:
+\begin{enumerate}[a)]
+\item $u\in C^k(\R^n)$ und $\delta^\alpha u(x) \to 0$ für $|x|\to \infty$;
+\item $\sup_x |\delta^\alpha u(x)| \le C_{k,s,n} \|u\|_s.$
+\end{enumerate}
+\end{st}
+\begin{proof}
+Übung: Zeige, dass $|p|^k \hat u(p)$ integrierbar ist und verwende Lemma \ref{4.2}. Siehe auch Satz 3.3 aus dem Vorlesungsskript.
+\end{proof}
+
+\begin{ex*}
+Wir wissen, dass $H^2(\R^2)=D(-\Delta)$ und nach Satz \ref{4.3} gilt:
+\begin{itemize}
+\item $\phi \in H^2(\R^3) \implies \phi \in C(\R^3)$ und $\phi(x)\to 0$ ($|x|\to \infty$)
+\end{itemize}
+\fixme
+\end{ex*}
+
+
+\begin{st} 
+$H^s(\R^n)$ ist ein Hilbertraum und $C_0^\infty$ ist dicht in $H^s(\R^n)$.
+\end{st}
+\begin{proof}
+Übung, oder Literatur (z.B. Rudin).
+\end{proof}
+\begin{df}
+Sind $u,v\in L^1_{\text{loc}}(\R^n)$ und $\alpha \in \N_0^n$, dann heißt $v$ \emph{schwache $\alpha$-Ableitung} von $u$, wir schreiben $v=\delta^\alpha u$, wenn für alle $\phi \in C_0^\infty (\R^n)$ gilt
+\[
+(-1)^{|\alpha|} \int \delta^\alpha \phi(x) u(x) \, \dx = \int \phi(x) v(x) \, \dx.
+\] 
+Die schwache $\alpha$-Ableitung ist eindeutig, denn aus $\int \phi v \, \dx=0$ für alle $\phi \in C_0^\infty$ folgt $v(x)=0$ fast überall. (Fundamentallemma der Distributionstheorie).
+\end{df}
+
+\begin{st}\label{4.5}
+Sei $\alpha\in \N_0^n$ und $u\in L^2(\R^n)$. Dann sind äquivalent:
+\begin{enumerate}[a)]
+\item$u$ hat eine schwache $\alpha$-Ableitung $\delta^\alpha u\in L^2$.
+\item $p \mapsto p^\alpha \hat u(p)$ ist quadratintegrierbar.
+\end{enumerate}
+Gilt a) oder b) dann $\delta^\alpha u = \mathcal F^{-1} (ip)^\alpha \mathcal Fu$.
+\end{st}
+\begin{proof}
+Sei $D^\alpha$ der s.a. Operator definiert durch
+\[
+D^\alpha = \mathcal F^{-1} p^\alpha \mathcal F.
+\]
+Hierbei sei 
+\[
+\mathcal D(D^\alpha) = \{ u \in L^2| p^{\alpha} \hat u(p) \text{ ist in } L^2\}
+\]
+der Definitionsbereich von $D^\alpha$. 
+\fixme
+
+was äquivalent ist zu (a). Umgekehrt folgt aus (a), dass für alle $\phi \in C_0^\infty(\R^n)$ gilt:
+\[
+(-1)^{|\alpha|} \int \overline{\delta^\alpha \phi(x)} u(x) \, \dx = \int \overline{\phi(x)} \delta^\alpha u(x) \, \dx
+\]
+was äquivalent ist zu
+\[
+\langle D^\alpha \phi, U \rangle = \langle \phi, \delta^\alpha u \rangle (-i)^{|\alpha|}
+\]
+für alle $\phi \in C_0^\infty(\R^n)$. Daraus folgt
+$\big(D^\alpha\upharpoonright C_0^\infty(\R^n)\big)^*u= (-i)^{|\alpha|} \delta^\alpha u$. Es genügt zu zeigen, dass
+\[
+D^\alpha = \overline{D^\alpha \upharpoonright C_0^\infty(\R^n)},
+\]
+d.h. dass $D^\alpha \upharpoonright C_0^\infty(\R^n)$ wesentlich s.a. ist. (Übung)
+\end{proof}
+
+\begin{st}\label{4.6}
+Sei $u\in L^2(\R^n)$, $m\in \N$ und für alle $\alpha\in \N_0^n, |\alpha|\le m$ existiere die schwache $\alpha$-Ableitung $\delta^\alpha u$ und $\delta^\alpha u\in L^2$. Dann ist $u\in H^m(\R^n)$.  
+\end{st}
+\begin{proof}
+Nach Satz \ref{4.5} ist $p^\alpha \hat u(p)$ quadratintegrierbar für alle $|\alpha|\le m$ und smit $|p|^m \hat u(p)$ quadratintegrierbar, also $u\in H^m$.
+\end{proof}
+
+\begin{kor}\label{4.7}
+$C_0^m(\R^n) \subset H^m(\R^n)$
+\end{kor}
+
+\begin{st}\label{4.8}
+Sei $u\in H^m(\R^n)$, $f\in C^m(\R^n)$ wobei alle Ableitungen $\delta^\alpha f, |\alpha| \le m$, in $L^\infty(\R^n)$ sind. Dann gilt $fu \in H^m$,
+$\|fu\|_m\le C_f \| u\|_m$ und es gilt die Leibnizformel
+\[
+\delta^\alpha(fu)=\sum_{\beta \le \alpha} \binom{\alpha}{\beta} \delta^\beta f \delta^{\alpha- \beta} u.
+\]
+\end{st}
+\begin{proof}
+Wir setzen $\| u \|_{m,2}=\sum_{|\alpha| \le m} \| \delta^\alpha u\|_{L^2}$.
+\end{proof}
+Diese Norm ist äquivalent zur Norm von $H^m$. Für $\phi \in C_0^\infty(\R^n)$ gilt
+\begin{equation}\label{4.1}
+\delta^\alpha(f\phi) = \sum_{\beta \le \alpha} \binom{\alpha}{\beta} \delta^\beta f \delta^{\alpha-\beta} \phi
+\end{equation}
+und somit
+\begin{align*}
+\|\delta^\alpha(f\phi) \|_2 &\le \sum_{\beta \le \alpha} \binom{\alpha}{\beta} \| \delta^\beta f\| _{L^2} \| \delta^{\alpha-\beta} \phi \|_{L^2}\\
+&\le C_{\alpha,f} \sum_{|\alpha|\le m} \| \delta^\alpha \phi \|_{L^2}= C_{\alpha,f} \| \phi \|_{m,2}.
+\end{align*}
+Daraus folgt
+\[
+\|f\phi\|_{m,2}= \sum_{|\alpha|\le m} \| \delta^\alpha(f\phi)\|_2=\underbrace{\big(\sum_{|\alpha|\le m} C_\alpha,f\big) }_{C_f}  \|\phi\|_{m,2}
+\]
+Somit ist $M_f:C_0^\infty (\R^n) \subset H^m \to H^m$ eine beschränkte lineare Abbildung. Sie hat eindeutige beschränkte Fortsetzung auf $H^m$, welche ebenfalls durch  Multiplikation mit $f$ gegeben ist. (Details dazu in Skript) Die Leibniz-Formel auf $H^m$ folgt nun aus \eqref{4.1} durch ein Approximationsargument.
+
+
 
 
 
