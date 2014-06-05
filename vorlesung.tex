@@ -20,6 +20,7 @@
 
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\h}{\hslash}
 \renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
 
 \title{Mathematische Methoden der Quantenmechanik}
@@ -1000,6 +1001,112 @@ Daraus folgt
 \]
 Somit ist $M_f:C_0^\infty (\R^n) \subset H^m \to H^m$ eine beschränkte lineare Abbildung. Sie hat eindeutige beschränkte Fortsetzung auf $H^m$, welche ebenfalls durch  Multiplikation mit $f$ gegeben ist. (Details dazu in Skript) Die Leibniz-Formel auf $H^m$ folgt nun aus \eqref{4.1} durch ein Approximationsargument.
 
+\section{Schrödingeroperatoren}
+
+Wir betrachten Operatoren der Form $-\Delta+V:D\subset L^2(\R^n) \to L^2(\R^n)$, wobei $V=M_V$ Multiplikationsoperator ist. Wir schreiben $V\in L^2(\R^n)+L^\infty(\R^n)$, falls sich $V$ darstellen lässt als $V=V_2+V_\infty$ mit $V_2\in L^2$ und $V_\infty \in L^\infty$.
+
+\begin{ex*}[Coloumbpotential]
+Betrachte
+\[
+V(x)=\begin{cases} - \frac{1}{|x|}&, x\in \R^3\setminus\{0\}\\ 0&, x=0 \end{cases}
+\]
+Offenbar liegt $V(x)$ in der Klasse $L^2+L^\infty$, denn für $\eps>0$ sei $\chi$ die charakteristische Funktion auf $\{|x|<\eps\}$, setze $V_2:= V \cdot \chi$ und $V_\infty:= V\cdot (1-\chi)$. Dann gilt $\|V_\infty\|_\infty=\eps^{-1}$ und $\|V_2\|=\sqrt{4\pi \eps}$.
+\end{ex*}
+
+\begin{lem}
+Ist $V\in L^2(\R^n)$, dann existiert für jedes $\eps>0$ eine Zerlegung $V_2+V_\infty$ mit $\| V_2\| <\eps$.
+\end{lem}
+\begin{proof} \fixme
+Sei $\chi_N$ die charakterische Funktion auf $\{x\in \R^n| |V(x)|\le N\}$ für $N \in \N$. Daraus folgt
+\[
+|V|^2 \ge |V|^2(1-\chi_N) \to 0
+\]
+für $N\to \infty$ und $|V|^2 \in L^1(\R^n)$. Also
+\[
+\int |V(x)|^2 (1- \chi_N) \, \dx \to 0
+\]
+für $N\to \infty$ mit dem Satz von Lebesgue. Wähle $N$ nun groß genug, sodass $\int | V(x)|^2 (1- \chi_n) \le \eps^2$ und setze $V_2:= V(1-\chi_N) $ mit $\| V_2\| < \eps$ und $V_\infty := V\chi_N \in L^\infty$.
+\end{proof}
+\begin{st}
+Sei $V\in L^2+ L^\infty$ und $n\ge 3$. Zu jedem $\eps >0$ existiert ein $C_\eps>0$ mit
+\begin{equation}\label{4.2}
+\| V\phi\| \le \eps \| \Delta \phi\| + c_\eps \| \phi 
+\end{equation}
+für alle $\phi \in C_0^\infty$. Wenn $V$ reellwertig ist, dann ist $-\Delta+V$ selbstadjungiert auf $H^2(\R^n)$ und wesentlich selbstadjungiert auf $C_0^\infty(\R^n)$.
+\end{st}
+\begin{proof}
+Siehe Vorlesungskript Theorem 3.5.
+\end{proof}
+
+\subsection{Schrödingeroperatoren von Atome und Molekülen}
+WIr betrachten statische Kerne. Sei der Schrödingeroperator gegeben durch
+\begin{equation}\label{4.3}
+- \Delta+ \sum_{k=1}^N V_k + \sum_{i<k} V_{ik},
+\end{equation}
+wobei $N$ die ANzahl der Elektronen sei. Hierbei beschreibt $V_k$ die Wechselwirkung der Elektronen mit den statischen Kernen und $V_{ik}$ die Wechselwirkung zwischen den Elektronen. $V_k$ und $V_{ik}$ sind Multiplikationsoperatorn der Form
+\begin{align*}
+(V_k \cdot \phi)(x_1,...,x_N)&:= V(x_k) \phi(x_1,...,x_N), x_1, ...,x_N \in \R^3\\
+(V_{ik} \cdot \phi)(x_1,...,x_N)&:= W(x_i-x_k) \phi(x_1,..., x_N)
+\end{align*}
+\begin{thm}[Kato 1951]
+Falls $V,W\in L^2+L^\infty(\R^3)$ dann ist \eqref{4.3} selbstadjungiert auf $H^2(\R^{3N})$ und wesentlich selbstadjungiert auf $C_0^\infty(\R^{3N})$.
+\end{thm}
+\begin{proof}
+Sei $\phi\in C_0^\infty(\R^{3N})$. Sei o.B.d.A. $k=1, i=2$. Dann ist
+\[
+\|V_1 \phi \|_{L^2(\R^{3N}} \le \eps \| \Delta_1 \phi \|_{L^2(\R^{3N})} + C_\eps \| \phi \| {L^2(\R^{3N})} \le \eps \| \Delta \phi \|_{L^2(\R^{3N})}+ C_\eps \| \phi \|_{L^2(\R^{3N})}
+\]
+denn $\| \Delta_1 \phi \| \le \| \Delta \phi \|$ (folgt aus Fourierdarstellung des $-\Delta$) und
+\begin{align*}
+\| V_1 \phi \|^2 &= \int \dx[x_N] ... \int \dx[x_1] |V(x_1)|^2 | \phi(x_1,\cdot)\|^2\\
+&= \| V_1(\phi(x_1,\cdot)\|^2_{L^2(\R^{3N})} \stackrel{Satz \ref{3.5}} \le 2\eps^2 \|\Delta_1 \phi\|^2 + 2c_\eps^2 \| \phi \|^2_{L^2(\R^3)}.
+\end{align*}
+Analog folgt 
+\[
+\|V_k \phi \|_{L^2(\R^{3N})} \le \eps \| \Delta phi \|_{L^2(\R^{3N})} + C_\eps \| \phi \|_{L^2(\R^{3N})}
+\]
+für alle $k$. Auf die gleiche Weise zeigt man 
+\[
+\|V_{21} \phi \| \le \eps \| \Delta \phi \| {L^2(\R^{3N})} + C_\eps \| \phi \|_{L^2( \R^{3N})}
+\]
+und es folgt
+\[
+\| V_{ik} \phi\| \le \eps \| \Delta \phi \| + C_\eps \| \phi \|. 
+\]
+Also \fixme
+\[
+\bigg\|\big( \sum_{k=1}^N V_k + \sum_{i<j} V_{ik}\big) \phi \bigg |^2_{L^2(\R^{3N})} \le \big (\frac{N(N+1)}{2}\big)^2 \eps \| \Delta \phi \|^2_{L^2(\R^{3N})} + \big ( \frac{ N(N+1)}{2} \big )^2 C_\eps \| \phi \|^2_{L^2(\R^{3N})}
+\]
+Wobei wir an der einen oder anderen Stelle ausnutzen, dass $\sqrt{a+b} \le \sqrt{a} + \sqrt{b}$ für $a,b\in \R$ gilt.
+\end{proof}
+
+\begin{kor}
+Der Schrödingeroperator eines Atoms mit $N$ Elektronen und Atomzahl $z$,
+\[
+H_{N,z} = \sum_{k=1}^N \big ( - \frac{h^2}{2m} \Delta_{x_k} - \frac{z_e^2}{|x_k|}\big) + \sum_{i<k} \frac{e^2}{|x_i-x_k|}
+\]
+ist selbstadjungiert auf $H^2(\R^{3N})$ und wesentlich selbstadjungiert auf $C_0^\infty(\R^{3N}$. Dabei sei $h$ das Planksche Wirkungsquantum $h=\frac{h}{2\pi}$. und $m$ die Masse des Elektrons und $e$ die Elementarladung.
+\end{kor}
+\subsection{Bemerkung zu den Einheiten}
+Der Operator $H_{N,z}$ aus Korrolar \ref{3.7} unitär äquivalent ist zu 
+\[
+2\alpha^2 mc^2 \bigg[ \sum_{k=1}^N \big ( - \Delta_{x_k} - \frac{z}{|x_k|} \big ) + \sum_{i<k} \frac{1}{|x_i-x_j|} \bigg ]
+\]
+wobei $\alpha=\frac{e^2}{hc} \approx \frac{1}{137}$ die \emph{Feinstrukturkonstante}. Wir definieren
+\[
+U:L^2(\R^{3N} \to L^2(\R^{3N}), \quad (U\phi) (x) := \lambda^{\frac{3}{2}N} \phi(\lambda x); \lambda>0.
+\]
+$U$ ist isometrisch und bijektiv, also $unitär$. Es folgt
+\fixme
+\[
+U H_{N,z} U^{-1} = \sum_{k=1}^N \big(- \frac{\hslash^2}{2m\lambda^2} \Delta_{x_k} - \frac{z e^2}{\lambda|x_k|} \big ) + \sum_{i<k} \frac{e^2}{\lambda|x_i-x_k|}.
+\]
+Setze
+\[
+\frac{\hslash^2}{2m \lambda^2} \stack!= \frac{e^2}{\lambda} 
+\]
+und es folgt $\lambda= \frac{\hslash^2}{2me^2}$.
+
 
 
 
@@ -1065,6 +1172,7 @@ Dann ist $\mathcal F \phi\in \mathcal S(\R^n)\subset L^2(\R^n)$ und $\|\mathcal 
 
 Nach Satz \ref{A.3} existiert genau eine beschränkte Fortsetzung $\mathcal F: L^2(\R^n) \to L^2(\R^n)$.
 \end{ex*}
+
 
 
 
