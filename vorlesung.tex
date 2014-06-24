@@ -21,6 +21,7 @@
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\Ran}{\operatorname{Ran}}
 \newcommand{\h}{\hslash}
+\newcommand{\Tr}{\operatorname{Tr}}
 \renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
 
 \title{Mathematische Methoden der Quantenmechanik}
@@ -193,7 +194,7 @@ Wähle $\phi \neq 0$ mit $D^{m-1}\phi\neq0$. Dann ist $D(D^{m-1}\phi)=0$, d.h.
 Dann heißt $\lambda$ ein \emph{diskreter Eigenwert} von $A$. Das Komplement der diskreten Eigenwerte innerhalb $\sigma(A)$ heißt \emph{wesentliches Spektrum} von $A$.
 \end{enumerate}
 \end{nt*}
-\section{Der adjungierte Operator}
+\chapter{Der adjungierte Operator}
 Sei $A:D\subset H\to H$ ein \emph{dicht definierter} linearer Operator, d.h. $\overline{D}=H$ (z.B. $D=H$). Der zu $A$ \emph{adjungierte Operator} $A^*: D(A^*)\subset H \to H$ ist wie folgt definiert. 
 
 Wir sagen $\phi \in D(A^*)$ wenn $\phi^*\in H$ existiert, so dass $\langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle$ für alle $\eta \in D(A)$. Dann ist $\phi^*$ durch $\phi$ eindeutig bestimmt (da $\overline{D(A)}=H$) und man definiert $A^* \phi:= \phi^*$. Die Abbildung $\phi \mapsto A^*\phi$ ist linear. (Übung)
@@ -1107,6 +1108,136 @@ Setze
 \]
 und es folgt $\lambda= \frac{\hslash^2}{2me^2}$.
 
+\chapter{Funktionalkalkül und Spektralsatz}
+
+\begin{st}
+Sei $A^*=A$ und $\sigma \subset \sigma(A)$, kompakt mit $\dist(\sigma, \sigma(A)\setminus \sigma)>0$. Sei $\gamma$ eine $C^1$-Kurve welche $\sigma$ ein Mal umläuft und $\sigma(A)$ nicht schneidet. Dann gilt
+\[
+P_\sigma=\frac{1}{2\pi i} \int_\gamma (z-A)^{-1} \, \dx[z]
+\]
+Sei $P$ das Spektralmaß zu $A$.
+\end{st}
+\begin{proof}
+Für ale $x\in \sigma(A)$ gilt
+\[
+\chi_\sigma(\lambda) = \frac{1}{2\pi i} \int_\gamma (z-\lambda)^{-1} \, \dx[z]
+\]
+also für alle $\lambda\in \R$. Insbesondere gilt 
+\[
+\chi_\sigma(\lambda) = \frac{1}{2\pi i} \int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)} (\lambda) \, \dx[z].
+\]
+Also
+\begin{align*}
+P_\sigma &= \Phi(\chi_\sigma)=\Phi(\frac{1}{2\pi i}) \int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)}(\lambda) \, \dx[z]\\
+&= \frac{1}{2\pi i} \int_\gamma \Phi((z-\lambda)^{-1} \chi_{\sigma(A)} (\lambda)) \, \dx[z] \\
+&= \frac{1}{2\pi i} \int_\gamma \Phi(\frac{1}{z-\lambda}) \Phi(\chi_{\sigma(A)}) \, \dx[z] \\
+&= \frac{1}{2\pi i} \int_\gamma (z-A)^{-1} \, \dx[z],
+\end{align*}
+wobei wir ausnutzen, dass $f_n \stack{p}\to f$ und $\phi(f_n) \phi \to \phi(f) \phi$. Es gilt also
+\begin{align*}
+\int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)} (\lambda) \, \dx[z] = \lim_{N\to \infty} \sum_{i=1}^N (\gamma(t_i) - \lambda)^{-1} \chi_{\sigma(A)}(\lambda) \dot \gamma(t_i) \Delta t
+\end{align*}
+wobei
+\[
+\Big | \sum_{i=1}^N (\gamma(t_i) - \lambda)^{-1} \chi_{\sigma(A)}(\lambda) \dot \gamma(t_i) \Delta t \Big | \le \frac{1}{\dist(\Tr(\gamma), \sigma(A))} (L(\gamma)+1)
+\]
+für $N$ hinreichend groß und $L$ die Länge von $\gamma$. Also gilt \fixme
+\begin{align*}
+%\Phi(\int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)} \, \dx[z]) \phi= \lim_{N\to \infty \sum_{i=1}^N \Phi((\gamma(t_i)-\lambda)^{-1} \chi_\sigma(A)) \dot \gamma(t_i) \Delta t \phi \\
+&= \lim_{N\to \infty} \sum_{i=1}^N (\gamma(t_i) -A)^{-1} \dot \gamma(t_i) \Delta t \phi\\
+&= \int (z-A)^{-1} \, \dx[z] \phi
+\end{align*} 
+Was letztendlich den Beweis abschließt.
+\end{proof}
+
+\begin{seg}[Erinnerung]
+$\lambda \in \sigma_{\text{disc}}(A)$ falls $\lambda \in \sigma(A)$, $B_\eps(\lambda) \cap \sigma(A)=\{\lambda\}$, und falls 
+\[
+\dim(\frac{1}{2\pi i} \oint_{|z-\lambda|= \eps/2} (z-A)^{-1 } \, \dx[z]) H < \infty
+\]
+genau dann wenn $\dim(P_{\{\lambda\}}H) < ‌\infty$ nach Satz 5 \fixme
+\end{seg}
+\begin{thm}
+Sei $A^*=A$ und $P$ das Spektralmaß von $A$. Dann gilt:
+\begin{enumerate}[a)]
+\item $\lambda \in \sigma(A)$ genau dann wenn $P_{(\lambda- \eps, x+ \eps)}\neq 0$ für alle $\eps>0$.
+\item $\lambda \in \sigma_{\text{disc}}(A)$ genau dann wenn es ein $\eps>0$ gibt, so dass $\dim P_{(\lambda-\eps, \lambda-\eps} H<\infty$.
+\item $\lambda \in \sigma_{\text{ess}}(A) \iff \dim P_{(\lambda-\eps, \lambda + \eps)} H = \infty$ für alle $\eps>0$. 
+\end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{enumerate}[a)]
+Nach Theorem 3 \fixme gilt $\sigma(A)=\supp(P)$. Also ist $\lambda \in \sigma(A)$ genau dann wenn $\lambda \in \supp(P)$, genau dann wenn $P_u\neq 0$ für jede Umgebung $\lambda \in U$, genau dann wenn $P_{(\lambda-\eps, \lambda + \eps)} \neq 0$ für alle $\eps>0$.
+\item Es ist $x\in \sigma_{\text{disc}}(A)$ genau dann gilt, wenn $\lambda \in \sigma(A)$ und es ein $\eps>0$ gibt mit $B_\eps(\lambda)\cap \sigma(A)=\{\lambda\}$ und $\dim P_{\{\lambda\}} H < \infty$.
+Also wenn $\lambda \in \sigma_{\text{disc}}(A)$, dann existiert ein $\eps>0$ mit $P_{(\lambda-\eps, \lambda + \eps)}= P_{\{\lambda\}}$. Also ist $\dim P_{(\lambda- \eps, \lambda + \eps)} H < \infty$. Dann gilt
+\[
+\sigma(A) \cap B_{\eps}(\lambda) \subset \sigma(A \upharpoonright P_{(\lambda-\eps, \lambda+\eps)}H) = \{\lambda_1,..., \lambda_m\}
+\]
+wobei $\sigma(A) \cap B_{\eps}(\lambda) \subset \sigma(A \upharpoonright P_{(\lambda-\eps, \lambda+\eps)}H)$ eine Folgerung zu dem Spektralsatz ist für $m\le n$. (Beweis Übung)
+Also $\lambda \in \sigma_{\text{disc}}(A)$
+\item $\lambda \int \sigma_ess(A)$ genau dann wenn $\lambda \in \sigma(A) \setminus \sigma_{\text{disc}} (A)$, was nach a) und b) gerade gleichbedeutend zu $\dim(P_{(\lambda-\eps, \lambda+\eps)} H)<\infty$
+\end{enumerate}
+\end{proof}
+
+
+\begin{st}[Weyl]
+Sei $A^*=A$. Dann ist $\lambda \in \sigma_{\text{ess}}(A)$ genau dann, wenn eine Folge $(\phi_n)$ existiert mit $\phi_n\in D(A), \|\phi_n\|=1$ mit $\phi_n \rightharpoonup 0$ und $\|(A-\lambda) \phi_n\| \to 0$. Man nennt diese Folge auch \emph{Weyl-Folge}.
+\end{st}
+
+\begin{proof}
+Sei $\lambda\in \sigma_{\text{ess}}(A)$ und sei $P_n:= P_{(\lambda-1/n, \lambda+ 1/n)}$. Wir konstruieren \emph{rekursiv} eine Orthonormalfolge $(\phi_n)$ mit $\phi_n\in P_n H$: $\phi_1 \in P_1H$ sei normiert aber ansonsten beliebig. Sind $\phi_1, ..., \phi_{n-1}$ konstruiert, dann existiert $\phi_n \in P_n H \cap \{\phi_1... \phi_{n-1}\}^\perp$ mit $\|\phi_n \| =1$, denn $\dim P_n H=\infty$ nach Theorem 6 \fixme. es gilt $\phi_n \rightharpoonup 0$ mit $\phi_n \in D(A)$ und es folgt
+\begin{align*}
+\|(A-\lambda) \phi_n \| &\le \| (A-\lambda) P_n\| = \| \Phi(x-\lambda) \Phi(\chi_{(\lambda-1/n, \lambda+1/n)}) \|\\
+&= \| \Phi((x-\lambda) \chi_{(\lambda-1/n), \lambda + 1/n)} \| \le \frac{1}{n} \to 0
+\end{align*}
+für $n\to \infty$. Sei nun $(\phi_n)$ eine Weylfolge und sei $\lambda \in \sigma_{\text{disc}} (A)$. Wir leiten einen Widerspruch her. Dann existiert zu einem $\eps >0$ mit $\dim P_\eps H<\infty$ wobei $P_\eps= P_{(\lambda-\eps, \lambda+\eps)}$ nach Theorem 6. Also gilt $P_\eps \phi_n \to 0$ für $n\to \infty$. (Übung)
+Andererseits gilt
+\[
+\| (A-\lambda) \phi_n\|^2 \ge \| \underbrace{(1-P_\eps) (A-\lambda)}_{\Phi(\chi_{|x-\lambda|>\eps} (x-\lambda))} \phi_n\|^2 = \eps^2(1-\underbrace{\| P_\eps \phi_n\|^2}_{\to 0})
+\]
+und wir erhalten den Widerspruch zu $0 \ge \eps^2 >0$.
+\end{proof}
+\begin{nt*}
+Wenn $K\in \mathcal L(H)$ kompakt ist und $\phi_n \rightharpoonup \phi$, dann gilt $K\phi_n \to K\phi$.
+\end{nt*}
+\begin{st}
+Sind $A,B$ selbstadjungierte Operatoren in $H$ und existiert ein $z\in \C\setminus\R$ mit $(z-A)^{-1} - (z-B)^{-1}$ kompakt, dann gilt
+\[
+\sigma_{\text{ess}} (B) = \sigma_{\text{ess}}(A)
+\]
+\end{st}
+\begin{proof}
+Sei $\lambda\in \sigma_{\text{ess}} (A)$ und sei $(\phi_n)$ eine zugehörige Weylfolge. Dann gilt
+\[
+((z-A)^{-1} - (z-B)^{-1})\phi_n \to 0
+\]
+da $\phi_n \rightharpoonup 0$. und
+\[
+((z-A)^{-1} - (z-\lambda)^{-1}) \phi_n = (z-\lambda)^{-1} (z-A)^{-1} (A- \lambda) \phi_n \to 0
+\]
+für $n\to \infty$. Also ist
+\[
+ (z-\lambda)^{-1} (\lambda- B) (z-B)^{-1} \phi_n = ((z-\lambda)^{-1} - (z-B)^{-1}) \phi_n 
+\]
+\fixme[Vorzeichen falsch?]. Sei $\psi_n = (z-B)^{-1} \phi_n$. Dann folgt $\|(\lambda-B)\psi_n\| \to 0$, $\psi_n \rightharpoonup 0$ und
+\[
+\| \psi_n\| = \| (z- B)^{-1} \phi_n\| = |z-\lambda|^{-1} \underbrace{\| \phi_n \|}_{=1} + o(1)= |z-\lambda|^{-1} +o(1)
+\]
+für $n\to \infty$. Also ist $\psi_n/\|\phi_n\|$ eine Weylfolg zum $\lambda$ und $B$. Also ist $\lambda \in \sigma_{\text{ess}} (B)$ nach Theorem 7. Also gilt $\sigma_{\text{ess}}(A) \subset \sigma_{\text{ess}}(B)$ und daraus folgt die Behauptung.
+
+\begin{kor}
+Sind $A,B$ selbstadjungiert mit $D(A) = D(B)$ und ist $(B-A) (i+A)^{-1}$ kompakt, dann gilt $\sigma_{\text{ess}}(B) = \sigma_{\text{ess}}(A)$
+\end{kor}
+\begin{proof}
+Es ist
+\[
+(i+B)^{-1} - (i+A)^{-1} = (i+B)^{-1} (A-B) (i+A)^{-1}
+\]
+kompakt als Produkt eines kompakten und beschränkten Operators (vgl. Voraussetzung) und Korollar 9 folgt aus Theorem 8. 
+\end{proof}
+
+\end{proof}
+
 
 
 
@@ -1172,8 +1303,100 @@ Dann ist $\mathcal F \phi\in \mathcal S(\R^n)\subset L^2(\R^n)$ und $\|\mathcal 
 
 Nach Satz \ref{A.3} existiert genau eine beschränkte Fortsetzung $\mathcal F: L^2(\R^n) \to L^2(\R^n)$.
 \end{ex*}
+\section{Der adjungierte Operator}
+Sei $A\in \mathcal L(H)$ und $u\in H$. Dann ist $\phi \mapsto \langle u, A\phi \rangle$ ein beschränktes lineares Funktional, denn
+\[
+|\< u, A\phi \>| \le \|u\| \| A\phi\| \le \|u\| \| A \| \| \phi\|.
+\]
+Mit dem Satz von Frechet-Riesz existiert $u^*\in H$ mit $\< u, A\phi\>=\< u^*, \phi\>$. Man definiert $u^*=A^*u$. Die ABbildung $\phi \mapsto A^*\phi$ ist linear (Übung) und $\|A^*\|=\|A\|$, denn
+\[
+\|A^*\| = \sup_{\phi \| \le 1,  \|u\| \le 1} |\< A^* u, \phi\>| = \sup_{\|u\| \le 1, \|\phi\| \le 1} |\< u, A\phi\>|= \|A\|
+\]
+\begin{df}
+Ein Operator heißt \emph{unitär} falls $U$ bijektiv ist und $U^*=U^{-1}$.
+\end{df}
+\begin{lem}
+$U\in \mathcal L(H)$ ist genau dann unitär, wenn $U$ isometrisch (d.h. $\|Ux\|=\|x\|$ für alle $x\in H$) und surjektiv ist.
+\end{lem}
+\begin{proof}
+\begin{seg}[$\Longrightarrow$]
+Sei $U$ unitär, dann ist $U$ bijektiv, also auch surjektiv, und es gilt
+\[
+\|Ux\|^2=\< Ux, Ux\> = \< U^* Ux, x\> = \< x, x \> = \|x\|.
+\]
+\end{seg}
+\begin{seg}[$\Longleftarrow$]
+Für die Umkehrung benötigt man die \emph{Polarisationidentität}
+\[
+\< x,y\> = \frac{1}{4} [\| x+y\|- \| x-y\|^2] + \frac{i}{4}  [ \|x+iy\|^2- \|x-iy\|^2].
+\]
+Ist $U$ isometrisch dann folgt damit
+\[
+\< U^*Ux,y\> = \<Ux, Uy\>\stack{\text{Pol.}}=\< x,y\>
+\]
+für alle $x,y\in H$. Insbesondere ist $U^* U=1$. Also ist $U^*$ die Inverse auf $\Ran(U)$. Da $U$ surjektiv ist folgt, dass $U$ bijektiv ist und dass $U^{-1}=U^*$.
+\end{seg}
+\end{proof}
 
+\begin{prop}
+\begin{enumerate}[a)]
+\item Sei $U\in \mathcal L(H)$ unitär, dann gilt
+\[
+	\sigma(U) \subset \{z\in \C| |z|=1\}
+\]
+\item Ist $A\phi_n=\lambda_n\phi_n$ und $(\phi_n)$ eine ONB, dann folgt
+\[
+\sigma(A)=\overline{\{\lambda_n, n\in \N\}}
+\]
+\item Sei $B\in \mathcal L(H)$ dann folgt
+\[
+\ker B^*=(\Ran B)^\perp
+\]
+\end{enumerate}
+\end{prop}
 
+\begin{proof}
+Übung.
+\end{proof}
 
+\begin{ex*}
+Die Fouriertransformation $\mathcal F: L^2 \to L^2$ ist isometrisch und surjektiv, also unitär. Sei im Folgenden $\phi_0(x)=e^{-x^2/2}$. Man kann zeigen, dass $\mathcal F \phi_0 = \phi_0$. Definiere $\phi_n = (a^*)^n \phi_0$, wobei 
+\[
+a^*=\frac{1}{\sqrt{2}} (x-ip) = \frac{1}{\sqrt{2}} \big( x- \frac{d}{dx}\big)
+\]
+Mit den üblichen Rechenregeln für die Fouriertransformation ergibt sich
+\begin{align*}
+\mathcal F \phi_1 &= \mathcal F(\frac{x-ip}{\sqrt{2}}) \phi = \frac{1}{\sqrt{2}} (i \frac{d}{dp} - ip) \hat \phi_0 (p)\\
+&= (-i) \frac{1}{\sqrt{2}} \big(p-\frac{d}{dp}\big) \hat \phi_0(p) =(-i) a^* \phi_0=-i \phi_1
+\end{align*}
+Und induktiv $\mathcal F \phi_n = (-i)^n \phi_n$. Man kann zeigen, dass $(\phi_n)$ eine ONB aus Eigenvektoren bildet. 
+\end{ex*}
+
+\begin{df}
+Wir sagen $A\in \mathcal L(H)$ heißt \emph{selbstadjungiert} falls $A^*=A$.
+\end{df}
+
+\begin{st}[Spektralsatz für adjungierte beschränkte Operatoren]
+Ist $A=A^*\in \mathcal L(H)$ dann gilt
+\begin{enumerate}[a)]
+\item $\|A\|=\sup_{\|x\|\le 1} |\<x, Ax\>|= \sup\{|z| \, | \; z\in \sigma(A)\}$
+\item $\sigma(A)\subset \R$
+\item $\sigma_r(A)=\emptyset$
+\end{enumerate}
+\end{st}
+\begin{proof}
+Der Satz kommt aus der Spektraltheorie. Für a) und b) verweisen wir dorthin. Sei $z\in \R$ kein Eigenwert. Dann  folgt
+\[
+\Ran(A-z)^\perp = \ker(A^*-z)\stack{\text{s.a.}}=\ker(A-z)=\{0\}.
+\]
+Es folgt also insbesondere $\overline{\Ran(A-z)} = H$. Also $z\not\in \sigma_r(A)$.
+\end{proof}
+\begin{ex*}
+Ist $A^*=A\in \mathcal L(H)$ dann ist
+\[
+U(t)=e^{-iAt} = \sum_{n=0}^\infty \frac{(-it)^n}{n!} A^n
+\]
+absolut konvergent für alle $t\in \R$ und $U(t)$ ist unitär.
+\end{ex*}
 
 \end{document}
