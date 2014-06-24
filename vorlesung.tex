@@ -204,7 +204,7 @@ Nach Frechet-Riesz (genaueres siehe Übung) gilt
 D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig auf } D(A)\}
 \]
 
-\begin{st}
+\begin{st}\label{2.1}
 \begin{enumerate}[a)]
 \item $A\subset B \implies A^*\supset B^*$.
 \item $A^*$ ist abgeschlossen.
@@ -214,7 +214,7 @@ D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig 
 \begin{proof}
 a) wurde in der Übung gezeigt. b) wird in Satz 2.1 aus dem Skript bewiesen. Und c) wird in Satz 2.2 aus dem Skript gezeigt.
 \end{proof}
-\begin{st}
+\begin{st}\label{2.2}
 Ist A \emph{abgeschlossen}, dann ist $A^*$ dicht definiert und $(A^*)^*=A$.
 \end{st}
 \begin{proof}
@@ -229,9 +229,78 @@ Somit gilt
 (\phi, \phi^*) \in \Gamma(A^*) &\iff (\phi, \phi^*) \orth V(\eta, A\eta), \, \forall \eta\in D(A)\\
 &\iff (\phi, \phi^*)\in (V\Gamma(A))^\orth.
 \end{align*}
-D.h. $\Gamma(A^*)=(V\Gamma(A))^\orth=V\Gamma(A)^\orth$. Da $\Gamma(A)$ abgeschlossen ist folgt 
+D.h. 
+\begin{equation}\label{2.1}
+\Gamma(A^*)=(V\Gamma(A))^\orth=V\Gamma(A)^\orth.
+\end{equation}
+Da $\Gamma(A)$ abgeschlossen ist folgt 
+\begin{equation}\label{2.2}
+\Gamma(A) = ( \Gamma(A)^\perp)^\perp = (VV \Gamma(A)^\perp)^\perp - V(V\Gamma(A)^\perp)^\perp = V \Gamma(A^*)^\perp
+\end{equation}
+Wäre $D(A^*)$ nicht dicht, dann würde ein $\psi \neq 0$ existieren mit $\psi \perp D(A^*)$, d.h. $(\psi,0) \perp \Gamma(A^*)$, d.h. $(\psi,0) \in \Gamma(A^*)^\perp$ und $(0,-\psi)=V(\phi, c) \in V \Gamma(A^*)^\perp= \Gamma(A)$. Dies steht im Widerspruch zu $A0=0$. Also ist $D(A^*)$ dicht und
+\[
+\Gamma((A^*)^*)\stack{\eqref{2.1}}= V \Gamma(A^*)^* \stack{\eqref{2.2}}= \Gamma(A).
+\]
+Daraus folgt $(A^*)^*=A$.
+\end{proof}
+\begin{st}\label{2.3}
+Ist $A$ dicht definiert und abgeschlossen, dann ist $z\in \R(A)$ genau dann, wenn $\overline z \in \rho(A^*)$ und es gilt $(\overline z - A^*)^{-1} =((z-A)^{-1})^*$.
+\end{st}
+\begin{proof}
+Wegen $(z-A)^* =(\overline z-A^*)$ und $(A^*)^*=A$ nach Satz \ref{2.2}. Es genügt zu zeigen, dass wenn $0 \in \rho(A)$ auch $0 \in \rho(A^*)$ und $(A^*)^{-1} = (A^{-1})^*$.
+
+Sei $0 \in \rho(A)$. D.h. $A: D\to H$ bijektiv und $A^{-1} \in \mathcal L(H)$. Wir zeigen $(A^{-1})^* A^*=1$ auf $D(A^*)$ und dass $A^*(A^{-1})^*=1$ auf $H$ ist. Sei $\phi \in D(A^*)$ und $\eta \in H$, dann folgt
+\[
+\<(A^{-1})^* A^* \phi, \eta \> = \< A^* \phi, A^{-1} \eta \> = \< \phi, A A^{-1} \eta\> = \< \phi, \eta\>.
+\]
+Also ist $(A^{-1}) A^* \phi = \phi$ für alle $\phi \in D(A^*)$. Sei $\phi \in H$ und $\eta\in D(A)$. Dann ist
+\[
+\< \phi, \eta\> = \< \phi, A^{-1} A \eta\> = \< (A^{-1})^* \phi, A \eta\>.
+\]
+Daraus folgt $(A^{-1})^* \phi \in D(A^*)$ und $A^*(A^{-1})^* \phi = \phi$.  Damit ist gezeigt, dass $A^*: D(A^*) \to H$ bijektiv ist und dass $(A^*)^{-1} = (A^{-1})^*$.
+\end{proof}
+\begin{nt*}
+Ist $\lambda\in \C$ ein isolierter Punkt von $\sigma(A)$ und $P:= \frac{1}{2\pi i} \oint_{|z-\lambda|=\eps} (z-A)^{-1} \, \dx[z]$ der zSchande von Wichonugehörige Riesz-Projektor, dann gilt nach Satz \ref{2.3}
+\[
+P^* = \frac{1}{2\pi i} \oint_{|z-\overline \lambda|=\eps} (z-A^*)^{-1} \,\dx[z]
+\]
+(Beweis: Übung). D.h. $P^*$ ist der Riesz-Projektor zum isolierten Punkt $\overline{\lambda}$ von $\sigma(A^*)$. Falls $A^*=A$, dann ist $P^*=P$, d.h. $P$ ist ein \emph{Orthogonalprojektor}. Es folgt $\Ran(1-P) \perp \Ran(P)$, denn
+\[
+\<(1-P) \phi, P\psi\>= \< P(1-P) \phi, \psi\> = \< (P-P^2) \phi, \psi \> =0
+\] 
+mit $\phi, \psi \in H$.
+\end{nt*}
+\begin{df}
+Sei $A: D\subset H \to H$  dicht definiert. Dann heißt $A$ \emph{symmetrisch}, falls $A\subset A^*$. D.h. $A$ ist genau dann symmetrisch wenn $\overline D=H$ und $\< \phi, A\psi\> = \< A\phi, \psi\>$ für alle $\phi, \psi \in D$. 
+
+$A$ heißt \emph{selbstadjungiert} falls $A^*=A$, $A$ genau dann selbstadjungiert wenn A symmetrisch ist und $D(A^*)=D(A)$. 
+\end{df}
+
+\begin{ex*}
+$h\in L^2(\R)$ und $A: D \subset H \to H$ mit $D=C_0^\infty(\R)$ gegeben durch $A\phi = -i \phi'$. Dann ist $A\subset A^*$.
+\end{ex*}
+\begin{proof}
+$\overline{D}=H$ und für $\phi, \psi \in D$ gilt
+\begin{align*}
+\< \phi, A\psi\> &= \int \overline{\phi(x)} (-i) \phi'(x) \, \dx \\
+&= \int_{-R}^R \overline{\phi(x)} (-i) \psi'(x) \, \dx \\
+&= \overline{\phi(x)} (-i) \psi(x)\big|_{x=-R}^{x=R} \\
+&= \int_{-R}^R \overline{\phi'(x)} (-i) \psi (x) \, \dx= \< A\phi, \psi\>.
+\end{align*}
 \end{proof}
 
+\begin{st}
+Sei $A\subset A^*$. Dann sind äquivalent.
+\begin{enumerate}[a)]
+\item $A^*=A$
+\item $\sigma(A) \subset \R$
+\item Es gibt $z_+ \in \C_+, z_- \in \C_i$ mit $z_\pm \in \rho(A9$.
+\end{enumerate}
+wobei $\C_+=\{z\in \C| \Im(z) >0\}$ und $C_-= C^*_+$.
+\end{st}
+\begin{proof}
+später.
+\end{proof}
 \chapter{Analytische Störungstheorie}
 \setcounter{thm}{13}
 \begin{st}
@@ -1303,6 +1372,8 @@ Dann ist $\mathcal F \phi\in \mathcal S(\R^n)\subset L^2(\R^n)$ und $\|\mathcal 
 
 Nach Satz \ref{A.3} existiert genau eine beschränkte Fortsetzung $\mathcal F: L^2(\R^n) \to L^2(\R^n)$.
 \end{ex*}
+
+$A$ ist abgeschlossen
 \section{Der adjungierte Operator}
 Sei $A\in \mathcal L(H)$ und $u\in H$. Dann ist $\phi \mapsto \langle u, A\phi \rangle$ ein beschränktes lineares Funktional, denn
 \[
@@ -1398,5 +1469,29 @@ U(t)=e^{-iAt} = \sum_{n=0}^\infty \frac{(-it)^n}{n!} A^n
 \]
 absolut konvergent für alle $t\in \R$ und $U(t)$ ist unitär.
 \end{ex*}
-
+\begin{df}
+Sei $q: H\times H \to \C$ mit $x\mapsto q(y,x)$ ist linear und $y\mapsto q(y,x)$ ist antilinear heißt \emph{Sesquilinearform}. $q$ heißt \emph{symmetrisch} fals $\overline{q(x,y)} = q(y,x)$. $q$ heißt beschränkt, falls
+\[
+|q(x,y)| \le M \cdot \| x \| \| y \|
+\]
+für alle $x,y\in H$. Es gilt wieder die Polarisationsidentität
+\[
+q(x,y)= \frac{1}{4} [ q(x+y) - q(x-y) ] + \frac{1}{4i} [ q(x+iy) - q(x-iy)]
+\]
+wobei $q(x)=q(x,x)$.
+\end{df}
+\begin{lem}
+Ist $q$ eine \emph{symmetrische} Sesquilinearformen mit $q(x,x) \le M \| x\|^2$ für alle $x\in H$, dann gilt auch
+\[
+|q(x,y)| \le M \| x \| \|y\|
+\]
+für alle $x,y\in H$.
+\end{lem}
+\begin{seg}[Anwendung]
+Definiere $q(x,y)=\<x, Ay\>$ mit $A^*=A\in \mathcal L(H)$ ist symmetrische Sesquilinearform. Aus dem Lemma folgt
+\[
+\| A \| \le \sup_{\|x\| =1} |\< x,Ax\>|.
+\]
+Da $\sup_{\|x\|=1} |\<x, Ax\>| \le \| A\|$ folgt Teil (a) des Satzes.
+\end{seg}
 \end{document}
