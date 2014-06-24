@@ -1,3 +1,3 @@
 TARGET = vorlesung
 
-include ../common/pdflatex.mk
+include pdflatex.mk
