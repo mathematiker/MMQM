@@ -22,7 +22,7 @@
 \newcommand{\Ran}{\operatorname{Ran}}
 \newcommand{\h}{\hslash}
 \newcommand{\Tr}{\operatorname{Tr}}
-\renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
+%\renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
 
 \title{Mathematische Methoden der Quantenmechanik}
 \author{}
@@ -194,7 +194,7 @@ Wähle $\phi \neq 0$ mit $D^{m-1}\phi\neq0$. Dann ist $D(D^{m-1}\phi)=0$, d.h.
 Dann heißt $\lambda$ ein \emph{diskreter Eigenwert} von $A$. Das Komplement der diskreten Eigenwerte innerhalb $\sigma(A)$ heißt \emph{wesentliches Spektrum} von $A$.
 \end{enumerate}
 \end{nt*}
-\chapter{Der adjungierte Operator}
+\section{Der adjungierte Operator}
 Sei $A:D\subset H\to H$ ein \emph{dicht definierter} linearer Operator, d.h. $\overline{D}=H$ (z.B. $D=H$). Der zu $A$ \emph{adjungierte Operator} $A^*: D(A^*)\subset H \to H$ ist wie folgt definiert. 
 
 Wir sagen $\phi \in D(A^*)$ wenn $\phi^*\in H$ existiert, so dass $\langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle$ für alle $\eta \in D(A)$. Dann ist $\phi^*$ durch $\phi$ eindeutig bestimmt (da $\overline{D(A)}=H$) und man definiert $A^* \phi:= \phi^*$. Die Abbildung $\phi \mapsto A^*\phi$ ist linear. (Übung)
@@ -260,7 +260,7 @@ Also ist $(A^{-1}) A^* \phi = \phi$ für alle $\phi \in D(A^*)$. Sei $\phi \in H
 Daraus folgt $(A^{-1})^* \phi \in D(A^*)$ und $A^*(A^{-1})^* \phi = \phi$.  Damit ist gezeigt, dass $A^*: D(A^*) \to H$ bijektiv ist und dass $(A^*)^{-1} = (A^{-1})^*$.
 \end{proof}
 \begin{nt*}
-Ist $\lambda\in \C$ ein isolierter Punkt von $\sigma(A)$ und $P:= \frac{1}{2\pi i} \oint_{|z-\lambda|=\eps} (z-A)^{-1} \, \dx[z]$ der zSchande von Wichonugehörige Riesz-Projektor, dann gilt nach Satz \ref{2.3}
+Ist $\lambda\in \C$ ein isolierter Punkt von $\sigma(A)$ und $P:= \frac{1}{2\pi i} \oint_{|z-\lambda|=\eps} (z-A)^{-1} \, \dx[z]$ der zugehörige Riesz-Projektor, dann gilt nach Satz \ref{2.3}
 \[
 P^* = \frac{1}{2\pi i} \oint_{|z-\overline \lambda|=\eps} (z-A^*)^{-1} \,\dx[z]
 \]
@@ -302,6 +302,150 @@ wobei $\C_+=\{z\in \C| \Im(z) >0\}$ und $C_-= C^*_+$.
 später.
 \end{proof}
 \chapter{Analytische Störungstheorie}
+Sei $H_0$ ein abgeschloßener Opertator in $H$ und sei $V$ relativ beschränkt bezüglich $H_0$, D.h. $D(V)\supset D(H_0)$ und es gibt $a,b\in \R$ so dass 
+\[
+\|V\phi\| \le \alpha \| H_0 \phi \| + b \| \phi \|
+\]
+für alle $ \phi \in D(H_0)$. Wir untersuchen das diskrete Spektrum $\sigma_{\text{disc}}(H_{\kappa})$ von 
+\begin{align*}
+H_{\kappa} &= H_0 + \kappa V\\
+D(H_{\kappa}) &:= D(H_0).
+\end{align*}
+für $\kappa\in \C$ mit $|\kappa|$ klein. Sei $\lambda$ ein diskreter Eigenwert von $H$ und sei $r>0$ so klein gewählt, dass
+\[
+\overline{B_r(\lambda)} \setminus \{ \lambda\} \subset \rho(H_0).
+\]
+Dann gilt
+\[
+\kappa_r^{-1}= \sup_{z\in \delta B_r(\lambda)} \| V B_0(t)\| < \infty
+\]
+\begin{lem}\label{2.1}
+Für $|\kappa|< \kappa_r$ ist $\delta B_r(\lambda \subset \rho(H_\kappa)$ und für $z\in \delta B_r(\lambda)$ gilt
+\[
+R_{\kappa}(z) = \sum_{n=0}^\infty \kappa^n R_0(z) (VR_0(z))^n.
+\]
+Dabei bezeichne $R_\kappa(z_0)= (z-H_{\kappa})^{-1}$, wobei die Konvergenz absolut und glmäßig ist für $(x,z)$ in $\{x| |\kappa| \le \eps\} \times \delta B_r(\lambda)$ wobei $\eps < \kappa_r$.
+\end{lem}
+\begin{proof}
+Siehe Lemma 6.1 aus dem Vorlesungsskript.
+\end{proof}
+Aus Lemma \ref{2.1} folgt 
+\begin{align*}
+P_\kappa&:= \frac{1}{2\pi i} \oint_{|z-\lambda|=r} R_\kappa(z) \, \dx[z]\\
+&= \sum_{n=0}^\infty \kappa^n \frac{1}{2\pi i} \oint_{|z-\lambda|=r} R_0(z) (VR_0(z))^n \, \dx[z]\\
+&= P_0 + \kappa \frac{1}{2\pi i} \oint_{|z-\lambda|=r} R_0(z) V R_0(z) \, \dx[z] + O(\kappa^2),\quad (\kappa \to 0)\\
+&= H_\kappa P_\kappa = \frac{1}{2\pi i} \oint z R_\kappa (z) \, \dx[z] = \sum_{n=0}^\infty \kappa^n \frac{1}{2\pi i} \oint z R_0(z) (V R_0(z))^n \, \dx[z].
+\end{align*}
+Insbesondere sind $\kappa \mapsto P_\kappa$, $\kappa \mapsto H_\kappa P_\kappa$ analytisch in der Kreisschreibe $|\kappa|< \kappa_r$.
+\begin{lem}\label{2.2}
+Sind $P,Q \in \mathcal L(H)$ mit $\|P-Q\| <1$, dann ist $\dim(\Ran(P))=\dim(\Ran(Q))$.
+\end{lem}
+\begin{proof}
+Siehe Lemma 6.2 aus dem Vorlesungsskript.
+\end{proof}
+\begin{st}\label{3.3}
+Sei $\lambda$ ein \emph{diskreter} Eigenwert von $H_0$ und seien $r, \kappa_r$ wie \ref{2.1} gewählt. Dann gilt für $|\kappa|< \kappa_r$
+\[
+\dim(\Ran(P_\kappa))= \dim(\Ran(P_0))=: m
+\]
+Das Spektrum von $H_k$ in $B_r(\lambda)$ bestaht also aus gerade $m$ Eigenwerten (mit Vielfachheit gezählt) und
+\[
+\max_{z\in \sigma(H_k) \cap B_{r}(\lambda)} |z-\lambda| \to 0
+\]
+für $\kappa \to 0$.
+\end{st}
+\begin{proof}
+siehe Theorem 6.3 aus dem Vorlesungsskript.
+\end{proof}
+
+\section{Einfache Eigenwerte}
+Sei $\lambda \in \C$ ein einfacher Eigenwert von $H_0$, d.h. $\dim(\Ran(P_0))=1$. Nach Satz \ref{6.3} ist dann auch $\dim(\Ran(P_\kappa))=1$ für $|\kappa|< \kappa_r$. Also gilt $H_\kappa P_\kappa = E_\kappa P_\kappa$ mit $E_k \in \C$. Sei $\psi_0 P_0$ mit $\| \psi_0\|=1$ und $\psi_0^*:= P_0^* \psi_0$. Wähle $\kappa$ so klein, dass $|\kappa|<\kappa_r$ und zusätzlich $\| P_\kappa- P-0\|<1$. Dann gilt $P_\kappa \psi_0 \neq 0$ und auch $\< \psi_0^*, P_\kappa \phi_0\> \neq 0$ (Übung). Also ist
+\[
+\psi_\kappa := \frac{P_\kappa \psi_0} {\< \psi_0^*, P_\kappa \psi_0 \>}
+\]
+ein Eigenvektor von $H_\kappa$ von $H_\kappa$ welcher die mit der Bedingung $\< \psi_0^*, \psi_\kappa\>=1$ normiert ist. Es gilt also
+\[
+E_\kappa = \< \psi_0^*, H_\kappa \psi_\kappa\> = \frac{\< \psi_0^*, H_\kappa P_\kappa \psi_0\>}{\< \psi_0^*, P_\kappa \psi_0\>}.
+\]
+Wegen der Analyzität von $P_\kappa$, $H\kappa P_\kappa$ sind $E_\kappa$  und $\psi_\kappa$ analytische Funktionen von $\kappa$ in einer Umgebugn von $\kappa =0\in \C$.
+\begin{st}\label{2.4}
+Sei $\lambda$ ein einfacher diskreter Eigenwert von $H_0$.Für $\kappa$ in einer Umgegbung von $0\in \C$ hat $H_\kappa$ genau einen Eigenwert $E_\kappa$ ist isoliert, einfach und analytisch als Funktion von $\kappa$. Es gibt einen zugehörigen Eigenvektor $\psi_\kappa$, welcher analytisch von $\kappa$ abhängt und die Gleichung $\<\psi_0^*, \psi_\kappa \>$ erfüllt.
+\end{st}
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Der auf $1$ normierte Eigenvektor $P_\kappa \psi_0/\| P_\kappa \psi_0\|$ ist nicht analytisch in $\kappa$. Die Bedingung $\< \psi_0^*, \psi_\kappa\>=1$ ist äquivalent zu $P_0 \psi_\kappa= \psi_0$. (denn $P_0\psi_\kappa = c \psi_0$ impliziert
+$
+\<\psi_0^*, \psi_\kappa\>= \< P_0^* \psi_0, \psi_\kappa\> = \< \psi_0, P_0 \psi_\kappa\>= c \<\psi_0, \psi_0\> =c.
+$)
+\item Falls $H_0^*=H_0$ dann ist $P_0^*=P_0$ Orthogonalprojektor und $\psi_0^* =\psi_0$.
+\end{enumerate}
+\end{nt*}
+\section{Die Taylorreihen von $\psi_\kappa$ und $E_\kappa$}
+Wegen $H_0^* \psi_0^* = \bar \lambda \psi_0^*$ gilt
+\[
+E_\kappa = \< \psi_0^*, H_\kappa \psi_\kappa \> = \< \psi_0^*, (H_0 + \kappa V) \psi_\kappa\> = \lambda + \kappa \< \psi_0^*, V\psi_\kappa \>.
+\]
+Nach Satz \ref{2.4} gilt
+\begin{align*}
+\psi_\kappa &= \sum_{n\ge 0} \psi^{(n)} \kappa^n\\
+E_\kappa &= \sum_{n\ge 0} E^{(n)} \kappa^n.
+\end{align*}
+Mit Koeffizientenvergleich ergibt sich $E^{(0)}=E_{\kappa =0} =\lambda$ und $E^{(n+1)}=\< \psi_0^*k, V \psi^{(n)}\>$. 
+
+Aus 
+\[
+P_\kappa = P_0 + \kappa \frac{1}{2\pi i} \oint R_0(z)VR_0(z) \, \dx[z] + \mathcal O(\kappa^2)
+\]
+folgt mit der Cauchy-Formel
+\begin{align*}
+P_\kappa \psi_0 &= \psi_0 + \kappa \frac{1}{2\pi i} \oint R_0(z) \frac{1}{z-\lambda} \, \dx[z] (V\psi_0) + \mathcal O(\kappa^2)\\
+&= \psi_0 + \kappa S_0(\lambda) V \psi_0 + \mathcal O(\kappa^2),
+\end{align*}
+wobei $S_0(\lambda)=\lim_{z\to \infty} R_0(z) (1-P_0)$ die reduzierte Resolvente von $H_0$ im Punkt $\lambda$ ist. Also
+\[
+\< \psi_0^*, P_\kappa \psi_0\> = \< \psi, P_0 P_\kappa \psi_0\> = 1 +\mathcal O(\kappa^2).
+\]
+und
+\[
+\psi_\kappa = P_\kappa \psi_0 + \mathcal O(\kappa^2) = \psi_0 + \kappa S_0(\lambda) V \psi_0 + \mathcal O(\kappa^2).
+\]
+D.h. $\psi^{(1)} = S_0(\lambda) V\psi_0$ und
+\[
+E^{(2)}=\< \psi_0^*, V \psi^{(1)}\>= \< \psi_0^*, V S_0(\lambda) V \psi_0\>.
+\]
+Prinzipiell kann mittels dieser Methode beliebige Ordnungen generiert werden. Die Berechnung von $E^{(3)}, E^{(4)},...$ nach dieser Methode ist jedoch etwas mühsam da Potenzreihen zu dividieren sind.
+\begin{nt*}
+Die Formeln in physikalische Literatur gehen davon aus, dass $H_0$ ein ONB aus Eigenvektoren hat und $H_0^*=H_0$, so dass $\psi_0^*=\psi_0$. D.h. $H_0 \psi_n = \lambda_n \phi_n$ und $(\phi_n)$ eine ONB von H. Sei $\lambda_0=\lambda, \phi_0=\psi_0$. Dann folgt
+\begin{align*}
+E^{(2)}&= \< \psi_0, VS_0(\lambda) V \psi_0\>\\
+&= \sum_{n=0}^\infty \< \psi_0, VS_0(\lambda) \phi_n\> \< \phi_n, V\psi_0\> = \sum_{n=1}^\infty \frac{|\< \phi_0, V\phi_n\>|^2}{\lambda-\lambda_n}. 
+\end{align*}
+\end{nt*}
+Stattdessen arbeiten wir daher mit dem Ansatz
+\begin{align*}
+\psi_\kappa&=\psi_0 + \kappa \psi^{(1)} + \kappa^2 \psi^{(2)} + ... = \psi_0 + \Delta\psi,\\
+&= \lambda + E^{(1)} \kappa + E^{(2)} \kappa^2 +... = \lambda + E^{(1)} \kappa + \Delta E.
+\end{align*}
+Sei $\tilde V = V- E^{(1)}$ und $\bar P_0 = 1- P_0$. Wegen $P_0 \psi_\kappa = \psi_0$ gilt $\bar P_0\Delta \phi = \Delta \psi$. Wir zerlegen $H_\kappa \psi_\kappa = E_\kappa \psi_\kappa$ in die Anteile in $P_0 H$ und $\bar P_0 H$ und machen den Koeffizientenvergleich. ZUnächst folgt
+\begin{align*}
+0 &= (E_\kappa - H_\kappa) \psi_\kappa \\
+&=(\lambda + E^{(1)} \kappa + \Delta E - H_0 - \kappa V) \psi_\kappa \\
+&= (\lambda-H_0) \psi_\kappa - \kappa \tilde V \psi_\kappa + (\Delta E) \psi_\kappa
+\end{align*}
+und damit
+\[
+(\lambda-H_0) \Delta \psi = \kappa \tilde V \psi_\kappa - (\Delta E) \psi_\kappa.
+\]
+\begin{seg}[Projektion auf $P_0H$]
+Es folgt
+\[
+0=\kappa \< \psi_0^*, \tilde V \psi_\kappa\> - \Delta E\< \psi_0^*, \psi_\kappa\>.
+\]
+Also $\Delta E= \kappa \< \psi_0^*, \tilde V \psi_\kappa\>$ wegen $\< \psi_0^*, \psi_\kappa\>$ wie zu erwarten war.
+\end{seg}
+\begin{seg}[Projektion auf $\bar P_0 H$]
+Es folgt
+\end{seg}
 \setcounter{thm}{13}
 \begin{st}
 Sei $A\subset A^*$. Dann sind äquivalent:
@@ -1293,6 +1437,7 @@ für $n\to \infty$. Also ist
 \| \psi_n\| = \| (z- B)^{-1} \phi_n\| = |z-\lambda|^{-1} \underbrace{\| \phi_n \|}_{=1} + o(1)= |z-\lambda|^{-1} +o(1)
 \]
 für $n\to \infty$. Also ist $\psi_n/\|\phi_n\|$ eine Weylfolg zum $\lambda$ und $B$. Also ist $\lambda \in \sigma_{\text{ess}} (B)$ nach Theorem 7. Also gilt $\sigma_{\text{ess}}(A) \subset \sigma_{\text{ess}}(B)$ und daraus folgt die Behauptung.
+\end{proof}
 
 \begin{kor}
 Sind $A,B$ selbstadjungiert mit $D(A) = D(B)$ und ist $(B-A) (i+A)^{-1}$ kompakt, dann gilt $\sigma_{\text{ess}}(B) = \sigma_{\text{ess}}(A)$
@@ -1305,12 +1450,167 @@ Es ist
 kompakt als Produkt eines kompakten und beschränkten Operators (vgl. Voraussetzung) und Korollar 9 folgt aus Theorem 8. 
 \end{proof}
 
+\chapter{Das Spektrum von Schrödinger-Operatoren}
+\section{Der Satz von Persson}
+
+\begin{lem}\label{7.1}
+Sei $H:D(H) \subset L^2(\R^n) \to L^2(\R^n)$ und sei $f\in L^\infty(\R^n)$ mit $fD(H)\subset D(H)$. Dann gilt auf $D(H)$
+\[
+fHf= \frac{1}{2} (f^2H +Hf^2) - \frac{1}{2} ([H,f]f)
+\]
+wobei $f= M_f$ und $[H,f] = Hf-fH$. 
+\end{lem}
+\begin{proof}
+Zunächst können wir umschreiben \fixme
+\begin{align*}
+fHf &= f^2 H + f[H,f] \\
+fHf &= Hf^2 + [f,H] f \\
+&= Hf^2 - [H,f]f
+\end{align*}
+Also
+\[
+2 fHf = f^2 H + Hf^2 - [ [H,f]f].
+\]
+\end{proof}
+%Die Voraussetzungen des Lemmas ist z.B. erfüllt, wenn $D(H)=H^2(\R^n)$ und $f\in C^2(\R^n)$ mit $\partial^\alpha f \in L^\infty(\R^n)$ für $|\alpha|\le 2$. (siehe Satz \ref{5.8})
+Dann gilt für $\phi \in H^2(\R^n)$
+\[
+\Delta(f\phi) = (\Delta f) \phi + 2\nabla f \cdot \nabla \phi + f\Delta \phi
+\]
+und somit
+%\begin{align*}
+%[\Delta,f] \phi &= \Delta(f\phi) - f\Delta \phi\\
+%&= (\Delta f ) \phi + 2\nabla f \cdot \nabla \phi.\\
+%[\Delta,f] f \phi &= f[\Delta,f] \phi + 2 |\nabla f|^2 \phi
+%\end{align*}
+und es folgt 
+\[
+[[\Delta,f] f] \phi = 2|\nabla f|^2 \phi
+\]
+Für einen Schrödinger-Operator $H=-\Delta + V$ mit $D(H)=H^2(\R^n)$ gilt also auf $D(H)$ mit Lemma \ref{7.1}
+%\begin{equation}
+%fHf = \frac{1}{2} (f^2 H+ Hf^2) + |\nabla f|^2. \tag{IMS} \label{IMS}
+%\end{equation}
+Man bezeichnet dies als IMS-Formel, denn
+\begin{equation} 
+[[H,f]f] = -[[\Delta,f] f] \label{7.2}
+\end{equation}
+Die IMS-Formel gilt immer wenn \eqref{7.2} gilt, also bei Schrödingeroperatoren mit Magnetfeld
+\[
+H=(-i\nabla -A(x))^2 + V.
+\]
+Im Folgenden nehmen wir an, dass $H=H^*$ mit $D(H)\subset L^2(\R^n)$, dass $H$ nach unten beschränkt ist, d.h. $\< \phi, H, \phi\>\ge M \| \phi \|^2$ für ein $M\in \R$, und
+\begin{enumerate}[a)]
+%\item $fD(H) \subset D(H)$ für $f\in C^\infty(\R^n)$ mit $\delta^\alpha f \in L^\infty$ wenn $|\alpha| \le 2$.
+\item $[[H,f]f] = -2|\nabla f|^2$
+\end{enumerate}
+
+Für $R>0$ definieren wir
+%\begin{align*}
+%D_R&:= \{\phi \in D(H) | \supp(\phi) \subset \{ |x|>R\}\}\\
+%\sum_{R}&:=\inf\{\< \phi, H\phi\>| \phi \in D_R, \| \phi \| =1\}
+%\end{align*}
+Wir bezeichnen mit
+\[
+\Sigma := \lim_{R\to \infty} \Sigma_k \le \infty
+\]
+heißt \emph{Ionisierungsschwelle} von $H$.
+\begin{st}[Persson 1960]
+Sind obige Annahmen erfüllt und ist $f(H+i)^{-1}$ \emph{kompakt} für $f\in C_0^\infty(\R^n)$. Dann gilt
+\[
+\Sigma= \inf \sigma_{\text{ess}}(H).
+\] 
+\end{st}
+
+\begin{nt*}
+\begin{enumerate}
+\item Dieses Theorem ist ein Analogon zu 
+%\[
+%\inf \sigma(H) = \inf \{ \< \phi, H\phi\> | \| \phi \| = 1, \phi \in D(H)\}
+%\]
+\item Nur $\inf \sigma_{\text{ess}}(H)\ge \Sigma$ benötigt die Kompaktheitsannahme.
+\end{enumerate}
+\end{nt*}
+\begin{proof}
+\begin{seg}[$\inf \sigma_{\text{ess}}(H) \ge \Sigma$]
+Sei $\lambda \in \sigma_{\text{ess}}(H)$ und sei $\phi_n)$ eine zugehörige Weylfolge. D.h. $\phi_n \in D(H)$, $\| \phi_n\| = 1$, $\phi_n \to 0$, $\|(H-\lambda) \phi_n\| \to 0$. Seien $I_0, I_\infty \in C^\infty ( \R,[0,1])$ mit $I_0(t)=1$ für $t\le 1$, $I_\infty(t)=1$ für $t\ge 2$ und $I_0^2 + I_\infty^2\equiv 1$. Für $R>0$ definieren wir
+\begin{align*}
+I_{a,R}(x) &= I_0(|x|/R)\\
+I_{\infty, R}(x) &= I_\infty(|x|/R)
+\end{align*}
+für $x\in \R^n$. \fixme[fig überprüfen]
+Aus 
+%\begin{align*}
+%I_{0,R} H J_{0,R} &= \frac{1}{2} (I_{0,R)^2 H + H I_{0,R}^2) + |\nabla I_{0,R}|^2\\
+%I_{\infty, R} H I_{\infty,R}&= \frac{1}{2} (I_{\infty,R}^2 H + H I_{\infty,R}^2) + |\nabla I_{\infty, R}|^2
+%\end{align*}
+und $I_{0,R}^2 + I_{\infty,R}^2 \equiv1$ folgt
+\[
+H= I_{0,R} H I_{0,R} + I_{\infty,R} H I_{\infty, R} -| \nabla I_{o,R}|^2 - | \nabla I_{\infty, R}|^2.
+\]
+Also 
+\[
+H \ge MI_{0,R}^2 + \Sigma_R I_{\infty, R}^2 - \frac{C}{R^2} = \Sigma_R + (M-\Sigma_R) I_{0,R}^2 - \frac{C}{R^2}
+\]
+wobei $C= \sup_{t\in \R} ( |I_0^1(t)|^2 + |I_\infty^1 (t)|^2 < \infty$. Also
+\[
+\< \phi_n, H\phi_n\> \ge \Sigma_R + (M- \Sigma_R) \| I_{0,R} \phi_n\|^2 - \frac{C}{R^2}
+\]
+wobei $\< \phi_n, H\phi_n \> \to \lambda$ mit $n\to \infty$. und $\| I_{0,R} \phi_n \| \to 0$ für $n\to \infty$, denn 
+\[
+(H+i)\phi_n = (H-\lambda) \phi + (\lambda +i) \phi_n \rightharpoonup 0
+\]
+für $n\to \infty$ und $I_{(0,R)}(H+i)^{-1}$ ist kompakt. Somit ist
+%\[
+%I_{0,R}\phi_n = \underbraces{I_{0,R}(H+i)^{-1}}_{\text{kompakt}} \underbraces{(H+i) \phi_n}_{\rightharpoonup 0} \to 0
+%\]
+für $n\to \infty$.
+\end{seg}
+Es folgt
+\[
+\lambda = \lim_{n\to \infty} \< \phi_n, H\phi_n \> \ge \Sigma_R - \frac C {R^2}
+\] 
+wobei $R>0$ beliebig groß gewählt werden kann. Also $\lambda \ge \Sigma$.
+\begin{seg}[$\inf_{\sigma_{\text{ess}}}(H)$]
+Annahme: $\inf \sigma_{\text{ess}}(H) \ge \Sigma + 3\eps$ für ein $\eps >0$. Dann ist $\sigma(H) \cap (-\infty, \Sigma + 2\eps]$ diskret und da $H\ge M$ ist hat $P=P_{(-\infty, \Sigma+2\eps]}$ endlichen Rang. Also
+\[
+H=H(1-P) + HP \ge (\Sigma+2\eps)(1-P)+MP= (\Sigma + 2\eps) +(M-\Sigma-2\eps)P.
+\]
+Wähle $\phi_n \in D_{R=n}$ mit $\| \phi_n\| =1$ mit
+\[
+\< \phi_n, H\phi_n\> \le \Sigma_{R=n} + \eps
+\]
+Dann gilt $\phi_n \rightharpoonup 0$ und daher
+\[
+\< \phi_n, H\phi_n \> \ge \Sigma+ 2\eps + (M-\Sigma-2\eps) \| P\phi_n \>^2 \to \Sigma+2\eps
+\]
+für $n\to \infty$ während
+\[
+\limsup_{n\to \infty} \< \phi_n, H\phi_n\> \le \lim_{n\to \infty} \Sigma_n + \eps = \Sigma + \eps
+\]
+was zum Widerspruch führt.
+\end{seg}
 \end{proof}
 
-
-
-
-
+\begin{nt*}
+$f(-\Delta+1)^{-1}$ ist kompakt für alle $f\in C_0^\infty(\R^n)$. Für $n\le 3$ ist $f(-\Delta+1)^{-1}$ sogar ein \emph{Hilbert-Schmidt-Operator}.
+\[
+[f(-\Delta+1)^{-1} \phi] (x) = \int K(x,y) \phi(y) \, \dx[y]
+\]
+wobei $K\in L^2(\R^n \times \R^n)$ gegeben ist
+\[
+K(x,y) =f(x) \frac{1}{4\pi |x-y|} e^{-|x-y|}
+\]
+wenn $D(H)=H^2(\R^n) = D(-\Delta)$, dann ist
+\[
+f(H+i)^{-1} = \underbrace{f(\-\Delta +1)^{-1}}_{\text{kompakt}} \underbrace{(-\Delta +1) (H+i)^{-1}}_{\text{beschränkt}}
+\]
+kompakt.
+\end{nt*}
+\begin{ex*}
+Sei $H=-\Delta+V$ in $L^2(\R^n)$ mit $n\le 3$ und $V\in L^2 + L^\infty$ mit $V(x)\to 0$ für $|x|\to \infty$. Dann sind alle Annahmen erfüllt (Übung) und $\Sigma=0$. Also $\inf \sigma_{\text{ess}}(H) = 0$.
+\fixme[fig5]
+\end{ex*}
 
 
 \appendix
