@@ -1525,9 +1525,9 @@ Sind obige Annahmen erfüllt und ist $f(H+i)^{-1}$ \emph{kompakt} für $f\in C_0
 \begin{nt*}
 \begin{enumerate}
 \item Dieses Theorem ist ein Analogon zu 
-%\[
-%\inf \sigma(H) = \inf \{ \< \phi, H\phi\> | \| \phi \| = 1, \phi \in D(H)\}
-%\]
+\[
+\inf \sigma(H) = \inf \{ \< \phi, H\phi\> | \| \phi \| = 1, \phi \in D(H)\}
+\]
 \item Nur $\inf \sigma_{\text{ess}}(H)\ge \Sigma$ benötigt die Kompaktheitsannahme.
 \end{enumerate}
 \end{nt*}
@@ -1611,6 +1611,140 @@ kompakt.
 Sei $H=-\Delta+V$ in $L^2(\R^n)$ mit $n\le 3$ und $V\in L^2 + L^\infty$ mit $V(x)\to 0$ für $|x|\to \infty$. Dann sind alle Annahmen erfüllt (Übung) und $\Sigma=0$. Also $\inf \sigma_{\text{ess}}(H) = 0$.
 \fixme[fig5]
 \end{ex*}
+
+\section{HVZ-Theorem und Existenz neutraler Atome und Moleküle}
+Atome und Moleküle mit statischen Kernen werden beschrieben durch
+\begin{align*}
+H_N&=\sum_{k=1}^N(-\Delta_{x_k} + V_k) + \sum_{i<j} V_{ij}\\
+&= - \Delta + V
+\end{align*}
+in $L^2(\R^{3N})$ wobei $x=(x_1, x_2,..., x_N) \in \R^{3N}$ und 
+\[
+V_{k}(x)=V(x_k) = - \sum_{l=1}^M \frac{Z_l}{|x_k-R_l|}, \quad Z_l>0, R_l \in \R^3.
+\]
+und $V_{ij} (x) = |x_j - x_i|^{-1}$. Nach Satz \ref{5.11} ist $H_N$ selbstadjungiert $D(H_N)=H^2(\R^{3N})$ und wesentlich selbstadjungiert auf $C_0^\infty(\R^{3N})$. $H_N$ ist nach unten beschränkt (Blatt 10), d.h.
+\[
+E_N := \inf \sigma(H_N) > - \infty.
+\]
+Nach dem Satz von Persson ist $\inf\sigma_{\text{ess}}(H)= \Sigma$ der Ionisierungsschwelle.
+\begin{st}[HVZ-Thm./ Hunziker v. Winter, Zhislin]
+Sei $H_N$ wie vorher.  Dann folgt
+\[
+\sigma_{\text{ess}}= [E_{N-1}, \infty).
+\]
+Insbesondere ist $\Sigma= E_{N-1}$.
+\end{st}
+\begin{proof}[$[E_{N-1}, \infty)\subset \sigma(H_N)$.]
+%\begin{seg}
+Sei $\lambda \ge E_{N-1}$ und $\delta := \lambda - E_{N-1}$, d.h. $\lambda = E_{N-1} + \delta$. Da $E_{N-1} \in \sigma(H_{N-1})$ und $\delta \in \sigma(-\Delta)$ existiert $\phi_{N-1}\in C_0^\infty (\R^{3(N-1)})$ und $\phi \in C_0^\infty(\R^3)$, beide normiert, 
+mit
+\[
+\| (H_{N-1} - E_{N-1}) \psi_{N-1}\| < \eps, \quad \|(-\Delta-\delta) \phi\| < \eps.
+\]
+(benutze wesentlich selbstadjungiert auf $C_0^\infty$). Zerlege $H_N$ in $3$ Teile.
+\[
+H_N = H_{N-1} + h_N + \sum_{k=1}^{N-1} V_{k,N}
+\] 
+
+wobei 
+\[
+H_{N-1}=\sum_{n=1}^{N-1}(-\Delta_{x_k} + V_{k}) + \sum_{i<j} V_{ij}, \quad H_N = - \Delta_{x_N} + V(x_N).
+\]
+Sei $\phi_n(x) = \phi(x-nd)$ wobei $d\in \R^3, |d|=1$ beliebig ist. Sei
+\[
+(\psi_{N-1} \otimes \phi_n)(x):= \psi_{N-1} (x_1,..., x_{N-1})(x).
+\]
+Dann gilt $\psi_{N-1} \otimes \phi_n \in C_0^\infty( \R^{3N}) \subset D(H_N)$ und \fixme
+\begin{align*}
+\| (H_N - \lambda) \psi_{N-1} \otimes \phi_N\| &= \|((H_{N_1} - E_{N-1}) + (h_N - \delta) + \Sigma V_{k,N}) \psi_{N-1} \otimes \phi_n\| \\
+&\le \| (H_{N-1} - E_{N-1}) (\psi_{N-1} \otimes \phi_n)\| + \| (h_N- \delta) + \Sigma V_{k,N}) \psi_{N-1} \otimes \phi_N\| \\
+&\le \| (H_{N-1} - E_{N-1}) (\psi_{N-1} \otimes \phi_n) \| \\
+&+ \| (h_n - \delta) \psi_{N-1}
+\\
+&+ \Sigma_{k,N} \| V_{k, N} \psi_{N-1} \otimes \phi_n\|\\
+& \le \| (H_{N-1} - E_{N-1}) \psi_{N-1} \| + \| (h_N - \delta) \phi_n\| \\
+&+(N-1) \sup\{\frac{1}{|x_k - x_N|} | |x_k| \le C, |x_n - nd| \le C\} \\
+& < \eps+ 2\eps + \eps = 4 \eps
+\end{align*}
+für $n$ groß genug, denn $\| V \phi_n\| \to 0$ für $n\to \infty$ und $\| (-\Delta - \delta) \phi_n\| < \eps$. Wegen $\| \psi_{N-1} \otimes \phi_n\|=1$ für alle $n$ und da $\eps >0$ beliebig klein gewählt werden kann folgt $\lambda \in \sigma(H_N)$. 
+%\end{seg}
+\end{proof}
+\begin{lem}
+Es gibt eine Familie $\{I_k\}_{k=0}^N$ von Funktionen $I_k\in C^\infty(\R^{3N}; [0,1])$ mit $\delta^\alpha I_k\in L^\infty$ für $|\alpha| \le 2$ so, dass
+\begin{enumerate}
+\item $\supp(I_0)$ kompakt,
+\item $\supp(I_k) \subset \{x|\,|x_k|\ge 1\}$ für $k=1,...,N$,
+\item $\sum_{k=0}^N I_k^2 \equiv 1$	
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Sei $j\in C^\infty(\R, [0,1])$ mit $j(t)=0$ für $t\le 1$ und $j(t)=1$ für $t\ge 2$ \fixme[fig6, nötig?]. Für $x=(x_1,...,x_N) \in \R^{3N}$ sei
+\[
+f_0(x) = 1- j(\frac{|x|}{2N}), f_k(x) = j(|x_k|).
+\]
+Dann hat $f_0$ kompakten Träger und für jedes $x\in \R^{3N}$ und es existiert $k\in \{0,..., N\}$ mit $f_k(x) =1$. Somit haben die Funktionen
+\[
+J_k := \frac{f_k}{(\sum_{l=0}^N f^2_l)^{1/2}}
+\]
+alle gewünschten Eigenschaften. \fixme[fig7, Illustration]
+\end{proof}
+
+\begin{seg}[Beweis von $\inf \sigma_{\text{ess}} (H_N) \ge E_{N-1}$]
+Sei $\lambda \in \sigma_{ess} (H_N)$ und $\psi_{N}$ eine zugehörige Weyl-Folge D.h. $\| \psi_n \| = 1, \psi_n \rightharpoonup 0$ und $\| (H_N - \lambda) \psi_N\| \to 0$. Dann gilt $\lambda = \lim_{n \to \infty} \< \psi_n, H_N \psi_n\>$. Zu zeigen ist, dass $\lambda \ge E_{N-1}$. Zerlege für $k\in \{1,...,N\}$
+\begin{align*}
+H_N &= H^{(k)}_{N-1} + h_k + \sum_{i=1, i \neq k}^N V_{ik}\\
+h_k:= - \Delta_{x_k} + V(x_k)
+\end{align*}
+Sei $J_k$ die Familie der Funktionen aus dem obigen Lemma und sei für $R>0$
+\[
+J_{k,R}(x) = J_k(\frac{x}{R})
+\]
+für $k=0,..N$. Nach der IMS-Formel (denn $J_{k,R}(- \Delta_{x_k}) J_{k,R} \ge 0$ und $V_{ik} \ge 0$)
+\begin{align*}
+H_N &= \sum_{k=0}^N(J_{k,R} H_N J_{k,R} - | \nabla J_{k,R}|^2)\\
+&\ge (E_N J_{0,R}^2 - | \nabla J_{0,R}|^2) + \sum_{k=1}^{N-1} J_{k,R} H_{n-1}^{(k)} J_{k,R} + V_k J_{k,R}^2 - | \nabla J_{k,R}|^2 \\
+&\ge E_N J_{0,R}^2 + \underbrace{\sum_{k=1}^{N-1}  E_{N-1} J_{k,R}^2}_{E_{N-1} (1- J_{0,R}^2)} + V_k J_{k,R}^2 - \sum_{k=0}^N | \nabla J_{k,R}|^2 \\
+&= E_{N-1} + (E_N - E_{N-1} ) J_{0,R}^2 + o(1)
+\end{align*}
+für $R\to \infty$.
+Es folgt
+\[
+\< \psi_n, H_N \psi_n\> = E_{N-1} + (E_N- E_{N-1}) \| J_{0,R} \psi_n\|^2 + o(1)
+\]
+für $R\to \infty$, wobei
+\[
+J_0,R \psi_n = \underbrace{J_{0,R} (H_N + i)^{-1}}_{\text{kompakt}} \underbrace{(H_N + i) \psi_n}_{\rightharpoonup 0} \to 0
+\]
+für $n\to \infty$ denn 
+\[
+J_{0,R}(H+i)^{-1} = J_{0,R}(-\Delta + 1)^{-1} (- \Delta + 1) (H_N +i)^{-1}
+\]
+kompakt ist und
+\[
+(H_{N}+i) \psi_n = \underbrace{(H_N - \lambda) \psi_n}_{\to 0} + \underbrace{(\lambda +i) \psi_n}_{\rightharpoonup 0} \rightharpoonup 0.
+\]
+Also 
+\[
+\lambda = \lim_{n\to \infty}\< \psi_n, H_N \psi_n\> \ge E_{N-1} + o(1)
+\]
+für $R\to \infty$. Somit gilt $\lambda \ge E_{N-1}$.
+\end{seg}
+
+Frage: $E_{N-1} > E_N$?
+\begin{lem}
+Ist $\rho \in L^1(\R^3)$ sphärisch symmetrisch, d.h. $\rho$ hängt nur von $|x|$ ab, dann gilt
+\[
+\int \frac{\rho(x)}{|x-R|} \, \dx = \int \frac{\rho(x)}{\max(|x|, |R|)} \, \dx.
+\]
+\end{lem}
+\begin{proof}
+\[
+\int_{|x|=r} \frac{d\sigma(x)}{|x-R|}\, \dx = \frac{4\pi r^2}{\max(\underbrace{|x|}_{=r}, |R|)}
+\]
+\end{proof}
+
+
+
 
 
 \appendix
