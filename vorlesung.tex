@@ -433,9 +433,9 @@ Sei $\tilde V = V- E^{(1)}$ und $\bar P_0 = 1- P_0$. Wegen $P_0 \psi_\kappa = \p
 &= (\lambda-H_0) \psi_\kappa - \kappa \tilde V \psi_\kappa + (\Delta E) \psi_\kappa
 \end{align*}
 und damit
-\[
+\begin{equation}\label{2.1}
 (\lambda-H_0) \Delta \psi = \kappa \tilde V \psi_\kappa - (\Delta E) \psi_\kappa.
-\]
+\end{equation}
 \begin{seg}[Projektion auf $P_0H$]
 Es folgt
 \[
@@ -444,8 +444,133 @@ Es folgt
 Also $\Delta E= \kappa \< \psi_0^*, \tilde V \psi_\kappa\>$ wegen $\< \psi_0^*, \psi_\kappa\>$ wie zu erwarten war.
 \end{seg}
 \begin{seg}[Projektion auf $\bar P_0 H$]
-Es folgt
+Es folgt aus \eqref{2.1}
+\[
+\Delta \psi = \kappa S_0(\lambda) \tilde V \psi_k - \Delta E S_0(\lambda) \Delta \phi,
+\]
+wobei $S_0(\lambda):=R_0(\lambda) \bar P_0$. Einsetzen der Entwicklungen 
+\begin{align*}
+\Delta E_\kappa &= E_2 \kappa^2 + E_3 \kappa^3 \\
+\Delta \psi_\kappa &= \psi_1 \kappa + \psi_2 \kappa^2
+\end{align*}
+und Koeffizientenvergleich
+\begin{align*}
+\psi^{(1)} &= S_0 \tilde V \psi_0\\
+\psi^{(2)} &= S_0(\lambda \tilde V \psi^(1) =S_0(\lambda) S_0 \\
+\psi^{(3)} &= S_0(\lambda) \tilde \psi^{(2)} - E^{(2)} S_0(\lambda) \psi^{(1)}\\
+&=  (S_0(\lambda) \tilde V)^3 \psi_0 - E^{(2)} S_0(\lambda)^2 \tilde V \psi_0.
+\end{align*}
+Allgemein für $n\ge 2$ also
+\[
+\psi^{(n+1)}= S_0(\lambda) \tilde V \psi^{(n)} = \sum_{k=2}^n E^{(k)} S_0(\lambda) \psi^{(n+1-k)}
+\]
+und mit 
+\[
+E^{(n+1)}= \< \psi_0, \tilde V \psi^{(n)}\>
+\] 
+folgt wegen
+\begin{align*}
+\psi^{(2)} &= (S_0 \tilde V)^2 \psi_0\\
+\psi^{(3)} &= (S_0 \tilde V)^3 - E_2 S_0^2 \tilde V \psi_0
+\end{align*}
+als insbesondere
+\begin{align*}
+E^{(2)} &=  \< \psi_0^*, \tilde V S_0(\lambda) \tilde V \psi_0\>\\
+E^{(3)} &= \< \psi_0^*, \tilde V S_0(\lambda) \tilde V \psi_0\> \\
+E^{(4)} &= \< \psi_0^*, \tilde V (S_0(\lambda) \tilde V)^3 \psi_0\> - \< \psi_0^*, \tilde V S_0(\lambda) \tilde V \psi_0\> \< \psi_0^*, \tilde V S_0(\lambda)^2 \tilde V \psi_0\>.
+\end{align*}
 \end{seg}
+\section{Reduktion auf ein Eigenwertproblem in $P_0H$ im Fall $\dim(\Ran(P_0))\ge 1$}
+Bezeichne $M_\kappa=P_\kappa H$, $M_0= P_0H$. Wir konstruieren eine bijektive, lineare Abbildung $B_\kappa: M_0 \to M_\kappa$, sodass $\sigma(H_\kappa \upharpoonright M_\kappa) = \sigma( B_\kappa^{-1} H_\kappa B_\kappa \upharpoonright M_0)$. Sei $|\kappa|$ so  klein, dass $\| P_\kappa - P_0\|< \frac{1}{\| P_0\|}$ und sei $A_\kappa: P_0 P_\kappa P_0 \to M_0$. Dann ist
+\[
+\|A_\kappa -1 \|_{M_0} = \| P_0 P_\kappa P_0- P_0\|_{M_0} \le \| P_0\| \| P_\kappa - P_0\| < 1
+\]
+und somit ist $A_\kappa = 1 - (\Delta_\kappa -1) : M_0 \to M_0$ ein Isomorphismus. Also existiert $A_\kappa^{-1}$ und 
+\[
+A_\kappa^{-1/2} := \sum \binom{-1/2}{n}.
+\]
+Verwende die Binomialreihe 
+\[
+(1+z)^{-1/2} = \sum_{n=0}^\infty \binom{-1/2}{n} z^n, |z| < 1.
+\]
+Es gilt $(A_\kappa)^{-1/2})^2 = A_\kappa^{-1}$. Die Operatoren
+\begin{align*}
+B_\kappa &:= P_\kappa A_\kappa^{-1/2} : M_0 \to M_\kappa\\
+B_\kappa^{-1} &:= A_\kappa^{1/2} P_0 : M_\kappa \to M_0
+\end{align*}
+sind bijektiv und invers zueinander. In der Tat gilt
+\[
+B_\kappa^{-1} B_\kappa = A_\kappa^{-1/2} P_0 P_\kappa A_\kappa^{-1/2} = A_\kappa^{-1/2} A_\kappa A_\kappa^{-1/2} = A_\kappa^{-1/2} A_\kappa^{-1/2} A_\kappa = I
+\]
+auf $M_0$. Ebenso gilt $B_\kappa B_\kappa^{-1/2}=I$ auf $M_\kappa$. (Übung).
+\fixme[Bild ähnlich wie im Kapitel zur Störungstheorie]
+Die Eigenwerte von $(H_\kappa- \lambda) \upharpoonright M_\kappa$ (Eigenwertstörung) sind also gegeben durch die Eigenwerte von
+\begin{align*}
+E_\kappa&:= B_\kappa (H_\kappa - \lambda) B_\kappa^{-1}= A_\kappa^{-1/2} P_0 P_\kappa (H_\kappa-\lambda) P_\kappa P_0 A_\kappa^{-1/2} \\
+&=A_\kappa ^{-1/2} N_\kappa A_\kappa^{-1/2}\\
+N_\kappa&:= P_0 P_\kappa(H_\kappa-\lambda) P_\kappa P_0
+\end{align*}
+wobei $A_\kappa, N_\kappa, E_\kappa\in \mathcal L(M_0)$ analytisch von $\kappa$ abhängen. Wegen (vgl. Anfang Kapitel)
+\begin{align*}
+P_\kappa &= \sum_{n=0}^\infty \kappa^n \frac{1}{2\pi i} \int_\gamma R_0(z) [V R_0(z)]^n\\
+(H_\kappa-\lambda) P_\kappa &= \frac{1}{2\pi i} \int_\gamma(z-\lambda) R_\kappa(z) \dx[z]\\
+&= \sum_{n=0}^\infty \kappa^n \frac{1}{2\pi i}  \oint (z-\lambda) R_0(z) (V R_0(z))^n \dx[z].
+\end{align*}
+mit $\Tr(\gamma)=\partial B_r(\lambda)$. Sei im Folgenden
+\begin{align*}
+A_\kappa&= \sum_{n\ge 0} A^{(n)} \kappa^n\\
+N_\kappa&= \sum_{n\ge 0} N^{(n)} \kappa^n\\
+E_\kappa&= \sum_{n\ge 0} E^{(n)} \kappa^n.
+\end{align*}
+Im Fall wo $\lambda$ ein halbeinfacher Eigenwert ist (d.h. $(H_0-\lambda) P_0=0$)
+\[
+R_0(z) =\frac{P_0}{z-\lambda} + S_0(z)
+\]
+und
+\begin{align*}
+A^{(0)}&=P_0 \\
+A^{(1)}&= \frac{1}{2\pi i} \oint (P_0 VP_0) \frac{1}{(z-\lambda)^2}\dx[z]  \\
+&=0  \\
+A^{(2)}&=\frac{1}{2\pi i} \oint \frac{1}{(z-\lambda)^2} P_0(V R_0(z)) V P_0 \, \dx[z]  \\
+		&= - P_0 V S_0(\lambda)^2 V P_0 
+\end{align*}
+und insbesondere
+\begin{align*}
+ N^{(0)} &=0\\
+ N^{(1)} &= \frac{1}{2\pi i} \oint(z-\lambda)^{-1} P_0 V P_0 \, \dx[z]\\
+ N^{(2)} &= \frac{1}{2\pi i} \oint (z-\lambda)^{-1} P_0 V R_0(z) V P_0 \, \dx[z]\\
+ = P_0 V P_0\\
+ &= P_0 V S_0(\lambda) V P_0. 
+\end{align*}
+Es folgt $A_\kappa^{-1/2}= 1- 1/2 \kappa^2 A^{(2)} + \mathcal O(\kappa^3)$ und
+\begin{align*}
+E^{(0)}&=N^{(0)} =0\\
+E^{(1)} &= N^{(1)} = P_0 V P_0\\
+E^{(2)} &= N^{(2)} = P_0 V S_0(\lambda) V P_0\\
+E^{(3)} &= N^{(3)} - \frac{1}{2} (N^{(1)} A^{(2)} + A^{(2)} N^{(1)}
+\end{align*}
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Im Fall $\dim(P_0H)=1$ ist $E_\kappa$ Eigenwert von $H_\kappa - \lambda$.
+\item Falls $H_0^* =H_0$ und $V\subset V^*$, dann ist $H_\kappa^* = H_\kappa$ und $E^*_\kappa = E_\kappa$ für $\kappa\in \R$ und $|\kappa|$ klein (Kato-Rellich). nach dem Satz von Rellich (vgl. Reed-Simon Band 4) gibt es $p\le m = \dim P_0 H$ analytische Funktionen welche für kleine $|\kappa|$ alle Eigenwerte von $E_\kappa$ darstellen. Die Entwicklung dieser Eigenwerte bis zur Ordnung $\kappa^n$ erhalt man durch Entwicklung der Eigenwerte von 
+\[
+\sum_{n=0}^N \kappa^n E^{(n)} = \kappa P_0 V P_0 + \kappa^2 P_0 V S_0(\lambda) V P_0
+\]
+bis zur Ordnung $\kappa^n$. In erster Ordnung sind $\lambda_1,..., \lambda_n$ also die Eigenwerte von $P_0 V P_0$.
+\end{enumerate}
+\end{nt*}
+\chapter{Kriterien für Selbstadjungiertheit}
+Ist $A\in \mathcal L(H)$ injektiv, dann gilt
+\[
+R(A) \text{ abgeschlossen } \iff A^{-1}: \Ran(A) \to H \text{ beschränkt}
+\]
+(Beweis Übung).
+\begin{lem}
+Ist $A: D(A) \subset H \to H$ abgeschlossen und injektiv, dann sind äquivalent:
+\begin{enumerate}[a)]
+\item $\Ran(A)$ ist abgeschlossen
+\end{enumerate}
+\end{lem}
 \setcounter{thm}{13}
 \begin{st}
 Sei $A\subset A^*$. Dann sind äquivalent:
@@ -1928,4 +2053,67 @@ Definiere $q(x,y)=\<x, Ay\>$ mit $A^*=A\in \mathcal L(H)$ ist symmetrische Sesqu
 \]
 Da $\sup_{\|x\|=1} |\<x, Ax\>| \le \| A\|$ folgt Teil (a) des Satzes.
 \end{seg}
+
+\section{Hilbert-Schmidt-Operatoren}
+Sei $H$ ein seperabler Hilbertraum und $K\in \mathcal L(H)$ kompakt. Dann ist auch $K^*K$ kompakt und wir finden eine ONB $(\phi_n)$ mit $(K^*K)\phi_n = \lambda_n^2 \phi_n, \lambda_n \ge 0$. Es folgt $\psi_n := K \phi_n \frac{1}{\lambda_n}, \lambda_n>0$. Es folgt
+\[
+\< \psi_n, \psi_m\> = \frac{1}{\lambda_n \lambda_m} \< K \phi_n, K \phi_m\> = \frac{1}{\lambda_n \lambda_m} \< \phi_n, K^* K \phi_m \> = \frac{\lambda_m^2}{\lambda_n \lambda_m} \delta_{nm}= \delta_{nm}
+\]
+Wir finden eine Singulärwertzerlegung
+\[
+K= \sum_{n\ge 1, \lambda_n >0}, 
+\]
+denn $K\gamma = = \sum_{n\ge 1} K \phi_n \< \phi_n, \gamma\> = \sum_{n\ge 1, \lambda_n >0} \lambda_n \psi_n \< \phi_n, \gamma\> $. $K$ heißt \emph{Hilbert-Schmidt-Operator} falls
+\[
+\lambda_n^2 < \infty
+\]
+\begin{nt*}
+Dabei bezeichne $|phi>\in H$ ein Element in $H$ und das zugehörige Funktional $\< \phi | \in H^*$. So gilt zum Beispiel
+\[
+\< \phi| | \gamma \> = = \< \phi | \gamma \>.
+\]
+Mit dieser $|\phi \> \< \phi_n|$ die Orthogonalprojektion auf $\phi$. Und falls $\phi_n$ eine ONB auf $H$ ist dann ist die Fourierreihe 
+\[
+\sum_{n=1}^\infty |\phi_n\> \< \phi_n | = \Id.
+\]
+bzw.
+\[
+\sum_{n=1}^\infty |\phi_n\> \< \phi_n | \psi\> = |\psi \>
+\]
+Oder ähnlich
+\[
+\int |y\> \< y | \, \dx[y]=\Id.
+\]
+Dies sei in dem Sinne zu verstehen, dass
+\[
+\< x|B\phi\> \int \< x, y\> \<y|B\phi\> \, \dx[y]
+\]
+Dies macht zum Beispiel für Hilbertschmidtoperatoren Sinn.
+\end{nt*}
+\begin{st}
+$K\in \mathcal L(L^2(\R^n))$ ist genau dann Hilbert-Schmidt-Operator wenn $B\in L^2(\R^n \times \R^n)$ existiert mit
+\[
+K\phi(x) = \int B(x,y) \phi(y) \, \dx[y]
+\]
+bzw.
+\[
+\< \psi, K \phi\>_{L^2} = \< \psi \otimes \bar \phi, B\>_{L^2}
+\]
+wobei $\psi \otimes \bar \phi (x,y):= \psi(x) \cdot \phi(y)$.
+\end{st}
+\begin{proof}
+Sei $K$ Hilbert-Schmidt-Operator und
+\[
+K= \sum \lambda_n | \psi_n \> \< \phi_n |
+\]
+die Singulärwertzerlegung. Sei $B(x,y) =\sum \lambda_n \psi_n(x) \bar {\phi_n(x)}$ dann $B\in L^2(\R^n\times \R^n)$ ein zu $K$, dass heißt es gilt umgekehrt, wenn $k\in \mathcal L(L^2)$ und ein $B\in L^2(\R^n \times \R^n)$ so dass $B\in L^2(\R^n\times \R^n)$ ein Kern zu $K$ ist, dann ist $K$ Hilbert-Schmidt-Operator. Denn ist $(\phi_n)$ ONB von $L^2(\R^n)$ dann ist $(\phi _n \times \phi_m)$ ein ONB  von $L^2(\R^n \times \R^n)$. Also ist
+\begin{align*}
+B&= \sum_{n,m} \phi_n \otimes \phi_m \< \phi_n \otimes \phi_m, B\> \\
+&= \lim_{N\to \infty} \underbrace{\sum_{n,m}^N \phi_n \otimes \phi_m \< \phi_n \otimes \phi_m, B\>}_{=: B_N}
+\end{align*}
+Definiere 
+\[
+K_n \gamma= \int B_N(x,y) \gamma(y) \, \dx[y] = \sum_{n,m}^N \phi
+\]
+\end{proof}
 \end{document}
