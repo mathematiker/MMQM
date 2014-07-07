@@ -569,8 +569,77 @@ R(A) \text{ abgeschlossen } \iff A^{-1}: \Ran(A) \to H \text{ beschränkt}
 Ist $A: D(A) \subset H \to H$ abgeschlossen und injektiv, dann sind äquivalent:
 \begin{enumerate}[a)]
 \item $\Ran(A)$ ist abgeschlossen
+\item $A^{-1}: \Ran A \to H$ ist beschränkt.
 \end{enumerate}
 \end{lem}
+\begin{proof}
+\begin{seg}[(a) $\implies$ (b)] 
+$A^{-1}: \Ran A \to H$ ist abgeschlssen und $\Ran A$ ist vollständig, also ist $A^{-1}$ beschränkt. (Graphensatz)
+\end{seg}
+\begin{seg}[(b) $\implies$ (a)]
+Seo $(A\phi_n)$ eine Folge in $\Ran(A)$ mit $A\phi_n \to \psi$. Dann ist $\phi_n = A^{-1}(A\phi_n)$ eine CF. Also existiert $\phi = \lim_{n\to \infty} \phi_n$. Da $A$ abgeschlossen folgt $\phi \in D(A)$ und $A\phi =  \phi$. Also $\psi \in \Ran(A)$ und somit $\overline{\Ran(A)}=\Ran(A)$.
+\end{seg}
+\end{proof}
+\begin{st}
+Sei $A$ symmetrisch. Dann gilt 
+\begin{enumerate}[a)]
+\item Für alle $\mu, \lambda\in \R$ und $\phi \in D(A)$ gilt
+\[
+\| (A-\lambda-i \mu) \phi \|^2 = \| (A-\lambda) \phi\|^2 + \mu^2 \| \phi\|^2
+\]
+\item Falls $\Ran(z_+-A)=H$ für ein $z_+ \in \C_+$ wobei
+\[
+\C_+ = \{z\in \C | \, \Im z > 0 \},
+\]
+dann gilt $\C_+\subset \rho(A)$. Entsprechend, falls $\Ran(z_- -A) =H$ für ein $z_- \in \C_-$, dann gilt $\C_-\subset \rho(A)$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+Siehe Satz 2.3 aus ddem Vorlesungsskript
+\end{proof}
+\begin{st}
+Sei $A: D(A)\subset H \to H$ symmetrisch. Dann sind äquivalent:
+\begin{enumerate}[a)]
+\item $A=A^*$
+\item $\sigma(A)\subset \R$
+\item es gibt ein $z_+\in \C_+$ und $z_-\in \C_-$ mit $\Ran(z_\pm-A)$
+\item $A$ ist abgeschlossen und $\ker(z_\pm- A^*) =\{0\}$ für ein $z_\pm\in \C_\pm$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+Siehe Satz 2.4 aus dem Vorlesungsskript.
+\end{proof}
+\begin{kor}
+Ist $A\subset A^*$ und es gibt ein $\lambda \in \R$ mit $\lambda \in\rho(A)$. Dann ist $A=A^*$.
+\end{kor}
+\begin{st}[Satz von Kato-Rellich]
+Sei $A=A^*$, $B\subset B^*$ und $D(B) \supset D(A)$. Seien $a,b\in \R$ mit $a<1$ und
+\[
+\|B\phi\| \le a \| A\phi\| + b \| \phi \|
+\]
+für alle $\phi \in D(A)$, so ist
+\[
+A+B: D(A) \subset H  \to H
+\]
+selbstadjungiert.
+\end{st}
+\begin{proof}
+Siege Theorem 2.6 aus dem Vorlesungsskript.
+\end{proof}
+
+\begin{ex*}
+\begin{enumerate}[1)]
+\item Ist $A=A^*$ und $B=B^*\in \mathcal L(H)$, dann ist $A+B$ selbstadjungiert (Wähle $b=\| B\|$, $a=0$)
+\item $A=-\Delta$ mit $D(A) = H^2(\R^3)$, $H=L^2(\R^3)$, und $(B\phi)(x) -\frac{1}{|x|}$. Dann ist $A+B$ sekbstadjungiert auf $H^2(\R^3)$. (Bew. später)
+\end{enumerate}
+\end{ex*}
+
+
+
+
+
+
+
 \setcounter{thm}{13}
 \begin{st}
 Sei $A\subset A^*$. Dann sind äquivalent:
