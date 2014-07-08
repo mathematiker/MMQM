@@ -1938,6 +1938,174 @@ Ist $\rho \in L^1(\R^3)$ sphärisch symmetrisch, d.h. $\rho$ hängt nur von $|x|
 \end{proof}
 
 
+\chapter{Direkte Summen und Tensorprodukte}
+%\setcounter{thm}[2]
+\begin{st}\label{8.3}
+Sind $H_1$, $H_2$ seperable Hilberträume dann existiert ein seperabler Hilbertraum $H_1\otimes H_2$ und eine bilineare Abbildung
+\begin{align*}
+\pi: H_1 \times H_2 &\to H_1 \otimes H_2\\
+(\phi, \psi) &\mapsto \phi \otimes \psi:= \pi(\phi, \psi) 
+\end{align*}
+mit
+\begin{enumerate}[(i)]
+\item $\< \phi \otimes \psi\>, \alpha \otimes \beta\> = \< \phi, \alpha \> \< \psi, \beta \>$
+\item Sind $(e_i)_{i\in I}$, $(f_k)_{k\in J}$ ONB von $H_1$ und $H_2$, dann ist $\{(\phi_i \otimes f_k) | i\in I, k\in J\}$ eine ONB von $H_1 \otimes H_2$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+\fixme... $H_1 \otimes H_2 = l^2(I\times J)$ und $\pi(\phi, \psi)=(\< e_i, \phi \> \cdot \< f_k, \psi\>)_{i\in I, k\in J}$.
+\begin{seg}[Eindeutigkeit]
+Sei $H$ ein seperabler Hilbertraum und $\pi:H_1 \times H_2 \to H$ binlinear mit (i), (ii). Wir definieren eine lineare Abbildung $L: H_1 \otimes H_2 \to H$ durch $
+L(e_i \otimes f_k) := \psi(e_i, f_k)
+$
+und lineare Erweiterung
+\[
+L\big (\sum c_{ik} (e_i \otimes f_k)\big) := \sum c_{jk} \pi(e_i, f_k).
+\]
+Dann ist $L$ dicht definiert und isometrisch nach (i), hat also eine eindeutige Fortsetzung zu einer Isometrie auf $H_1 \otimes H_2$. Da $(\pi(e_i, f_k))$ nach Annahme (ii) eine ONB von $H$ ist, ist $L$ surjektiv, also ein Isomorphismus. 
+\end{seg}
+\end{proof}
+
+\begin{kor}\label{8.4}
+\item $L^2(\R^n)\otimes L^2(\R^m)$ ist isomorph zu $L^2(\R^n \times R^m)$. Vermöge $\phi \otimes \psi \mapsto \phi(x) \psi(y)$.
+\item Sei $(M, \mu)$ ein Maßraum und $H$ ein seperabler Hilbertraum. Dann ist $L^2(M) \otimes H$ isomorph zu $L^2(M, H)$. Vermöge der Abbildung $f\otimes \phi \mapsto f(x) \phi$. 
+\end{kor}
+\begin{proof}
+\begin{enumerate}[a)]
+\item
+\item Sei $\pi: L^2(M) \times H \to L^2(M, H)$ definiert durch $\pi(f,\phi)= f(x) \phi$. Dann ist $\pi$ linear und erfüllt (i) von Satz \ref{8.3}
+\begin{align*}
+\< \pi(f, \phi), \pi(g, \psi)\> &= \int \dx[\mu] \< f(x) \phi, g(x) \psi\>_H\\
+&= \int \dx[\mu] \overline{f(x)} g(x) \< \phi, \psi\>_H = \< f,g\>_{L^2} \< \phi, \psi \>_H. 
+\end{align*}
+Wir zeigen noch, dass endliche Linearkombinationen von Vektoren der Form $\pi(f, \phi)$ dicht sind in $L^2(M,H)$, dann folgt (ii) von Satz \ref{5.3}. Sei $\psi \in L^2(M,H)$ und sei $(\phi_n)$ eine ONB von $H$. Sei 
+\[
+\psi_N(x) = \sum_{k=1}^N \phi_k \< \phi_k, \psi(x)\>_H
+\]
+d.h. 
+\[
+\psi_N= \sum_{k=1}^N \pi(f_k, \phi_k)
+\]
+mit $f_k(x) = \< \phi_n, \psi(x)\>$ messbar. Es gilt dann
+\begin{align*}
+\< \psi, \psi_N\> &= \int \< \psi(x), \psi_N(x)\> \dx[\mu] = \sum_{k=0}^N \int \sum_{k=1}^N \< \psi(x), \phi_k \> \< \phi_k, \psi(x)\>\\
+&=\int \sum_{k=1}^N |\< \phi_k, \psi(x)\>|^2 \dx[\mu]
+\end{align*}
+Mit dem Satz von majorisierter Konvergenz folgt
+\[
+\< \psi, \psi_N\> \to \int \sum_{k=1}^\infty |\< \phi_k, \psi(x)\>|^2 \dx[\mu] = \int \| \psi(x)\|^2 \dx[\mu] = \| \psi\|^2.
+\]
+für $n\to \infty$. Außerdem gilt $\< \psi, \psi_N\> = \< \psi_N, \psi_N\>$. Es folgt
+\begin{align*}
+\| \psi- \psi_N\|&= \|\psi\|^2 + \| \psi_N\|^2 - \| \psi, \psi_N\> - \< \psi_N, \psi\> \\
+&= \|\psi \|^2 - \< \psi, \psi_N\> \to 0 
+\end{align*}
+für $N\to \infty$.
+\end{enumerate}
+\end{proof}
+\begin{nt*}
+Die Konstruktion der Tensorprodukts des Satzes \ref{5.3} lässt sich auf $n\ge 2$ Faktoren verallgemeinern. ist $(\phi_k^{(i)})_{k\ge 0}$ eine ONB von $H_i$, dann ist $(\phi^{(1)}_{k_1} \otimes \phi_{k_2}^{(2)} \otimes \cdots \phi_{k_n}^{(3)})$ eine ONB von $H_1 \otimes H_2 \otimes \cdots \otimes H_n$.
+\end{nt*}
+\begin{df}
+Sind $D_i \subset H_i$, $i=1, ..., n$ lineare Teiilräume, dann ist $D_1 \otimes D_2 \otimes \cdots \otimes D_n$ die Menge der endlichen Linearkombinationen von Vektoren $\phi \otimes \cdots \otimes \phi_n$ mit $\phi_i \in D_i$. (abgeschlossenes Tensorprodukt).
+\end{df}
+\section{Tensorprodukte von Operatoren}
+Seien $A: D(A)\subset H_1\to H_1$ und $B: D(B) \subset H_2 \to H_2$ dicht definiert. Wir definieren $A\otimes B$ auf $D(A) \otimes D(B)$ durch
+\[
+(A\otimes B) (\phi \otimes \psi) = A\phi \otimes B\psi
+\]
+und \emph{lineare Erweiterung}.
+\begin{lem}
+$A\otimes B$ ist \emph{wohldefiniert} und wenn $A$ und $B$ abschließbar sind, dann auch $A\otimes B$ und $A\otimes 1 + 1 \otimes B$.
+\end{lem}
+\begin{proof}
+Damit $A\otimes B$ wohldefiniert ist muss $(A\otimes B) f$ unabhängig sein von der Darstellung von $f= \sum c_i (\phi_i \otimes \psi_i)$ (siehe Reed \& Simon). Ist $g\in D(A^*)\otimes D(B^*)$. Dann gilt für alle $f\in D(A) \otimes D(B)$. Es gilt
+\[
+\< A\otimes B f, g\> = \< f, (A^* \otimes B^*)g\>
+\]
+(Übung: Schreibe $f$ und $g$ als Darstellung in Linearfaktoren und nutze die Eigenschaften des Tensorprodukts\fixme[?]). Da $A,B$ abschießbar sind, sind $D(A^*)$ und $D(B^*)$ dicht. Also ist $D(A^*) \otimes D(B^*)$ dicht in $H_1 \otimes H_2$. Also ist
+\[
+(A\otimes B)^* \supset A^* \otimes B^*
+\]  
+dicht definiert. Also ist $(A\otimes B)$ abschließbar. Ebenso sieht man, dass
+\[
+(A\otimes 1+ 1 \otimes B)^* \supset A^* \otimes 1 + 1 \otimes B^*.
+\]
+Was auf $D(A^*) \otimes D(B^*)$ gilt und somit dicht definiert ist. Also ist $A\otimes 1 + 1\otimes B$ abschließbar.
+\end{proof}
+
+Sind $A,B$ abschließbar auf $H_1$ bzw. $H_2$. Dann bezeichne $A\otimes B$ und $A+B = A\otimes 1 + 1 \otimes B$ in der Regel den \emph{Abschluss} der entsprechenden Operatoren die auf $D(A) \otimes D(B)$ definiert sind. 
+
+\begin{st}
+Ist $A\in \mathcal L(H_1)$ und $B\in \mathcal L(H_2)$, dann ist $A\otimes B\in \mathcal L (H_1 \otimes H_2)$ und 
+\[
+\|(A\otimes B) \| = \| A \| \cdot \| B\|.
+\]
+\end{st}
+\begin{proof}
+Seien $(\phi_k), (\psi_l)$ ONB's von $H_1$ bzw. $H_2$ und sei $\sum a_{kl} \phi_k \otimes \psi_l$ eine endliche Linearkombination. Dann gilt
+\begin{align*}
+\|(A\otimes 1) \sum c_{kl} \phi_k \otimes \psi_l\|^2 &= \|\sum c_{kl} (A\phi_k) \otimes \psi_l\|^2\\
+&= \sum_l \| ( \sum_k a_{kl} A \phi_k) \otimes \psi_l\|^2 \\
+&= \sum_l \| \sum_k c_{kl} A\phi_k\|^2 = \sum_l \| A(\sum c_k \phi_k)\|^2\\
+&\le \|A\|^2 \sum_l |c_{kl}|^2 =\|A\|^2 \| \sum c_{kl} \phi_k \otimes \psi_l\|^2.
+\end{align*}
+Also $\|(A\otimes 1)\|\le \|A\|$. Also $\overline{A\otimes 1}\in \mathcal L(H_1 \otimes H_2)$ mit $\|\overline{A\otimes 1}\|\le \|A\|$. Ebenso $\| \overline{(1+\otimes B)}\|\le \|B\|$.
+und es folgt
+\begin{align*}
+\| A\otimes B\| &= \|(A\otimes 1) (1\otimes B) \|\\
+&\le \|A\otimes 1 \| \|1\otimes B\| \le \|A\| \cdot \|B\|.
+\end{align*}
+Seien $\phi_1 \in H_1$ und $\phi_2 \in H_2$ normiert mit 
+\[
+\|A\phi_1 \| \ge (\|A\|-\eps)
+\]
+und 
+\[
+\|B\phi_2\| \ge \| B\| - \eps.
+\]
+Dann
+\begin{align*}
+\|(A\otimes B) (\phi_1 \otimes \phi_2) \| &= \| A \phi_1 \otimes B \phi_2\|\\
+&= \| A\phi_1\| \cdot \| B \phi_2\| \ge ( \| A \| - \eps) (\| B\| - \eps) = \| A \| \cdot \|B\| 
+\end{align*}
+\fixme
+\end{proof}
+
+\begin{st}
+Seien $A_k: D_k \subset H_k \to H_k$ w.s.a. für $k=1,...,n$. Dann $A_1 + A_2 + ... +A_n$ wesentlich selbstadjungiert  auf $D_1 \otimes D_2 \otimes ... \otimes D_n$ und
+\[
+\sigma(A_1+... + A_2) = \overline{\sigma(\overline{A_1}) + ... + \sigma(\overline{A_2})}
+\]
+\end{st}
+\begin{proof}
+Sei $A_k$ selbstadjungiert auf $D_k$ und sei $U_k(t)$ die von $A_k$ erzeugte s.s.u.G. (d.h. $U_k(t) = e^{iA_k t}$). Sei
+\[
+U(t) = U_1(t) \otimes U_2(t) .... \otimes U_n(t).
+\]
+Dann ist $U(t)$ eine s.s.u.G. die $D:= D_1 ßotimes ... \otimes D_n$ invariant lässt und für $\phi \in D$ gilt
+\[
+i \frac{d}{dt} U(t) \phi = AU(t) \phi.
+\]
+Also ist $A$ wesentlich selbstadjungiert und $\overline{A\upharpoonright D} = A$ ist der Erzeuger von $U$ (Satz von Nelson \ref{3.15}). Ist $A_k$ wesentlich selbstadjungiert auf $D_k$ dann gilt $A\supset \overline{A_1} + \overline{A_2} + ... + \overline{A_n}$ (Übung) und somit ist $A$ selbstadjungiert, denn $A\subset A^*$ und $\overline{A_1} +...+\overline{A_n}$ ist selbstadjungiert nach dem bereits gezeigten.
+\end{proof}
+
+\begin{ex*}
+Betrachte Wasserstoffatome
+\[
+A= -\Delta - \frac{2}{|x|}, \quad \sigma(A) = \{- \frac{1}{n^2} | n\in \N \} \cup [0, \infty)
+\]
+Dann ist nach obigem Satz
+\[
+\sigma(A\otimes 1 + 1 \otimes A) = \overline{\sigma(A) + \sigma(A)}
+\]
+was eine Überlagerung motiviert. \fixme[Abbildungen der Spektra]
+\end{ex*}
+
+
+
+
+
 
 
 
