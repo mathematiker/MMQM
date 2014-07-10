@@ -2073,7 +2073,7 @@ Dann
 \end{proof}
 
 \begin{st}
-Seien $A_k: D_k \subset H_k \to H_k$ w.s.a. für $k=1,...,n$. Dann $A_1 + A_2 + ... +A_n$ wesentlich selbstadjungiert  auf $D_1 \otimes D_2 \otimes ... \otimes D_n$ und
+Seien $A_k: D_k \subset H_k \to H_k$ w.s.a. für $k=1,...,n$. Dann ist $A_1 + A_2 + ... +A_n$ wesentlich selbstadjungiert  auf $D_1 \otimes D_2 \otimes ... \otimes D_n$ und
 \[
 \sigma(A_1+... + A_2) = \overline{\sigma(\overline{A_1}) + ... + \sigma(\overline{A_2})}
 \]
@@ -2083,11 +2083,55 @@ Sei $A_k$ selbstadjungiert auf $D_k$ und sei $U_k(t)$ die von $A_k$ erzeugte s.s
 \[
 U(t) = U_1(t) \otimes U_2(t) .... \otimes U_n(t).
 \]
-Dann ist $U(t)$ eine s.s.u.G. die $D:= D_1 ßotimes ... \otimes D_n$ invariant lässt und für $\phi \in D$ gilt
+Dann ist $U(t)$ eine s.s.u.G. die $D:= D_1 \otimes \cdots \otimes D_n$ invariant lässt und für $\phi \in D$ gilt
 \[
 i \frac{d}{dt} U(t) \phi = AU(t) \phi.
 \]
 Also ist $A$ wesentlich selbstadjungiert und $\overline{A\upharpoonright D} = A$ ist der Erzeuger von $U$ (Satz von Nelson \ref{3.15}). Ist $A_k$ wesentlich selbstadjungiert auf $D_k$ dann gilt $A\supset \overline{A_1} + \overline{A_2} + ... + \overline{A_n}$ (Übung) und somit ist $A$ selbstadjungiert, denn $A\subset A^*$ und $\overline{A_1} +...+\overline{A_n}$ ist selbstadjungiert nach dem bereits gezeigten.
+
+Es gilt $\sum_{k=1}^n \sigma(\overline{A_k})$.
+Sei $\lambda_k \in \sigma(\overline{A_k})$ und sei $(\phi_k^{(m)})_{m\ge 0}$ eine normierte Folge in $D(\overline{A_k})$ mit $\| (\overline{A_k} -\lambda_k) \phi_k^{(m)}\| \to 0$ für $m\to \infty$.
+
+Dann gilt \fixme
+\begin{align*}
+%\|(A- \sum \lambda_k)  \phi_1^{(m)} \otimes  \cdots \otimes \otimes \phi_n^{(m)}\| &\le \sum_{k=1}^n \| \phi_1^{(m)} \otims \cdots \otimes (A_k-\lambda_k) \phi_k^{(m)} \phi_k^{(m)} \otimes \cdots \phi_n^{(m)}\|\\
+&= \sum_{k=1}^n \| (A_k - \lambda_k) \phi^{(m)}_k \| \to 0
+\end{align*}
+für $m\to \infty$. Also ist $\lambda = \sum \lambda_k \in \sigma(A)$. Da $\sigma(A)$ abgeschlossen, dann folgt
+\[
+\overline{\sum \sigma (\overline{A_k})} \subset \sigma(A).
+\] 
+\begin{seg}[Umkehrung für $n=2$]
+Wir zeigen, dass aus $z\not\in \sigma(\overline{A_1}) + \sigma(\overline{A_2}) \implies z\not\in \sigma(A_1 + A_2)$. Sei $A= \overline{A_1}$ und $B= \overline{A_2}$. Sei $z\not\in \overline{\sigma(A) + \sigma(B)}$. Dann gilt
+\[
+\delta := \inf_{\lambda\in \sigma(A), \mu \in \sigma(B)} |\lambda + \mu -z|>0.
+\]
+Mit Hilfe des Funktionalkalküls finden wir Folgen $(A_n), (B_n)$ von beschränkten selbsadjungierten Operatoren mit $\lim_{n\to \infty} A_n \phi = A \phi$, $\lim_{n\to \infty} B_n \phi = B\phi$ für $\phi \in D(A)$ bzw. $\phi \in D(B)$, wobei
+\[
+A_n = \sum_{i=1}^n \lambda_i P_i, \quad \lambda \in \sigma(A)
+\]
+und
+\[
+\sum P_i = \Id, P_i^* = P_i = P_i^2.
+\]
+sowie
+\[
+B_n = \sum \mu_k Q_k, \mu_k \in \sigma(B), \sum Q_k =1, Q_k^* = Q_k = Q_k^2
+\]
+für alle $\phi \in D(A) \otimes D(B)$ gilt also
+\begin{align*}
+\| (A \otimes 1 + 1 \otimes B - z) \phi \|^2 &= \lim_{n\to \infty} \| (A_n \otimes 1 + 1 \otimes B_n -z) \phi\|^2 \\
+&= \lim_{n} \| \sum_{i,k} (\lambda_i + \mu_k -z)  P_i \otimes Q_k \phi \|^2 \quad (\sum_{i,k} P_i \otimes Q_k =1)\\
+&= \lim_{n} \sum_{i,k}^n ( \| (\lambda_i+ \mu_k -z) (P_i \otimes Q_k) \phi\|^2)\\
+&= \lim_{n} \sum_{i,k}^n ( \|(\lambda_i + \mu_k-z) P_i \otimes Q_k \phi\|^2)\\
+&\ge \delta^2 \lim_{n} \sum_{i,k}^n \|P_i \otimes Q_k \phi \|^2 = \delta^2 \lim_{n} \| \sum_{i,k}^n P_i \otimes Q_k \phi \|^2 = \delta^2 \|\phi \|^2.
+\end{align*}
+Diese Ungleichungen für $\phi \in D(A) \otimes D(B)$ überträgt sich (durch ein Approximationargument) auf alle $\phi \in D(A+B)$. D.h. für alle $\phi \in D(A+B)$ gilt
+\[
+\|(A+B-z) \phi \| \ge \delta \| \phi \|
+\]
+und somit $z\not\in \sigma(A+B)$.
+\end{seg} \fixme
 \end{proof}
 
 \begin{ex*}
@@ -2101,6 +2145,96 @@ Dann ist nach obigem Satz
 \]
 was eine Überlagerung motiviert. \fixme[Abbildungen der Spektra]
 \end{ex*}
+
+\begin{kor}
+Sind $A_1, ..., A_n$ selbstadjungiert in $H_1, ..., H_n$ und ist $A= A_1 + ... + A_n$, dann gilt
+\[
+e^{-iAt} = e^{-iA_1t} \otimes e^{-iA_2 t} \otimes \cdots \otimes e^{-iA_nt}
+\]
+\end{kor}
+
+\chapter{Fockraum und zweite Quantisierung}
+Sei $h$ ein serperabler Hilbertraum. Der Fockraum $\mathcal F(H)$ über $h$ ist der Hilbertraum:
+\[
+F(h) := \bigotimes_{n\ge 0} ( \otimes^n h)
+\]
+wobei $\otimes^0 h:= \C$, $\otimes^1 h = h, \otimes^2 h = h \otimes h= \h \otimes h$ etc.
+
+Das ist der Raum der Folgen $\psi=(\psi^{(n)})$ mit $\psi^{(n)} \in \otimes^n h$ und 
+\[
+\sum \| \psi^{(n)} \|^2 < \infty.
+\]
+Das Skalarprodukt in $\mathcal F(h)$ ist gegeben durch
+\[
+\< \psi, \phi \> = \sum_{n\ge 0} \< \psi^{(n)}, \phi^{(n)}\>
+\]
+Der Vektor $\Omega :=(1,0,0,...)$ heißt \emph{Vakuumvektor}. Oft wird $\otimes^n h$ mit den entsprechenden Unterräumen von $\mathcal F(h)$ identifiziert. Sei $U\in \mathcal L(h)$ mit $\| U \| \le 1$. Dann ist ein beschränkter Operator $\Gamma(U)$ in $\mathcal F(h)$ definiert durch
+\begin{align*}
+\Gamma(U) \Omega &= \Omega\\
+\Gamma(U) \upharpoonright \otimes^n h &= U \otimes U \otimes U \otimes \cdots \otimes U.
+\end{align*}
+Dann gilt $\| \Gamma(U)\| \le 1$. Ist $U$ unitär, dann ist auch $\Gamma(U)$ unitär, ist $U(t)$ eine s.s.u.G. so gilt das auch für $\Gamma(U(t))$. Sei $A: D(A) \subset h \to h$ selbstadjungiert. Und sei $A^{(n)}$ im $\otimes^n h$ definiert durch $A^{0} = 0, A^{(1)}=A, A^{(2)} = A \otimes 1 + 1 \otimes A$ und
+\[
+A^{(n)} = (A \otimes 1 \otimes \cdots \otimes 1) + (1 \otimes A \otimes 1 \otimes \cdots \otimes 1) + ... + (1 \otimes \cdots \otimes 1\otimes A).
+\]
+Dann ist
+\[
+d \Gamma(A) := \bigotimes_{n\ge 0} A^{(n)}
+\]
+selbstadjungiert mit Definitionsbereich
+\[
+D(d\Gamma(A)) = \{ (\psi^{(n)})| \psi^{(n)} \in D(A^{(n)} \text{ und } \sum \|A^{(n)} \psi^{(n)} \|^2 < \infty \}
+\]
+(siehe Satz 1). Es gilt
+\[
+e^{-i d\Gamma(A)t}= \Gamma(e^{-iAt}).
+\]
+\begin{proof}
+In $\otimes^n h$ gilt nach Korollar \ref{8.7}
+\[
+e^{-id\Gamma(A)t} \stack{\text{def}}= e^{-iAt} \otimes e^{-iAt} \otimes\cdots \otimes e^{-iAt} =\Gamma(e^{-iAt}).
+\]
+\end{proof}
+\begin{ex*}
+Der Operator $N= d\Gamma(1)$ in $\mathcal F(h)$ heißt Anzahloperator denn $N \upharpoonright \otimes^n h = n$. $N$ ist selbstadjungiert mit Definitionsbereich
+\[
+D(N) = \{ ( \psi_n) \in \mathcal F(h) | \sum n^2 \|\psi^{(n)}\|^2 <\infty\}
+\]
+\end{ex*}
+\section{Erzeugungs- und Vernichtungsoperatoren}
+Sei $f\in h$. Wir definieren $b(f)$ und $b^*(f)$ in $\mathcal F(h)$ durch
+\[
+b^*(f) \psi^{(n)} = f \otimes \psi^{(n)}\in \otimes^{n+1} h.
+\]
+Es gilt offensichtlich $\| b^*(f)\| = \| f\|$. Man definiert $b(f) = (b^*(f))^* \in \mathcal L(\mathcal F(h))$. Es folgt (Übung)
+\begin{align*}
+b(f) \Omega &=0\\
+b(f) (\phi_1 \otimes \cdots \otimes \phi_n) &= \< f, \phi_1 \> \phi_2 ßotimes \cdots \otimes \phi_n\in \otimes^{n+1} h.
+\end{align*}
+Ausserdem
+\begin{align*}
+b^*(f) N &= (N-1) b^*(f)\\
+b(f) N = (N+1) b(f).
+\end{align*}
+Analoge Gleichungen gelten für jede Funktion von $N$. Insbesondere lassen $b(f)$ und $b^*(f)$ den Raum $D(N^{1/2})$ invariant.
+\section{Antisymmetrischer Fockraum und CAR}
+Sei $(\phi_n)$ eine ONB von $h$. Zu jeder Permutation $\sigma= \{1,..., n\}$ definieren wir einen linearen Operator $\sigma\in\mathcal L(\otimes^n h)$ durch
+\[
+\sigma(\phi_{k_1} \otimes \cdots \otimes \phi_{k_n} )= \phi_{k_{\sigma(1)}} \otimes \cdots \otimes \phi_{k_{\sigma(n)}}
+\]
+
+$\sigma$ ist unitär und
+\[
+P_- := \frac{1}{n!} \sum_{\sigma} \sgn(\sigma) \sigma
+\]
+ist ein Orthogonalprojektor in $\otimes^n h$. Das Bild $\wedge^n = P_- \otimes^n h$ heißt antisymmetrisches $n$-faches Tensorprodukt von $h$ und 
+\[
+\mathcal F_a(h) := \bigotimes_{n\ge 0} ( \wedge^n h)
+\]
+heißt antisymmetrischer (oder Fermionischer) Fockraum.
+
+
+
 
 
 
