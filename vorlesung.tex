@@ -22,6 +22,7 @@
 \newcommand{\Ran}{\operatorname{Ran}}
 \newcommand{\h}{\hslash}
 \newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\slim}{\operatorname{s-lim}}
 %\renewcommand{\eqref}[1]{\hyperref[#1]{(#1)}}
 
 \title{Mathematische Methoden der Quantenmechanik}
@@ -634,13 +635,81 @@ Siege Theorem 2.6 aus dem Vorlesungsskript.
 \end{enumerate}
 \end{ex*}
 
-
+Sei $A:D(A) \subset H \to H$ dicht definiert und $u\in D(A)$. Eine \emph{lokale Lösung} des AWP
+\begin{equation}\label{eq:3.1}
+i \dot \phi = A\phi, \phi\big |_{t=0} = u
+\end{equation}
+ist eine differenzierbare $\phi: I \to H$ auf einem nichttrivialen \emph{Intervall} $I \subset \R$ mit $0\in I$, so dass
+\begin{enumerate}[1)]
+\item $\phi(t) \in D(A)$ für alle $t\in I$
+\item Für alle $t\in I$ gilt
+\[
+i \lim_{h\to 0} \frac{\phi(t+h)-\phi(t)}{h}
+\]
+\item $\phi(t=0)=U$.
+\end{enumerate}
+\begin{lem}
+Sei $A$ dicht definiert. Falls \eqref{eq:3.1} für jedes $u\in D(A)$ eine lokale Lösung hat deren Norm konstant ist, dann ist $A\subset A^*$, wenn $A\subset A^*$, dann ist die Norm jeder Lösung $\phi_t$ von \eqref{eq:3.1} konstant
+\end{lem} und die Lösung ist (lokal) eindeutig.
+\begin{proof}
+Sei $u\in D(A)$ und $\phi:I \to H$ die zugehörige Lösung \eqref{eq:3.1}. Dann
+\begin{align*}
+0&= \frac{d}{dt}\| \phi(t)\|^2 \big|_{t=0}= \frac{d}{dt} \< \phi(t), \phi(t) \> \big|_{t=0}= \< \dot \phi, \phi \> + \< \phi, \dot \phi \> \big|_{t=0} \\
+&= \< -i Au, u\> + \< u, -iAu\>= i ( \< Au, u\> - \< u, Au\>).
+\end{align*}
+Mit Hilfe der Polarisationsformel folgt
+\[
+\<Au, v\> = \< u, Av\>
+\]
+für alle $u,v\in D(A)$. D.h. $A\subset A^*$. Die Umkehrung beweist man analog.
+\end{proof}
 \begin{st}
-Sei $A : D(A) \subset H \to H$ symmetrisch und abgeschlossen. Falls für jedes $u\in D(A)$ eine globale 
+Sei $A : D(A) \subset H \to H$ symmetrisch und abgeschlossen. Falls für jedes $u\in D(A)$ eine globale  Lösung $\phi: \R \to H$ besitzt, dann ist $A=A^*$.
 \end{st}
+\begin{proof}
+vgl. Satz 2.8 aus dem Vorlesungsskript.
+\end{proof}
 
-
-
+\section{Einparametrige unitäre Gruppen}
+Sei $(A_n)$ eine Folge in $\mathcal L(H_1, H_2)$ und sei $A\in \mathcal L(H_1, H_2)$. Dann konvergiert $A_n$ stark gegen $A$, in Zeichen
+\[
+A= \slim_{n\to \infty} A_n
+\]
+falls $A_n \phi \to A\phi$ konvergiert für alle $\phi \in H_1$. nach dem Satz über gleichmäßige Beschränktheit folgt aus $A=\slim A_n$, dass $\sup_n \|A_n\| < \infty$.
+\begin{st}\label{3.7}
+\begin{enumerate}[a)]
+\item Falls $A= \slim A_n$ und $B=\slim B_n$ in $\mathcal L(H_1, H_2)$ bzw $\mathcal L (H_2, H_3)$ dann
+\[
+BA=\slim_{n\to \infty} B_n A_n.
+\]
+\item Falls $(A_n)$ eine Folge in $\mathcal L(H_1, H_2)$ ist mit $\sup_{n\ge 0}\|A_n\|$ und so, dass $(A_n x)_{n\ge 0}$ konvergent ist für alle $x\in D$, mit $\overline D = H$. Dann existiert ein $A\in \mathcal L(H_1, H_2)$ mit $A= \slim A_n$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+vgl. Satz 4.1 aus dem Vorlesungsskript.
+\end{proof}
+Eine (einparametrige) \emph{stark stetige unitäre Grupppe} (s.s.u.G) ist eine Abbildung $U: \R \to \mathcal L(H)$ mit
+\begin{enumerate}[a)]
+\item $U(t)$ ist unitär und $U(t+s) = U(t) U(s)$ für alle $t,s\in \R$,
+\item $U(t) \phi \to \phi$ für $t\to 0$ für alle $\phi \in H$ (d.h. $\slim U(t)=\Id$).
+\end{enumerate}
+\begin{nt*}
+$U(0)=\Id$ und $t\mapsto U(t) \phi$ ist stetig auf ganz $\R$.
+\end{nt*}
+\begin{ex*}
+Sei $H=L^2(\R)$. Dann wird durch $(U(t) \phi)(x) = \phi(x-t)$, $\phi \in H$, eine s.s.u.G. $U$ definiert. $U$ ist nicht normstetig!
+\end{ex*}
+\begin{proof}
+Unitarität und $U(t+s) =U(t) U(s)$ folgen leicht aus der Definition. Sei 
+\[
+\phi \in C_0(\R) = \{\phi \in C(\R) | \supp \phi \text{ kompakt} \}.
+\] 
+Dann gilt
+\[
+\| U(t) \phi - \phi \|^2 = \int |\phi(x-t) - \phi(x)|^2 \, \dx \to 0
+\]
+mit majorisierter Konvergenz. Da $\overline{C_0(\R)}=H$ und $\| U(t) \| =1$, folgt dass $\slim U(t) =\Id$ aus Satz \ref{3.7}b)
+\end{proof}
 
 
 
@@ -1160,7 +1229,7 @@ mit $\tilde \phi = \phi(t) = \phi(\tau s)$ und erhalten die Modifikation
 i \frac{d}{ds} \tilde \phi = \tau \dot \phi (\tau s) = \tau H(s)  \phi(\tau s) = \tau H(s) \tilde \phi(s)
 \]
 
-\begin{seg}[Annahm]
+\begin{seg}[Annahme]
 für alle $\phi \in D$ ist $H(s) \phi$ stetig differenzierbar in S, dann gibt es ein $U(t_1, t_2)$.
 Und ein großes \fixme[fig2].
 \end{seg}
