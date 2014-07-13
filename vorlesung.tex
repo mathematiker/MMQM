@@ -1726,6 +1726,26 @@ und es folgt $\lambda= \frac{\hslash^2}{2me^2}$.
 
 \chapter{Funktionalkalkül und Spektralsatz}
 
+\section{Messbarer Funktionalkalkül}
+Bezeichne $B$ die Borelmessbaren Teilmenge von $\R$. und $\mathcal B(\R)$ die Familie der beschränkten Borelmessbaren Funktionen $f: \R \to \C$. Definiere dazu
+\[
+\| f\|_\infty = \sup_{x\in \R} |f(x)|
+\]
+Ist $(f_n)$ eine Folge in $\mathcal B(\R)$ mit $\sup_{n} |f_n(x)| < \infty$ und $f_n(x) \to f(x)$ für $n\to \infty$. Dann schreiben wir $f_n \stack{\text{p}}\to f$.
+\begin{st}
+Sei $A:D(A) \subset H \to H$ selbstadjungiert. Dann gibt es eine eindeutig beschränkte Abbildung $\Phi: \mathcal B(\R) \to \mathcal L(H)$ mit
+\begin{enumerate}[(1)]
+\item Ist $z\in \C\setminus\R$ und $f_z(x) = (z-x)^{-1}$ dann
+\[
+\Phi(f_z) =(z-A)^{-1}
+\]
+\item Für alle $f,g \in \mathcal B(\R)$, $\alpha, \beta\in \C$ gilt:
+\begin{align*}
+\Phi(\alpha f + \beta g)&= \alpha \Phi(f)\\
+&=
+\end{align*}
+\end{enumerate}
+\end{st}
 \begin{st}
 Sei $A^*=A$ und $\sigma \subset \sigma(A)$, kompakt mit $\dist(\sigma, \sigma(A)\setminus \sigma)>0$. Sei $\gamma$ eine $C^1$-Kurve welche $\sigma$ ein Mal umläuft und $\sigma(A)$ nicht schneidet. Dann gilt
 \[
