@@ -708,8 +708,93 @@ Dann gilt
 \[
 \| U(t) \phi - \phi \|^2 = \int |\phi(x-t) - \phi(x)|^2 \, \dx \to 0
 \]
-mit majorisierter Konvergenz. Da $\overline{C_0(\R)}=H$ und $\| U(t) \| =1$, folgt dass $\slim U(t) =\Id$ aus Satz \ref{3.7}b)
+mit majorisierter Konvergenz. Da $\overline{C_0(\R)}=H$ und $\| U(t) \| =1$, folgt dass $\slim U(t) =\Id$ aus Satz \ref{3.7}b).
+
+Sei $\eps >0$ und $\phi\in C_0(\R)$ mit $\| \phi \|=1$ und $\supp(\phi) \subset (-\frac{\eps}{2}, \frac{\eps}{2})$. Dann gilt $U(\eps) \perp \phi$ und somit
+\[
+\|U(\eps) \phi - \phi\|^2 \stack{\text{Pyth.}}= \| U_\eps \phi \|^2 + \| \phi \|^2 = 2.
+\]
+Also $U(\eps) \not\to U(0)$ in der Operatornorm.
 \end{proof}
+
+
+Der \emph{Erzeuger} einer s.s.u.G. $U$ ist der lineare Operator $A: D(A) \subset H \to H$ definiert durch
+\begin{align*}
+D(A)&:=\{\phi \in H| \, \lim_{t\to 0} \frac{U(t)\phi-\phi}{t} \text{ existiert}\},\\
+A\phi&:= i \lim_{t\to 0} \frac{U(t) \phi - \phi}{t} = i \frac{d}{dt} U(t) \phi \big|_{t=0}
+\end{align*}
+
+\begin{st}[Stone 1932]
+Sei $A$ der Erzeuger einer s.s.u.G. $U$. Dann gilt
+\begin{enumerate}[a)]
+\item $U(t)D(A) \subset D(A)$ und für alle $\phi \in D(A)$ gilt
+\[
+i \frac{d}{dt} U(t) \phi = A U(t) \phi = U(t) A \phi, t\in \R
+\]
+\item $A^*=A$
+\item $U(t)$ ist durch $A$ eindeutig bestimmt
+\item Für $z\in \C_\pm$ und $\phi \in U$ gilt
+\[
+(z-A)^{-1} \phi = -i \int_0^{\pm \infty} e^{izt} U(t) \phi \, \dx[t]
+\]
+\end{enumerate}
+\end{st}
+\begin{proof}
+vgl. Theorem 4.2 aus dem Vorlesungsskript.
+\end{proof}
+
+\begin{st}
+Jeser selbstadjungierte Operator $A$ ist Erzeuger einer (eindeutig bestimmten) s.s.u.G.. Sie wird mit $U(t)=e^{-iAt}$ bezeichnet.
+\end{st}
+\begin{proof}
+vgl. Theorem 4.4 aus dem Vorlesungsskript.
+\end{proof}
+
+\begin{st}\label{3.11}
+Sei $A^*=A$ und $L\in \mathcal L(H)$. Dann sind äquivalent:
+\begin{enumerate}[a)]
+\item $Le^{-iAt} = e^{-iAt} L$ für alle $t\in \R$,
+\item $LA \subset AL$,
+\item $LR(z) = R(z) L$ für alle $z\in \C\setminus \R$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+vgl. Satz 4.5 aus dem Vorlesungskript.
+\end{proof}
+\begin{seg}[Anwendungen]
+Symmetrien entsprechen Erhaltungsgrößen in der Quantemechanik. Sei $H=H^*$ der \emph{Hamiltononoperator} eines quantenmechanischen Systems und sei $A^*=A$ eine Observable(Impuls, Drehimpuls, etc.). Dann sind äquivalent:
+\begin{enumerate}
+\item $e^{iHt}A\subset A e^{-iHt}$ für alle $t\in \R$. ($A$ ist \emph{Erhaltungsgröße})
+\item $e^{-iAs} H \subset H e^{-iAs}$ für alle $s\in \R$. ($A$ ist \emph{Erzeuger einer Symmetriegruppe})
+\end{enumerate}
+\begin{proof}
+Nach Satz \ref{3.10}  ist (a) äquivalent zu 
+\[
+e^{-iHt} e^{-iAs} = e^{-iAs} e^{-iHt}
+\]
+für alle $s\in \R$ was äquivalent ist zu (b) nach Satz \ref{3.10}.
+\end{proof}
+\end{seg}
+
+\section{Abschließbarkeit und wesentliche Selbstadjungiertheit}
+
+Ein linearer Operator $A:D\subset H\to H$ heißt \emph{abschließbar} falls eine abgeschlossene Erweiterung $B\supset A$ existiert.
+
+\begin{st}\label{3.11}
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[a)]
+\item $A$ ist abschließbar,
+\item $\overline{\Gamma(A)}$ ist der Graph eines linearen Operators,
+\item Aus $\phi_n\in D(A), \phi_n \to 0$ und $A\phi_n \to \phi$ folgt $\psi=0$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+vgl. Satz 1.5 aus dem Vorlesungskript.
+\end{proof}
+
+Ist $A$ abschließbar, dann können wir eine linearen Operator $\overline{A}$ definieren durch $\Gamma_{\overline{A}} = \overline{\Gamma(A)}$ (vgl. Satz \ref{3.11}). Dann gilt $A\subset \overline{A}$ ist abgeschlossen, und für jede abgeschlossene Erweiterung $B$ von $A$ gilt: $\overline{A} \subset B$ (denn $\overline{A}\subset B$ genau dann wenn $\Gamma_{\overline{A}} \subset \Gamma_B$). Salso ist $\overline{A}$ die kleinste abgeschloßene Erweiterung  von $A$ (jede andere abgeschloßene Erweiterung hat größeren Definitionsbereich). Wir bezeichnen den Abschluss von $A$ mit $\overline{A}$. Nach Definition ist $\phi \in D(\overline{A})$ genau dann wenn eine Folge $(\phi_n)$ in $D(A)$ existiert mit $\phi_n \to \phi$ und $\psi:= \lim A\phi_n$ existiert. Dann ist $\psi= \overline A\phi$.
+
+
 
 
 
