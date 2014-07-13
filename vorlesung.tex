@@ -792,11 +792,62 @@ Folgende Aussagen sind äquivalent:
 vgl. Satz 1.5 aus dem Vorlesungskript.
 \end{proof}
 
-Ist $A$ abschließbar, dann können wir eine linearen Operator $\overline{A}$ definieren durch $\Gamma_{\overline{A}} = \overline{\Gamma(A)}$ (vgl. Satz \ref{3.11}). Dann gilt $A\subset \overline{A}$ ist abgeschlossen, und für jede abgeschlossene Erweiterung $B$ von $A$ gilt: $\overline{A} \subset B$ (denn $\overline{A}\subset B$ genau dann wenn $\Gamma_{\overline{A}} \subset \Gamma_B$). Salso ist $\overline{A}$ die kleinste abgeschloßene Erweiterung  von $A$ (jede andere abgeschloßene Erweiterung hat größeren Definitionsbereich). Wir bezeichnen den Abschluss von $A$ mit $\overline{A}$. Nach Definition ist $\phi \in D(\overline{A})$ genau dann wenn eine Folge $(\phi_n)$ in $D(A)$ existiert mit $\phi_n \to \phi$ und $\psi:= \lim A\phi_n$ existiert. Dann ist $\psi= \overline A\phi$.
+Ist $A$ abschließbar, dann können wir eine linearen Operator $\overline{A}$ definieren durch $\Gamma_{\overline{A}} = \overline{\Gamma(A)}$ (vgl. Satz \ref{3.11}). Dann gilt $A\subset \overline{A}$ ist abgeschlossen, und für jede abgeschlossene Erweiterung $B$ von $A$ gilt: $\overline{A} \subset B$ (denn $\overline{A}\subset B$ genau dann wenn $\Gamma_{\overline{A}} \subset \Gamma_B$). Salso ist $\overline{A}$ die kleinste abgeschloßene Erweiterung  von $A$ (jede andere abgeschloßene Erweiterung hat größeren Definitionsbereich). Wir bezeichnen den Abschluss von $A$ mit $\overline{A}$. 
 
+Nach Definition ist $\phi \in D(\overline{A})$ genau dann wenn eine Folge $(\phi_n)$ in $D(A)$ existiert mit $\phi_n \to \phi$ und $\psi:= \lim A\phi_n$ existiert. Dann ist $\psi= \overline A\phi$.
 
+\begin{lem}\label{3.12}
+Sei $A$ dicht definiert und abschließbar. Dann gilt $\overline{A}^*=A^*$.
+\end{lem}
+\begin{proof}
+Sei $A\subset \overline{A}$ dann folgt $A^* \supset (\overline{A})^*$ nach einer Übungsaufgabe (\fixme: welche?). Es bleibt noch zu zeigen, dass $A^*\subset(\overline{A})^*$. Sei $\phi \in D(A^*)$, so gilt
+\[
+\< \phi, A \eta\> =\<A^* \phi, \eta\>
+\]
+Für alle $\eta \in D(A)$. Ist $\eta \in D(\overline A)$, dann gibt es eine Folge $(\eta_n)$ in $D(A)$ mit $\eta_n \to \eta$ und $A\eta_n \to \overline{A}\eta$ nach obiger Bemerkung. Und somit mit Stetigkeit des Skalarprodukts
+\[
+\< \phi, \overline{A}\eta\> = \< A^* \phi, \eta\>
+\]
+für alle $\eta \in D(\overline{A})$und $(\overline{A})^*\phi = A^*\phi$. Und damit $A^*\subset (\overline{A})^*$
+\end{proof}
 
+\begin{st}
+Sei $A$ dicht definiert. Dann ist $A$ abschließbar genau dann wenn $A^*$ dicht definiert ist und $\overline{A}=(A^*)^*$.
+\end{st}
+\begin{proof}
+\begin{seg}[$\implies$]
+Sei $A$ abschließbar. Dann ist $(\overline{A})^*$ dicht definiert und $((\overline{A})^*)^*=\overline{A}$ nach Satz \ref{1.9}. Also folgt $(A^*)^*=((\overline{A})^*)^*=\overline{A}$ nach Lemma \ref{3.12}.
+\end{seg}
+\begin{seg}[$\Longleftarrow$]
+Ist $A^*$ dicht definiert, dann ist $(A^*)^*$ eine abgeschlossene Erweiterung von $A$. Abgeschlossenheit folgt direkt aus Satz \ref{1.8} und da
+\[
+\< A^* \phi, \eta\> = \< \phi, A\eta\>
+\]
+für alle $\phi\in D(A^*)$ und $\eta\in D(A)$ folgt $\eta \in D((A^*)^*)$ und $(A^*)^*\eta = A\eta$. 
+\end{seg}
+\end{proof}
+\begin{ex*}
+Sei $H= L^2(\R)$, $\eta\in H$, $\| \eta \|=1$. Dann ist
+\[
+A: C_0(\R) \subset H \to H,\quad A\phi = \phi(0)\eta
+\]
+ist nicht abschließbar und $D(A^*)=\{\phi \in H|\phi \perp \eta\}$.
+\end{ex*}
+\begin{proof}
+Es gilt
+\[
+[\eta]^\perp = (\Ran(A))^\perp= \ker A^* \subset D(A^*)
+\]
+und $\eta\not\in D(A^*)$, denn
+\[
+\phi \mapsto \< \eta, A\phi\> = \phi(0) \neq \< \eta^*, \eta\>.
+\]
+Also $D(A^*)=[\eta]^\perp$ und $A^*=0$ auf $D(A^*)$.
+\end{proof}
+Ist $A$ symmetrisch, d.h. $A\subset A^*$, denn ist $A$ abschließbar, da $A^*$ abgeschlossen ist.
 
+Falls $\overline{A}$ selbstadjungiert ist, dann heißt $A$ \emph{wesentlich selbstadjungiert}. Dann ist
+$A^*=\overline{A}^*=\overline{A}$ und $\overline{A}$ ist daher die einzige selbstadjungierte Erweiterung von $A$ (vgl. Übung \fixme[welche?]).
 
 \setcounter{thm}{13}
 \begin{st}
