@@ -1732,7 +1732,7 @@ Bezeichne $B$ die Borelmessbaren Teilmenge von $\R$. und $\mathcal B(\R)$ die Fa
 \| f\|_\infty = \sup_{x\in \R} |f(x)|
 \]
 Ist $(f_n)$ eine Folge in $\mathcal B(\R)$ mit $\sup_{n} |f_n(x)| < \infty$ und $f_n(x) \to f(x)$ für $n\to \infty$. Dann schreiben wir $f_n \stack{\text{p}}\to f$.
-\begin{st}
+\begin{st}\label{6.1}
 Sei $A:D(A) \subset H \to H$ selbstadjungiert. Dann gibt es eine eindeutig beschränkte Abbildung $\Phi: \mathcal B(\R) \to \mathcal L(H)$ mit
 \begin{enumerate}[(1)]
 \item Ist $z\in \C\setminus\R$ und $f_z(x) = (z-x)^{-1}$ dann
@@ -1742,10 +1742,68 @@ Sei $A:D(A) \subset H \to H$ selbstadjungiert. Dann gibt es eine eindeutig besch
 \item Für alle $f,g \in \mathcal B(\R)$, $\alpha, \beta\in \C$ gilt:
 \begin{align*}
 \Phi(\alpha f + \beta g)&= \alpha \Phi(f)\\
-&=
+\Phi(fg) &= \Phi(f) \Phi(g)\\
+\Phi(f)^* &= \Phi(\bar f)
 \end{align*}
+\item Falls $f_n \stack{\text{p}}\to f$, dann gilt $\Phi(f_n) \phi \to \Phi(f) \phi$ für alle $\phi \in H$.
+\end{enumerate}
+Weiterhin gilt für alle $f\in \mathcal B(R)$:
+\begin{enumerate}[(4)]
+\item $\| \Phi(f)\| \le \|f\|_\infty$
+\item Aus $f\ge 0$ folgt $\Phi(f) \ge 0$. 
 \end{enumerate}
 \end{st}
+\begin{proof}
+vgl. Theorem 7.2 aus dem Vorlesungsskript.
+\end{proof}
+
+\begin{ex*}
+Sei $A: D(A) \subset L^2(\R)\to L^2(\R)$ definiert durch
+\[
+D(A) = \{\phi \in L^2|\, \int |x\phi(x)|^2 \, \dx <\infty\}, \quad (A\phi) (x) = x \phi(x).
+\]
+Dann ist $\Phi(f)=M_f$ der Multiplikationsoperator.
+\end{ex*}
+\begin{proof}
+Es genügt zu zeigen, dass $f\mapsto M_f$ die Eigenschaften (1)-(3) aus Satz \ref{6.1} hat.
+\end{proof}
+
+Die Abbildung $P: B \to \mathcal L(H)$ mit
+\[
+P_\Omega= \Phi(\chi_\Omega), \quad \Omega \in B
+\]
+heißt \emph{Spektralmaß} von $A$. Das Spektralmaß ist ein projektionswertiges Maß.
+
+\section{Projektionswertige Maße}
+Ein projektionswertiges Maß (p.w.M.) ist eine Abbildung $P: B \to \mathcal L(H)$ mit
+\begin{enumerate}[(1)]
+\item $P_\Omega$ ist Orthogonalprojektor, d.h. $P_\Omega^2 = P_\Omega$ und $P_\Omega^* = P_\Omega$
+\item $P_\emptyset=0$ und $P_\Omega =1$
+\item Falls $\Omega = \bigcup_{k=1}^\infty \Omega$ und $\Omega_i \cap \Omega_k=\emptyset$ für $i\neq k$, dann ist
+\[
+P_\Omega \phi = \lim_{N\to \infty} \sum_{k=1}^N P_{\Omega_k} \phi.
+\] 
+
+\end{enumerate} 
+$\mu_\phi(\Omega)=\< \phi, P_\Omega \phi \>$ ist ein Borelmaß auf $\R$. (wenn $\|\phi \|=1$, dann sogar ein Wahrscheinlichkeits-Maß) und aus (1)-(3) folgt $P_\Omega P_{\Omega'}= P_{\Omega \cap \Omega'}$ (Übung).
+
+Ausserdem ist jedes p.w.M. monoton und subadditiv, d.h.
+\begin{align*}
+\Omega_1 \subset \Omega_2 &\implies P_{\Omega_1} \subset P_{\Omega_2}\\
+\Omega= \bigcup_{k=1}^N \Omega_k &\implies P_\Omega \subset \sum_{k=1}^N P_{\Omega_k}.
+\end{align*}
+ist $s= \sum_{k=1}^N \alpha_k \chi_{E_k}$ eine messbare Elementarfunktion in Standarddarstellung (d.h. $E_k = \rho^{-1}(\{\alpha_k\})$, dann
+
+
+
+
+
+
+
+
+
+
+
 \begin{st}
 Sei $A^*=A$ und $\sigma \subset \sigma(A)$, kompakt mit $\dist(\sigma, \sigma(A)\setminus \sigma)>0$. Sei $\gamma$ eine $C^1$-Kurve welche $\sigma$ ein Mal umläuft und $\sigma(A)$ nicht schneidet. Dann gilt
 \[
