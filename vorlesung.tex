@@ -1754,7 +1754,7 @@ Weiterhin gilt für alle $f\in \mathcal B(R)$:
 \end{enumerate}
 \end{st}
 \begin{proof}
-vgl. Theorem 7.2 aus dem Vorlesungsskript.
+vgl. Vorlesung Spektraltheorie. (\fixme[bessere Quelle?])
 \end{proof}
 
 \begin{ex*}
@@ -1792,9 +1792,89 @@ Ausserdem ist jedes p.w.M. monoton und subadditiv, d.h.
 \Omega_1 \subset \Omega_2 &\implies P_{\Omega_1} \subset P_{\Omega_2}\\
 \Omega= \bigcup_{k=1}^N \Omega_k &\implies P_\Omega \subset \sum_{k=1}^N P_{\Omega_k}.
 \end{align*}
-ist $s= \sum_{k=1}^N \alpha_k \chi_{E_k}$ eine messbare Elementarfunktion in Standarddarstellung (d.h. $E_k = \rho^{-1}(\{\alpha_k\})$, dann
+ist $s= \sum_{k=1}^N \alpha_k \chi_{E_k}$ eine messbare Elementarfunktion in Standarddarstellung (d.h. $E_k = s^{-1}(\{\alpha_k\})$, dann bezeichne
+\[
+\int s dP:= \sum_{k=1}^N \alpha_k P_{E_k}.
+\]
 
+Die Abbildung $s\mapsto \int s dP$ ist linear und es gilt $\| \int s dP \| \le \| s\|_\infty$. (Beweis s. z.B. Werner Funktionalanalysis)
 
+Da messbare Elementarfunktionen dicht sind in $B(\R)$ bezüglich $\| \cdot \|_\infty$ lässt sich die Integration bezüglich $P$ ausdehen auf alle Funktionen $f\in \mathcal B(\R)$. D.h.
+\[
+\int f \, \dx[P] = \lim_{n\to \infty} \int s_n \, \dx[P]
+\]
+wobei $(s_n)$ eine beliebige Folge messbarer Elementarfunktionen ist mit $\| s_n-f\|_\infty\to 0$ für $n\to \infty$. Man schreibt auch $\in f(\lambda) \, \dx[P]$ für $\int f \,\dx[P]$ und
+\[
+\int_\Omega f \, \dx[P] := \int f \chi_\Omega \, \dx[P].
+\]
+Man zeigt nun leicht, dass
+\begin{enumerate}[a)]
+\item $\int f \chi_\Omega \, \dx[P] = (\int f \, \dx[P]) P_\Omega = P_\Omega ( \int f \, \dx[P])$,
+\item $\int fg \, \dx[P]= (\int f \, \dx[P]) (\int g \, \dx[P])$, 
+\item $(\int f \, \dx[P])^*= \int \overline{f} \, \dx[P]$.
+\end{enumerate}
+(Beweis sieh z.B. Werner Funktionalanalysis)
+
+Der \emph{Träger} $\supp(P)$ eines p.w.M. ist definiert durch $\lambda \in \supp(P)$ genau dann wenn
+$P_U\neq 0$ für jede Umgebung $U\ni \lambda$.
+\begin{st}
+Sei $P$ ein p.w.M. Dann gilt:
+\begin{enumerate}
+\item $S:= \supp(P)$ ist abgeschlossen
+\item $P_S= \1$ und  $P_{\R \setminus S} =0$.
+\item Für jede Funktion Funktion $f\in \mathcal B(\R) \cap C(\R)$ gilt
+\[
+\| \int f\, \dx[P]\| = \sup_{x\in \R} |f(x)|
+\]
+\end{enumerate}
+\end{st}
+\begin{proof}
+siehe Lemma 7.5 aus dem Vorlesungsskript.
+\end{proof}
+\begin{st}
+Sei $A=A^*$ mit Spektralmaß $P$, d.h. $P_\Omega= \Phi(\chi_\Omega)$, wobei $\Phi $ der Funktionalkalkül von $A$ ist. Dann gilt
+\begin{enumerate}[a)]
+\item $P$ ist ein p.w.M.,
+\item $\supp(P) = \sigma(A)$,
+\item $\| (z-A)^{-1} \| = \dist(z, \sigma(A))^{-1}$ für alle $z\in D(A)$,
+\item für alle $f\in \mathcal B(\R)$ gilt
+\[
+\Phi(f) = \int f \, \dx[P].
+\]
+
+\end{enumerate}
+\end{st}
+\begin{proof}
+siehe Satz 7.6 aus dem Vorlesungsskript.
+\end{proof}
+
+\section{Spektralsatz}
+Für beliebige messbare $f: \R \to \C$ definieren wir einen (unbeschränkten) Operator $\Phi(f)$ durch
+\begin{equation}\label{6.1}
+D(\Phi(f))= \Phi(\frac{1}{1+|f|}) H, \quad \Phi(f) \phi = \Phi(\frac{f}{1+|f|}) \gamma
+\end{equation}
+falls $\phi = \Phi(\frac{1}{1+|f|}) \gamma$.
+
+\begin{st}
+Sei $A^*=A$ mit Funktionalkalkül $\Phi$. Sei $\Phi$ für beliebige messbaren $f: \R \to \C$ definiert durch \ref{6.1}. Dann gilt
+\begin{enumerate}[a)]
+\item $\Phi(f)$ ist wohl- und dicht definiert.
+\item Falls $f_k \in \mathcal B(\R)$, $|f_k|\le |f|$ und $f_k(x) \to f(x)$ für alle $x\in \R$. Dann gilt
+\[
+\Phi(f) \phi = \lim_{n\to \infty} \Phi(f_k) \phi
+\]
+für alle $\phi \in D(\Phi(f))$.
+\item $D(\phi(f))=\{\phi \in H| \int |f|^2 \, \dx[\mu_\phi] < \infty\}$ und für $\phi, \psi \in D(\Phi(f))$ gilt
+\[
+\| \Phi(f) \phi\|^2 = \int |f|^2 \, \dx[\mu_\phi].
+\]
+und die Polarisationsidentität
+\begin{align*}
+\< \phi, \Phi(f) \psi\> &= \int f(\lambda) \, \dx[\mu_{\phi, \psi}] \\
+&=
+\end{align*}
+\end{enumerate}
+\end{st}
 
 
 
