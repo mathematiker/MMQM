@@ -2306,7 +2306,106 @@ Ist $\rho \in L^1(\R^3)$ sphärisch symmetrisch, d.h. $\rho$ hängt nur von $|x|
 
 
 \chapter{Direkte Summen und Tensorprodukte}
-%\setcounter{thm}[2]
+\section{Direkte Summen}
+Sei $(H_n)_{n\in I}$ eine abzählbare Familie von Hilberträumen über $\C$. Wir definieren einen Vektorraum $H= \bigoplus_{n\in I} H_n$ durch
+\[
+ \bigoplus_{n\in I} H_n = \{(\phi_n)_{n\in I} | \, \phi_n \in H_n, \sum_{n\in I} \| \phi_n\|^2 < \infty\}
+\]
+versehen mit skalarer Multiplikation und Addition
+\begin{align*}
+\lambda (\phi_n) &:= (\lambda \phi_n), \quad \lambda \in \C\\
+(\phi_n) + (\psi_n) &:= (\phi_n + \psi_n).
+\end{align*}
+Versehen mit dem Skalarpodukt
+\[
+\< \phi, \psi\> = \sum_{n\in I} \< \phi_n, \psi_n\>_{H_n}
+\]
+ist $\bigoplus_{n\in I} H_n$ ein Hilbertraum (Übung).
+
+\begin{st}
+Sei $H=\oplus_n H_n$ und sei $A_n: D(A_n) \subset H_n \to H_n$ selbstadjungiert in $H_n$. Dann ist der Operator
+\[
+A= \bigoplus_{n\in I} A_n: D(A) \subset H \to H
+\]
+mit
+\[
+D(A)= \{(\phi_n)|\, \phi_n \in D(A_n), \sum\|A_n \phi_n\|^2 <\infty\}, \quad A(\phi_n):= (A_n \phi_n).
+\]
+selbstadjungiert.
+\end{st}
+\begin{proof}
+$D(A)$ ist dicht und $A$ ist symmetrisch, denn für $\phi, \psi \in D(A)$ gilt
+\[
+\< \phi, A\psi\> = \sum \< \phi_n, A\psi_n\> = \sum \< A_n \phi_n, \psi_n\> = \< A\phi, \psi\>.
+\]
+z.z. $D(A^*) \subset D(A)$. Sei $\phi \in D(A^*)$ und $\phi^*=A^*\phi$. Dann gilt für alle $\eta\in D(A)$
+\[
+\< \phi, A\eta\> = \< \phi^*, \eta\>.
+\]
+Also gilt für alle $\eta_n\in D(A_n)$:
+\[
+\< \phi_n, A_n \eta_n\> = \< \phi_n^*, \eta_n\>.
+\]
+Somit ist $\phi_n \in D(A_n^*) = D(A_n)$ und $A_n \phi_n = \phi_n^*$. Also
+\[
+\sum \| A_n \phi_n\|^2 = \sum \| \phi_n^* \|^2 = \| \phi^*\|^2 < \infty.
+\]
+Also ist $\phi \in D(A)$.
+\end{proof}
+
+Sei $H$ ein seperabler Hilbertraum und $(M, \mu)$ ein Maßraum. Eine Funktion $f: M \to H$ heißt messbar falls $x\mapsto \< \phi, f(x)\>$ messbar ist für alle $\phi \in H$. Sind $f,g: M \to H$ messbar, dann auch $f+g, \alpha f$ mit $\alpha \in \C$ und 
+\[
+x\mapsto \< f(x), g(x) \>_H, \quad x \mapsto \| f(x)\|_H^2
+\]
+(Übung: Verwende Seperabilität).
+
+Man definiert $L^2(M, H)$ als den Vektorraum der messbaren Funktionen $f: M \to H$ mit 
+\[
+\int_M \| f(x)\|^2 \, \dx[\mu] <\infty.
+\]
+
+Mit dem Skalarprodukt
+\[
+\< f,g\> := \int \< f(x), g(x) \>_H \, \dx[\mu]
+\]
+wird $L^2(M,H)$ zu einem Hilbertraum nach Identifikation von Funktionen $f,g$ mit $f(x)=g(x)$ $\mu$-fast überall. Man schreibt auch manchmal $\int ^\oplus H \, \dx[\mu]$ statt $L^2(M, H)$ (Dixmier).
+
+\section{Tensorprodukte}
+\begin{st}
+Sind $H_1, H_2$ seperable Hilberträume über $\C$, dann existiert ein seperabler Hilbertraum $H_1 \otimes H_2$ und eine bilineare Abbildung 
+\[
+\pi: H_1 \times H_2 \to H_1 \otimes H_2, \quad (\phi, \psi) ßmapsto \phi_1 \otimes \phi_2 = \pi(\phi, \psi)
+\]
+mit
+\begin{enumerate}[(i)]
+\item $\<\phi \otimes \psi, \alpha \otimes \beta\> = \< \phi, \alpha\> \< \psi, \beta\> $,
+\item Sind $(e_i)$, $(f_k)$ ONBs von $H_1$ bzw. $H_2$. Dann ist $\{(e_i \otimes f_k) |\, (i,k) \in I\times J\}$ eine ONB von $H_1 \otimes H_2$. Durch (i), (ii) ist das Tensorprodukt $H_1 \otimes H_2$ bis auf Isomorphie eindeutig bestimmt.
+\end{enumerate}
+\end{st}
+\begin{proof}
+Wir definieren $H_1 \times H_2= l^2(I\times J)$ und 
+\[
+\pi(\phi, \psi) = (\<e_i, \phi \> \< \phi_k, \psi\> )_{(i,k)\in I \times J}
+\]
+wobei $(e_i)$, $(f_k)$ ONBs von $H_1, H_2$ sind.
+\[
+\| \pi(\phi, \psi) \|_{l^2} = \sum_{i,k} |\< e_i, \phi\> \< f_k, \psi\>|^2 = \|\phi\|^2 \cdot \| \psi\|^2 < \infty.
+\]
+D.h. $\pi(\phi,\psi)\in l^2$. $\pi$ ist bilinear und (i) folgt leicht aus der Parseval-Identität.
+
+$\{(e_i \otimes f_k) | \, i\in I, j\in J\}$ ist ONB von $H_1 \otimes H_2$. Sei $(\tilde e_i)$, $(\tilde f_k)$ eine ONB von $H_1$ bezüglich $H_2$. Nach (i) ist dann $(\tilde e_i \otimes \tilde f_k)$ ein ONS und für alle $\phi \in H_1, \phi \in H_2$ gilt
+\begin{align*}
+\| \phi \otimes \psi\|^2 &= \| \phi \|^2 \|\psi\|^2\\
+&= \sum_i |\<\tilde e_i, \phi\>|^2 \sum_k | \< \tilde f_k, \psi \>|^2\\
+&= \sum_{i,k} |\<\tilde e_i \otimes \tilde f_k, \phi \otimes \psi\>|^2.
+\end{align*}
+Also $\phi \otimes \psi \in \overline{\operatorname{span}}\{(\tilde e_i \otimes \tilde f_k)\}$. Insbesondere $e_n \otimes f_n \in \overline{\operatorname{span}}\{\tilde e_i \otimes \tilde f_n\}$. Es folgt
+\[
+H_1 \otimes H_2 = \overline{\operatorname{span}}\{\tilde e_i \otimes \tilde f_m\} \subset \overline{\operatorname{span}} \{\tilde e_i \otimes \tilde f_n\} \subset H_1 \otimes H_2.
+\]
+Also ist $(\tilde e_i \otimes \tilde f_k)$ eine ONB von $H_1 \otimes H_2$.
+\end{proof}
+
 \begin{st}\label{8.3}
 Sind $H_1$, $H_2$ seperable Hilberträume dann existiert ein seperabler Hilbertraum $H_1\otimes H_2$ und eine bilineare Abbildung
 \begin{align*}
