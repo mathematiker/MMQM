@@ -34,6 +34,58 @@
 \maketitle
 \tableofcontents
 
+\chapter*{Motivation und Inhaltsübersicht}
+Die Aufgaben der Quantenmechanik kann man einteilen in
+\begin{enumerate}[1)]
+\item Dynamiken von Systemen zu bestimmen, gegeben durch die Schrödingergleichung $i\dot \psi=H\psi$, wobei $H$ der Hamiltonoperator (formal symmetrischer Operator der durch physikalische Literatur gegeben ist).
+\item Wahrscheinlichkeit von Messergebnissen bestimmen. 
+\end{enumerate}
+Die Lösung der Schrödingergleichung ist gegeben durch
+\[
+\psi_t = e^{-i \tilde H t} \psi_0
+\]
+wobei $\tilde H$ eine selbstadjungierte Erweiterung von $H$ ist (vgl Satz \ref{3.9}) oder mit dem Funktionalkalkül (vgl. Kapitel \ref{6})
+\[
+e^{-i \tilde H t} = \Phi(e_t), e_t(\lambda) = e^{-i\lambda t}.
+\]
+$\tilde H=\overline{H}$ wenn $H$ wesentlich selbstadjungiert ist (vgl. Kapitel \ref{3}), dann ist $\tilde H = \overline H$ die einzige selbstadjungierte Erweiterung von $H$. Des brauchen wir Kriterien für Selbstadjungiertheit bzw. wesentlicher Selbstadjungiertheit (siehe Kapitel \ref{3} und Kapitel \ref{5}).
+
+\emph{Nichtautonome Schrödingergleichungen}
+\[
+i \dot \psi = H(t) \psi
+\] 
+beschreiben Systeme die von zeitabhängigen äusseren Feldern abhängen (typisch im Experiment!). Die Existenz der Zeitrevolution sichert uns der Satz von Kato \ref{4.4}. Der Satz von Phillips \ref{4.3} gibt uns eine Kontruktion mittels Propagator als Dysan-Reihe. (vgl. zeitabhängige Störungstheorie).
+
+Typischerweise ändert sich $H(t)$ sehr langsam im Vergleich zu quantenmechanischen Prozessen, was zum \emph{Adiabatische Theorem führt} (siehe Kapitel 4.2 oder Griffiths).
+
+Observablen (beobachtbare Größen) werden in der Quantenmechanik beschrieben durch selbstadjungierte Operatoren. Die Wahrscheinlichkeit, dass bei einer Messung von der Größe beschrieben durch $A=A^*$ im Zustand $\phi$ ein Wert in $\Omega \subset \R$ gemessen wird ist
+\[
+\mu_\phi(\Omega) = \< \phi, P_\Omega \phi \>,
+\]
+wobei $P_\Omega$ das Spektralmaß von $A$ ist. Die Formel für $P_\Omega$ ($\Omega$ isoliert) ist dabei gegeben durch
+\[
+P_\Omega = \frac{1}{2\pi i} \oint_\gamma (z-A)^{-1} \, \dx[z] 
+\]
+(vgl auch Formel von Stone).
+
+Ist $\lambda$ ein Eigenwert von $A$ mit $A\phi = \lambda \phi$, $\| \phi \|=1$, dann ist
+\[
+\mu_\phi(\{\lambda \}) = \< \phi, P_{\{\lambda\}} \phi \> = \< \phi, \phi \> =1.
+\]
+D.h. $\lambda$ wir mit Wahrscheinlichkeit $1$ gemessen. Also sind Eigenzustände, Zustände die man mit Sicherheit voraussagen kann.
+
+Die Eigenwerte von $A= H_0 + \kappa V$ kann man mit Störungstheorie approximieren (siehe Kapitel 2, zeitunabhängige Störungstheorie in der Quantenmechanik).
+
+Es gibt dabei einen Zusammenhang zwischen Dynamik und Spektrum, der sich durch
+\begin{align*}
+e^{-i Ht} \phi &= \int_{\sigma(H)} e^{-i\lambda t} \, \dx[P_\phi]\\
+(z-H)^{-1}&= -i \int_0^{\pm \infty} e^{izt} e^{-iHt} \, \dx[t]
+\end{align*}
+(vgl. Streutheorie s. Vorlesungsskript).
+
+
+Weiterführendes: (BCS-Theorie, wurde nicht behandelt).
+
 \chapter{Lineare Operatoren}
 \section{Spektrum linearer Operatoren}
 Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. $D=D(A)$ mit \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
@@ -1869,10 +1921,10 @@ für alle $\phi \in D(\Phi(f))$.
 \| \Phi(f) \phi\|^2 = \int |f|^2 \, \dx[\mu_\phi].
 \]
 und die Polarisationsidentität
-\begin{align*}
-\< \phi, \Phi(f) \psi\> &= \int f(\lambda) \, \dx[\mu_{\phi, \psi}] \\
-&=
-\end{align*}
+%\begin{align*}
+%\< \phi, \Phi(f) \psi\> &= \int f(\lambda) \, \dx[\mu_{\phi, \psi}] \\
+%&= \frac{1}{4} (\int f(\lambda) \, \dx[\mu_{\phi+\psi}] - \nt f \, \, \dx[\mu_{\phi-\psi}]) + \frac{1}{4i} (\int f \, \dx[\mu_{\phi+i\psi}] - \int f \, \dx[\mu_{\phi-i\psi}])
+%\end{align*}
 \end{enumerate}
 \end{st}
 
@@ -2843,8 +2895,112 @@ im Sinn von quadratischen Formen auf $F_0 \cap D(d\Gamma(A))$.
 &= \sum_{k,l} A_{kl} \< \phi, a_k^* a_l \psi \>.
 \end{align*}
 
+\fixme[Aukommentieren]
 
+Für $f,g \in h$ definieren wir einen Operator $| f \> \< g| \in \mathcal L(h)$ durch
+\[
+|f\> \< g| \phi := f\< g, \phi \>.
+\]
+Dann gilt in $\otimes^n h= h \otimes (\otimes^{n-1})=(h\otimes h) \otimes (\otimes^{n-2}h)$:
+\begin{equation}\label{9.1}
+\begin{aligned}
+  |f\> \<g| \otimes \Id &= b^*(f) b(g)\\
+  |f_1 \otimes f_2 \> \< g_1 \otimes g_2| \otimes \Id &= b^*(f_1) b^*(f_2) b(g_2) b(g_1).
+\end{aligned}
+\end{equation}
+\begin{proof}
+Es gilt
+\begin{align*}
+( |f_1 \otimes f_2\> \< g_1 \otimes g_2 | \otimes \Id) (\phi_1 \otimes \phi_2 \otimes \cdots \otimes \phi_n)&= (f_1 \otimes f_2) \< g_1 \otimes g_2, \phi_1 \otimes \phi_n\> \otimes(\phi_3 \otimes \cdots \otimes \phi_n)\\
+&= f_1 \otimes f_2 \< g_1, \phi_1\> \< g_2, \phi_2\> (\phi_3 \otimes \cdots \otimes \phi_n)\\
+&= b^*(f_1) b^*(f_2) b(g_2) b(g_1) (\phi_1 \otimes \cdots  \phi_n)
+\end{align*}
+\fixme mit \eqref{9.1} 
+Sei $A\in L(h), A^*=A$ und sei $(f_k)$ eine ONB von $h$ definieren wir $A_{kl} := \< f_k, A f_l\>$ und $a_k := a(f_k)$. Dann gilt
+\begin{align*}
+d\Gamma(A) &= \sum_{k,l} A_{kl} a_k^* a_l\\
+N &= \sum_k a_k^* a_k
+\end{align*}
+im folgenden Sinn.
+\end{proof}
+\begin{st}
+Für alle $\phi, \psi\in F_-(h) \cap F_0$ gilt
+\[
+\< \phi, d\Gamma(A) \psi \> = \sum_{n=0}^\infty \sum_{k,l} A_{kl} \< \phi^{(n)}, a_k^* a_l \psi^{(n)})
+\]
+\end{st}
+\begin{proof}
+Es gilt
+\[
+\< \phi, d\Gamma(A) \psi\> = \sum_{n\ge 0} \< \phi^{(n)}, d\Gamma(A) \psi\>.
+\]
 
+Und es folgt
+\begin{align*}
+\< \phi^{(n)}, d\Gamma(A) \psi^{(n)}\> &= \sum_{n\ge 0} \< \phi^{(n)}, d\Gamma(A) \psi^{(n)}.
+&= n \sum_{k,l} \< \phi^{(n)} , |f_k \> \< f_k | A|f_l\> \< f_1 | \otimes \Id) \psi^{(n)}\>\\
+&= n \sum_{k,l} A_{kl} \< \phi^{(k)}, ( |f_k \> \< f_l| \otimes \Id) \psi^{(n)}\> \\
+&= n \sum_{k,l} A_{kl} \<\phi^{(n)},b^*(f_k) b(f_l) \psi^{(n)}\> \\
+&= \sum_{k,l} A_{kl}\< \phi^{(n)}, \underbrace{\sqrt{N} P_- b^*(f_k)}_{a_k^*}  b(f_l) \sqrt{N} \psi^{(n)}\>.
+\end{align*}
+\end{proof}
+Sei $B\in \mathcal L(h\otimes h)$ mit $\tau B = B \tau$, wenn $\tau(\phi \otimes \psi) = \psi \otimes \phi$. Für $i<k$ mit $i,k\in \{1,...,n\}$. Sei
+\[
+B_{ik} := U_\sigma^*(B\otimes \Id) U_\sigma,
+\] 
+wobei $\sigma$ eine Permutation von $\{1,..., n\}$ ist mit $\sigma(1) =i$ und $\sigma(2)=k$.
+
+Für $\phi, \psi \in \wedge^n h$ gilt dann
+\begin{align*}
+\< \phi, B_{ik} \psi \> &= \< U_\sigma \phi, ( B \otimes \Id) U_\sigma \psi\>\\
+&= \< \phi, (B\otimes \Id) \psi\> \underbrace{| \sgn(\sigma)|^2}_{=1}\\
+&= \< \phi, P_-(B\otimes \Id) P_- \psi\>.
+\end{align*}
+Da $\frac{1}{2} \sum_{i\neq k} B_{ik} = \sum_{i<k} B_{ik}$ den Raum $\wedge^n h$ invariant lässt gilt in $\wedge^n h$
+\[
+\sum_{i<k} B_{ik} = \binom{n}{2}  P_-(B\otimes \Id) P_-.
+\]
+Sei $B_{klrs}:= \< f_k \otimes f_l, B(f_r \otimes f_s)\>$. Dann gilt
+\[
+ \bigoplus_{n\ge 2} ( \sum_{i<k} B_{ik} ) = \frac{1}{2} \sum_{k,l,r,s} B_{klrs} a_k^* a_l^* a_s a_r.
+\]
+(\emph{die zweite Quantisierung von $B$}) im folgenden Sinn.
+\begin{st}
+Für alle $\phi, \psi \in F_-\cap F_0$ gilt
+\[
+\< \phi, \bigotimes_{n\ge 2} (\sum_{i<k} B_{ik} ) \psi\> = \frac{1}{2} \sum_{n\ge 2} B_{klrs} \< \phi^{(n)}, a_k^* a_l^* a_s a_r \psi^{(n)}\>.
+\]
+\end{st}
+\begin{proof}
+Sei $\tilde B= \oplus_{n\ge 2} (\sum_{i<k} B_{ik})$. Dann gilt
+\[
+\< \phi, \tilde B\psi\> = \sum_{n\ge 2} \< \phi^{(n)}, (B \otimes \Id) \psi^{(n)} \> \binom{n}{2},
+\]
+wobei 
+\begin{align*}
+\binom{n}{2} \< \phi^{(n)} , (B\otimes \Id) \psi^{(n)}\> &= \binom{n}{2} \sum_{k,l,r,s} \< \phi^{(n)}, (|f_k \otimes f_l\> \< f_k \otimes f_l | B(f_r\otimes f_s)\> \< f_r \otimes f_s| \otimes \Id) \psi^{(n)}\>\\
+&= \binom{n}{2} \sum_{k,l,r,s} B_{klrs} B_{klrs} \< \phi^{(n)}, (\underbrace{| f_k \otimes f_l\> \< f_r \otimes f_s | \otimes \Id}_{b^*(f_k) b^*(f_l) b(f_s) b(f_r)} \psi^{(n)}\>\\
+&= \frac{n}{n-1}{2} \sum_{nlrs} B_{klrs} \< b(f_l) b(f_k) \phi^{(n)}, b(f_s) b(f_r) \psi^{(n)}\>\\
+&= \frac{1}{2} \sum_{klrs} B_{klrs} \< b(f_l) \sqrt{N} b(f_k) \sqrt{N} \phi^{(n)}, b(f_s) \sqrt{N} b(f_r) \sqrt{N} \psi^{(n)}\>\\
+&= \frac{1}{2} \sum_{klrs} B_{klrs} \< \phi^{(n)}, a_k^* a_l^* a_s a_r \psi^{(n)}\>.
+\end{align*}
+\end{proof} 
+
+\begin{ex*}
+Fermionen auf dem Gitter. Sei $h= l^2(\Z^d)$ und sei $T\in \mathcal L(h)$ gegeben durch
+\[
+(Tu) (u) = - \sum_{|k|=1} u(n+k)
+\]
+wobei $u\in l^2(\Z^d)$. Der Operator $T+2d$ ist das diskrete Analogen von $-\Delta$, denn
+\[
+(T+2d) u(n) = - \sum_{|k|} (u(n+k) -u(n)).
+\]
+Sei $(e_k)_{k\in \Z^d}$ die ONB von $l^2(\Z^d)$ gegeben durch $e_k(n) = \delta_{kn}$ und sei $a_k=a(e_k), a_k^*= a^*(e_k)$. Dann gilt mit der \emph{zweiten Quantisierung}
+\[
+d\Gamma(T)=- \sum_{|i-k|=1} a_i^* a_k
+\]
+($\to$ Hubhard-Modell).
+\end{ex*}
 
 
 
