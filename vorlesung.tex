@@ -2672,15 +2672,15 @@ Sei $f\in h$. Wir definieren $b(f)$ und $b^*(f)$ in $\mathcal F(h)$ durch
 \[
 b^*(f) \psi^{(n)} = f \otimes \psi^{(n)}\in \otimes^{n+1} h.
 \]
-Es gilt offensichtlich $\| b^*(f)\| = \| f\|$. Man definiert $b(f) = (b^*(f))^* \in \mathcal L(\mathcal F(h))$. Es folgt (Übung)
+Es gilt offensichtlich $\| b^*(f)\| = \| f\|$. Man definiert $b(f) = (b^*(f))^* \in \mathcal L(\mathcal F(h))$. Es folgt
 \begin{align*}
 b(f) \Omega &=0\\
-b(f) (\phi_1 \otimes \cdots \otimes \phi_n) &= \< f, \phi_1 \> \phi_2 ßotimes \cdots \otimes \phi_n\in \otimes^{n+1} h.
+b(f) (\phi_1 \otimes \cdots \otimes \phi_n) &= \< f, \phi_1 \> \phi_2 \otimes \cdots \otimes \phi_n\in \otimes^{n+1} h.
 \end{align*}
-Ausserdem
+(vgl. Übung). Ausserdem
 \begin{align*}
 b^*(f) N &= (N-1) b^*(f)\\
-b(f) N = (N+1) b(f).
+b(f) N &= (N+1) b(f).
 \end{align*}
 Analoge Gleichungen gelten für jede Funktion von $N$. Insbesondere lassen $b(f)$ und $b^*(f)$ den Raum $D(N^{1/2})$ invariant.
 \section{Antisymmetrischer Fockraum und CAR}
@@ -2691,14 +2691,157 @@ Sei $(\phi_n)$ eine ONB von $h$. Zu jeder Permutation $\sigma= \{1,..., n\}$ def
 
 $\sigma$ ist unitär und
 \[
-P_- := \frac{1}{n!} \sum_{\sigma} \sgn(\sigma) \sigma
+P_- := \frac{1}{n!} \sum_{\sigma} \sgn(\sigma) \sigma := \frac{1}{n!} \sum_{\sigma} \sgn(\sigma) U_\sigma,
 \]
+wobei $U_\sigma(\phi_1 \otimes \cdots \otimes \phi_n) =\phi_{\sigma(1)} \otimes \cdots \otimes \phi_{\sigma(n)}$,
 ist ein Orthogonalprojektor in $\otimes^n h$. Das Bild $\wedge^n = P_- \otimes^n h$ heißt antisymmetrisches $n$-faches Tensorprodukt von $h$ und 
 \[
 \mathcal F_a(h) := \bigotimes_{n\ge 0} ( \wedge^n h)
 \]
 heißt antisymmetrischer (oder Fermionischer) Fockraum.
 
+\begin{lem}
+Für $\phi_1, ..., \phi_n\in h$ gilt
+\[
+b(f) P_- (\phi_1 \otimes \cdots \otimes \phi_n) = \frac{1}{n} \<f, \phi_k\> P_- (\phi_1 \otimes \cdots \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \otimes \phi_k)
+\]
+und
+\[
+P_- b^*(f) P_- (\phi_1 \otimes \cdots \otimes \phi_n) = P_- (f\otimes \phi_1 \otimes \cdots \otimes \phi_n).
+\]
+\end{lem}
+\begin{proof}
+\begin{align*}
+b(f) P_-(\phi_1 \otimes \cdots \otimes \phi_n) &= b(f) \frac{1}{n!} \sum_\sigma \operatorname{sign}(\sigma) \phi_{\sigma(1)} \otimes \cdots \otimes \phi_{\sigma(n)} \\
+&= \frac{1}{n!} \sum_\sigma \operatorname{sign} (\sigma) \< f, \phi_{\sigma(1)} \> \phi_{\sigma(2)} \otimes \cdots \otimes \phi_{\sigma(n)}\\
+&= \frac{1}{n} \sum_{k=1}^n \< f, \phi_k \> \frac{1}{(n-1)!} \sum_{\sigma, \sigma(1)=k} \operatorname{sign}(\sigma) \phi_{\sigma(2)} \otimes \cdots \otimes \phi_{\sigma(n)}\\
+&= \frac{1}{n} \sum_{k=1}^n (-1)^{k-1} \< f, \phi_k\> \frac{1}{(n-1)!} \sum_{\mu \in S_{n-1}} \operatorname{sign} (\mu) \mu(\phi_1 \otimes \cdots \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \otimes \phi_n)
+\end{align*}
+Aus dieser Formel folgt insbesondere $b(f)=P_- b(f) P_-$ und somit
+\[
+P_- b^*(f) = P_- b^*(f) P_-.
+\]
+Also gilt
+\[
+P_- b^*(f) P_-(\phi_1 \otimes \cdots \otimes \phi_n) = P_- b^*(f) (\phi_1 \otimes \cdots \otimes \phi_n) = P_-(f\otimes \phi_1 \otimes \cdots \otimes \phi_n).
+\]
+\end{proof}
+
+Man definiert $a(f)$ und $a^*(f)$ auf $F_-(h) \cap D(N^{1}{2})$ durch 
+\begin{align*}
+ a(f) &:= b(f) \sqrt{N} \\
+ a^*(f)&:= \sqrt{N} P_- b^*(f).
+\end{align*}
+Offensichtlich gilt für $\phi, \psi \in F_-(h) \cap D(N^{1/2})$
+\[
+\< a(f) \phi, \psi\> = \< \phi,a^*(f) \psi\>
+\]
+und somit $a^*(f) \subset a(f)^*$. Aus dem obigen Lemma folgt:
+\begin{align*}
+a(f) P_-(\phi_1 \otimes \cdots \otimes \phi_n) &=\frac{1}{\sqrt{n}} \sum_{k=1}^n (-1)^{k-1} \< f, \phi_k\> P_-(\phi_1 \otimes \cdots \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \phi_n)\\
+a^*(f) P_-(\phi_1 \otimes\cdots \otimes \phi_n) &= \sqrt{n+1}\; P_-(f\otimes \phi_1 \otimes \cdots \otimes \phi_n).
+\end{align*}
+
+Bezeichne im Folgenden
+\[
+F_0 =\{(\psi^{(n)} \in F(h) | \, \psi^{(n)}=0 \text{ für alle } n \text{ bis auf endliche viele}\}
+\]
+\begin{st}
+Für $f,g\in h$ gilt auf $F_- \cap F_0$
+\begin{align*}
+\{a(f), a^*(f)\} &= \< f,g\> \Id\\
+\{a(f), a(g) \} &= 0 &= \{ a^*(f), a^*(g)\},
+\end{align*}
+wobei $\{A,B\}=AB+BA$ der Antikommutator ist.
+\end{st}
+\begin{proof}
+Es ist
+\begin{align*}
+a^*(f) a^*(g) P_-(\phi_1 \otimes \cdots \otimes \phi_n) &= a^*(f) P_-(g \otimes \phi_1 \otimes \cdots \otimes \phi_n) \, \sqrt{n+1}\\
+&= P_-(f \otimes g \otimes \phi_1 \otimes \cdots \otimes \phi_n) \sqrt{(n+1) (n+2)}\\
+&= - P_-(g\otimes f \otimes \phi_1 \otimes \cdots \otimes \phi_n).
+\end{align*}
+Es folgt $\{a^*(f) a^*(g)\}=0$ und betrachte nun
+\begin{align*}
+&a(f) a^*(g) P_-(\phi_1 \otimes \cdots \otimes \phi_n)\\
+&=a(f) \, \sqrt{n+1}\; P_- (g\otimes \phi_1 \otimes \cdots \otimes \phi_n)\\
+&= \frac{\sqrt{n+1}}{\sqrt{n}}  ( \< f,g\> P_-( \phi_n \otimes \cdots \otimes \phi_n) - \sum_{k=1}^n (-1)^{k-1} \< f,\phi_k\> P_- (g\otimes \phi_1 \otimes \cdots \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \otimes \phi_n))
+\end{align*}
+Und es folgt 
+\begin{align*}
+a^*(g) a(f) P_-(\phi_1 \otimes \cdots \otimes \phi_n) &= a^*(g) \frac{1}{\sqrt{n}} \sum_{k=1}^n (-1)^{k-1} \< f, \phi_k\> P_-(\phi_1 \otimes \cdots \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \phi_n)\\
+&= \sum_{k=1}^n (-1)^{k-1} \< f, \phi_k \> P_-(g \otimes \phi_1 \otimes \phi_{k-1} \otimes \phi_{k+1} \otimes \cdots \otimes \phi_{n}).
+\end{align*}
+Also 
+\[
+(a(f) a^*(g) + a^*(g) a(f)) P_-(\phi_1 \otimes \cdots \otimes \phi_n) = \< f,g \> P_-( \phi_1 \otimes \cdots \phi_n)
+\]
+und es folgt die Behauptung.
+\end{proof}
+\fixme
+\begin{st}
+Für die (fermiaischen) Erzeugungs- und Vernichtungsoperatoren $a(f), a^*(g)$ in $F_-(h)$ gilt:
+\begin{enumerate}[a)]
+\item $a(f) a(f)=0 = a^*(f) a^*(f)$
+\item $\| a(f) \|= \| f\| = \|a^*(f)\|$
+\item Ist $(f_k)$ eine ONB von $h$, dann ist
+\[
+a^*(f_{k_1}) a^*(f_{k_2}) ... a^*(f_{k_n}) \Omega, \quad k_1 < k_2 < ... <k_n, n\in \N
+\]
+eine ONB von $F_-(h)$.
+\end{enumerate}
+\end{st}
+\begin{proof}
+\begin{enumerate}[1)]
+\item $2a(f)a(f) =\{a(f), a(f)\} =0$ und analog für $a^*(f)$. \fixme[ausschreiben]
+\item Für alle $\phi \in F_- \cap F_0$ gilt
+\[
+\|a(f) \phi \|^2 + \| a^*(f) \phi \|^2 = \< \phi, (a^*(f) a(f) + a(f) a^*(f)) \phi\> = \|f\|^2 \|\phi\|^2.
+\]
+Also $\|a^*(f) \phi \| \le \| f\| \| \phi \|$ und $\| a(f) \phi \| \le \| f\| \cdot \| \phi \|$. Da $a^*(f) \Omega = f$. Es gilt
+\[
+\| a^*(f) \Omega\| = \| f\| = \| f \| \cdot \|\Omega\|.
+\]
+Und somit $\|a^*(f)\| = \|f\| = \| a(f)\|$.
+\item Sei $(f_k)$ eine ONB von $h$ und $\phi \in \wedge^n h$. Dann gilt nach Parseval
+\[
+\|\phi \|^2 = \sum_{k_1,...,k_n} | \< f_{k_1} \otimes \cdots \otimes f_{k_n} | \phi \>|^2
+\]
+denn $(f_{k_1} \otimes \cdots \otimes f_{k_n})$ ist ONB von $\otimes^n h$. Also 
+\begin{align*}
+\| \phi\|^2 &= \sum_{k_1,..., k_n} |\< P_-(f_{k_1} \otimes \cdots \otimes f_{k_n})| \phi\>|^2\\
+&= \sum_{k_1 < ... < k_n} |\< P_-(f_{k_1} \otimes \cdots \otimes f_{k_n}|\phi\> |^2 \\
+&= \sum_{k_1 < ... < k_n} |\< \sqrt{n!} P_-(f_{k_1} \otimes \cdots \otimes f_{kn} | \phi \> |^2,
+\end{align*}
+was c) beweist, denn (s. Blatt 11)
+\[
+	\sqrt{n!} P_-(f_{k_1} \otimes \cdots \otimes f_{k_n}) = a^*(f_{k_1}) a^*(f_{k_2}) ... a^*(f_{k_n}) \Omega
+\]
+ist eine ONS. Also ist die Behauptung bewiesen.
+\end{enumerate}
+\end{proof}
+
+
+\begin{nt*}
+$a(f), a^*(g)$ lassen sich nun fortsetzen zu beschränkten Operatoren auf $F_-(h)$. Diese erfüllen dann wieder die CAR
+\begin{align*}
+\{a(f), a^*(g) \} &= \< f,g\>\\
+\{a(f), a(g)&= 0 =\{a^*(f), a^*(g)\}.
+\end{align*}
+\end{nt*}
+
+\section{Zweite Quantisierung von ein- und zwei-Teilchen-Operatoren}
+Sei $A:D\subset h\to h$ dicht definiert und abschließbar. Dann können wir die zweite Quantisierung $d\Gamma(A)$ definiert wie im Fall $A^*=A$. Sei $(f_k)$ eine ONB von $h$ mit $f_k \in D$ und sei $A_{kl} = \< f_k, A f_l\>$ und $a_k = a(f_k)$, $a_k^* = a^*(f_k)$. Dann gilt
+\begin{align*}
+d\Gamma(A) &= \sum_{k,l} A_{kl} a^*_k a_l\\
+N&= \sum_l a_k^* a_k
+\end{align*}
+im Sinn von quadratischen Formen auf $F_0 \cap D(d\Gamma(A))$.
+\begin{align*}
+\< \phi, d\Gamma(A) \psi\> &= \sum_{n=0}^\infty \sum_{k,l} \< \phi, f_k\> \underbrace{\< \phi_k |A f_l\>}_{A_{kl}} \underbrace{\< f_l, \psi\>}_{a_l\psi}\\
+&= \sum_{kl} A_{kl} \< a_k \phi, a_l \psi\>\\
+&= \sum_{k,l} A_{kl} \< \phi, a_k^* a_l \psi \>.
+\end{align*}
 
 
 
