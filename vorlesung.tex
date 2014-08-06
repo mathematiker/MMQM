@@ -1921,14 +1921,50 @@ für alle $\phi \in D(\Phi(f))$.
 \| \Phi(f) \phi\|^2 = \int |f|^2 \, \dx[\mu_\phi].
 \]
 und die Polarisationsidentität
-%\begin{align*}
-%\< \phi, \Phi(f) \psi\> &= \int f(\lambda) \, \dx[\mu_{\phi, \psi}] \\
-%&= \frac{1}{4} (\int f(\lambda) \, \dx[\mu_{\phi+\psi}] - \nt f \, \, \dx[\mu_{\phi-\psi}]) + \frac{1}{4i} (\int f \, \dx[\mu_{\phi+i\psi}] - \int f \, \dx[\mu_{\phi-i\psi}])
-%\end{align*}
+\begin{align*}
+\< \phi, \Phi(f) \psi\> &= \int f(\lambda) \, \dx[\mu_{\phi, \psi}] \\
+&= \frac{1}{4} (\int f(\lambda) \, \dx[\mu_{\phi+\psi}] - \int f \, \, \dx[\mu_{\phi-\psi}]) + \frac{1}{4i} (\int f \, \dx[\mu_{\phi+i\psi}] - \int f \, \dx[\mu_{\phi-i\psi}]),
+\end{align*}
+wobei $\mu_\phi(\Omega):= \< \phi, P_\Omega \phi\>$. 
+\item Falls $g, fg \in B(\R)$, dann ist $\Phi(g) H \subset D(\phi(f))$ und
+\[
+\Phi(f) \Phi(g) = \Phi(fg).
+\]
+\item $\Phi(f)^*= \Phi(\overline f)$ und $\Phi(\Id) =A$ wenn $\Id(x) = x$
 \end{enumerate}
 \end{st}
+\begin{proof}
+Siehe Vorlesungsskript Satz 7.9.
+\end{proof}
 
-
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Der Spektralsatz $\Phi(\Id)=A$ (zusammen mit c), d.h. $\< \phi, A\psi\> = \int \lambda \, d\mu_{\phi, \psi}(\lambda)$ ist die Verallgemeinerung der Spektralzerlegung
+\[
+	A= \sum_{k=1}^m \lambda_k P_k
+\]
+eines selbstadjungierten Operatores $A\in \mathcal L(\C^n)$ mit Eigenwerten $\lambda_1,...,\lambda_m \in \R$ mit Eigenprojektoren $P_k$.
+\item $A$ ist genau dann beschränkt wenn $\sigma(A)$ beschränkt ist und $\| A \| = \sup_{\lambda \in \sigma(A)} | \lambda | = \sup_{\| \phi \| = 1} | \< \phi, A\phi\>|$.
+\item $P_\Omega A\subset A P_\Omega$, $A\upharpoonright H_\Omega := P_\Omega H$ ist selbstadjungiert mit Definitionsbereich $P_\Omega D(A)$ und wenn $\Omega \subset \R$ offen ist, dann ist 
+\[
+	\sigma(A) \cap \Omega \subset \sigma(A \upharpoonright H_\Omega) \subset \sigma(A) \cap \overline{\Omega}.
+\]
+\item $\lambda \in \R$ ist genau dann Eigenwert von $A$ wenn $P_{\{\lambda\}} \neq 0$. Dann ist $P_{\{\lambda\}}$ der Orthogonalprojektor auf den Eigenraum zu $\lambda$.
+\item Statt $\phi(f)$ schreibt man oft $f(A)$. Dalls $A\phi= \lambda \phi$ dann ist
+\[
+f(A) \phi = f(\lambda) \phi.
+\]
+\item In der Quantenmechanik wird jede beschränktbare Größe durch ein selbstadjungierten Operator $A$ in einem Hilbertraum $H$ beschrieben. Die normierten Vektoren $\phi \in H$ beschreiben (reine) Zustände des Systems. Ist $\Omega \subset \R$ eine Borelmenge, dann ist
+\[
+\mu_\phi(\Omega) = \< \phi, P_\Omega \phi \>.
+\]
+Die Wahrscheinlichkeit bei einer Messung der Observablen $A$ in einem Zustand $\phi''$ einen Wert in $\Omega$ zu finden. Wegen $\mu_\phi(\R\setminus \sigma(A))=0$ können nur Messwerte in $\sigma(A)$ gefunden werden. Der Erwartungswert
+\[
+\int \lambda \, \dx[\mu_\phi(\lambda)] = \< \phi, A\phi\>
+\]
+kann allerding einen beliebigen Wert zwischen $\inf\sigma(A)$ und $\sup \sigma(A)$ annehmen.
+\end{enumerate}
+\end{nt*}
 
 
 
@@ -2355,8 +2391,34 @@ Ist $\rho \in L^1(\R^3)$ sphärisch symmetrisch, d.h. $\rho$ hängt nur von $|x|
 \int_{|x|=r} \frac{d\sigma(x)}{|x-R|}\, \dx = \frac{4\pi r^2}{\max(\underbrace{|x|}_{=r}, |R|)}
 \]
 \end{proof}
-
-
+\begin{st}
+Falls $Z= \sum_{l=1}^M Z_l > N-1$, dann ist $E_N< E_{N-1}$. Insbesondere ist dann $E_N$ ein diskreter Eigenwert von $H_N$.
+\end{st}
+\begin{proof}
+vgl. Vorlesungsskript Theorem 10.11.
+\end{proof}
+Es folgt insbesondere aus dem Beweis:
+\begin{st}
+Falls $Z>N-1$ dann hat $H_N$ unendlich viele diskrete Eigenwerte unterhalb von $E_{N-1}= \inf \sigma_{\text{ess}} (H_N)$. Insbesondere ist $E_{N,Z} := \inf \sigma(H_{N,Z})$ ein diskreter Eigenwert (Existenz neutraler Atome).
+\end{st}
+\begin{nt*}
+\begin{enumerate}[1)]
+\item Ein System von $N$ identischen Fermionen (wie z.B. Elektronen) wird durch eine normierte Funktion $\psi \in L^2(\R^{3N})$ (genauer $L^2( \R^3 \times \{1,2\})^N$) beschrieben mit
+\begin{equation}\label{7.1}
+	\psi(x_{\sigma_1} ... x_{\sigma_n}) = \sgn (\sigma) \psi(x_1,...x_N)
+\end{equation}
+für jede Permutation $\sigma$ auf $\{1,..., N\}$. Der Hilbertraum ist also der Raum
+\[
+	H_{N,a} = \{ \psi \in L^2(\R^{3N})| \psi \text{ erfüllt } \eqref{7.1}\} 
+\]
+Ist $P$ der Orthogonal prjektor von $L^2(\R^{3N})$ auf $H_N$, dann gilt $PH_N \subset H_N P$. Somit ist der auf $H_N$ eingeschränkte Hamiltonoperator
+\[
+	H_{N,a} : PD(H_N) \subset H_{N,a} \to H_{N, a}
+\]
+auch selbstadjungiert und alle Resulate aus diesem Kapitel gelten auch für $H_{N,a}$.
+\item Für $Z=1$ (Wasserstoff) ist $E_2$ ein diskreter Eigenwert ($H^{-}$ existiert), aber $E_3$ ist kein Eigenwert ($H^{--}$ existiert nicht). Allgemeiner ist $E_N$ \emph{kein} Eigenwert (und $\sigma_{\text{disc}}(H_N)=\emptyset$ wenn $N\ge 2Z + M$ (E. Lieb, 1984). Ob $E_N$ ein Eigenwert ist im Fall $N=Z+1$ ist bis heute für kein einziges $Z\ge 2$ bekannt. 
+\end{enumerate}
+\end{nt*}
 \chapter{Direkte Summen und Tensorprodukte}
 \section{Direkte Summen}
 Sei $(H_n)_{n\in I}$ eine abzählbare Familie von Hilberträumen über $\C$. Wir definieren einen Vektorraum $H= \bigoplus_{n\in I} H_n$ durch
