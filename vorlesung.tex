@@ -42,7 +42,7 @@ Die Aufgaben der Quantenmechanik kann man einteilen in
 \end{enumerate}
 Die Lösung der Schrödingergleichung ist gegeben durch
 \[
-\psi_t = e^{-i \tilde H t} \psi_0
+\psi_t = e^{-i \tilde H t} \psi_0,
 \]
 wobei $\tilde H$ eine selbstadjungierte Erweiterung von $H$ ist (vgl Satz \ref{3.9}) oder mit dem Funktionalkalkül (vgl. Kapitel \ref{6})
 \[
@@ -88,9 +88,12 @@ Weiterführendes: (BCS-Theorie, wurde nicht behandelt).
 
 \chapter{Lineare Operatoren}
 \section{Spektrum linearer Operatoren}
-Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. $D=D(A)$ mit \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
+Sei $H$ ein Hilbertraum über $\C$ mit Skalarprodukt $\langle \cdot, \cdot \rangle$. Sei $D\subset H$ ein linearer Teilraum von $H$ und $A:D\to H$ ein linearer Operator. Dann ist $D=D(A)$ der \emph{Definitionsbereich} von $A$ und $AD=\{A\phi|\, \phi\in D\}$ heißt \emph{Wertebereich} (range) von $A$.
 
-Die \emph{Resolventenmenge} $\rho(A)$ von $A$ ist definiert als $\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv $(z-A)^{-1}$ ist beschränkt}\}.$
+Die \emph{Resolventenmenge} $\rho(A)$ von $A$ ist definiert als 
+\[
+\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv $(z-A)^{-1}$ ist beschränkt}\}.
+\]
 
 Die \emph{Resolvente} von $A$ ist die Abbildung $R=R_A: \rho(A) \to \mathcal L(H)$, gegeben durch $R(z)=(z-A)^{-1}$.
 
@@ -104,7 +107,7 @@ Das \emph{Punktspektrum} ist gegeben durch
 \begin{seg}[stetiges Spektrum]
 Das \emph{kontinuierliche Spektrum} ist gegeben durch
 \[
-\sigma_c(A)=\{z\in \C|\, (z-A): D\to H \text{ injektiv, nicht surjektiv aber } \overline{(z-A)D}= H\}
+\sigma_c(A)=\{z\in \C|\, (z-A): D\to H \text{ injektiv, nicht surjektiv aber } \overline{(z-A)D}= H\}.
 \]
 \end{seg}
 \begin{seg}[Resdual-Spektrum]
@@ -115,30 +118,38 @@ Das \emph{Residual-Spektrum} oder auch \emph{Rest-Spektrum} ist gegeben durch
 \end{seg}
 \begin{nt*}
 \begin{enumerate}[1)]
-\item Falls $A$ abgeschlossen, d.h. wenn $\Gamma_A= \{(\phi, A\phi)|\, \phi \in D\}$ abgeschlossen ist in $H\times H$, und $z-A: D \to H$ bijektiv ist, dann ist $z-A$ und somit auch $(z-A)^{-1}$ abgeschlossen. Nach dem Graphensatz ist somit $(z-A)^{-1}$ beschränkt. D.h. wenn $A$ abgeschlossen ist, dann $\rho(A)=\{z\in \C|\, z-A: D \to H \text{ bijektiv}\}$. Umgekehrt wenn $\rho(A) \neq \emptyset$ dann existiert $z\in \C$, so dass $(z-A):D\to H$ bijektiv und $(z-A)^{-1}$ beschränkt und somit abgeschlossen ist, dann
+\item Falls $A$ abgeschlossen, d.h. wenn $\Gamma_A= \{(\phi, A\phi)|\, \phi \in D\}$ abgeschlossen ist in $H\times H$, und $z-A: D \to H$ bijektiv ist, dann ist $z-A$ und somit auch $(z-A)^{-1}$ abgeschlossen. Nach dem Graphensatz ist somit $(z-A)^{-1}$ beschränkt. D.h. wenn $A$ abgeschlossen ist, dann 
 \[
-\rho(A)=\{z\in \C|\, z-A: D\to H \text{ bijektiv}\}.
+\rho(A)=\{z\in \C|\, z-A: D \to H \text{ bijektiv}\}.
 \]
 Umgekehrt wenn $\rho(A)\neq \emptyset$, dann existiert $z\in \C$, so dass $(z-A):D\to H$ bijektiv und $(z-A)^{-1}$ beschränkt und somit abgeschlossen ist. Es folgt, dass $(z-A)$ und daher auch $A$ abgeschlossen ist.
-\item wenn $A$ abgeschlossen ist, dann $\sigma(A)=\sigma_p(A) \dot\cup \sigma_c(A) \dot\cup \sigma_r(A)$.
+\item wenn $A$ abgeschlossen ist, dann ist
+\[
+\sigma(A)=\sigma_p(A) \dot\cup \sigma_c(A) \dot\cup \sigma_r(A).
+\]
 \end{enumerate}
 \end{nt*}
 \begin{ex*}
 \begin{enumerate}[1)]
-\item Sei $H= l^2(\N_0)=\{(x_n)_{n=0}^\infty |\, x_n \in \C,\, \sum_{n=0}^\infty|x_n|^2<\infty\}$ und sei $A: H\to H$ gegeben durch $A(x_0, x_1, x_2,...)=(x_1, x_2,...)$. Dann ist $A\in \mathcal L(H)$ mit $\|A\|=1$
+\item Sei $H= l^2(\N_0)=\{(x_n)_{n=0}^\infty |\, x_n \in \C,\, \sum_{n=0}^\infty|x_n|^2<\infty\}$ und sei $A: H\to H$ gegeben durch 
 \[
-\sigma_p(A)=\{z\in \C|\, |z|<1\}, \quad \sigma_c(A)=\{z\in \C|\, |z|=1\}, \quad \sigma_r(A)=\emptyset.
+A(x_0, x_1, x_2,...)=(x_1, x_2,...).
 \]
-Der Beweis ist eine leichte Übung.
+Dann ist $A\in \mathcal L(H)$ mit $\|A\|=1$
+\[
+\sigma_p(A)=\{z\in \C|\, |z|<1\}, \quad \sigma_c(A)=\{z\in \C|\, |z|=1\}, \quad \sigma_r(A)=\emptyset
+\]
+(Beweis: Übung).
 \item $H=L^2(\R)$, $D=\{\phi\in L^2(\R)| \phi'\in L^2\}$ und $A\phi=-i \phi'$. Dann $\sigma(A)=\sigma_c(A)=\R$. Entsprechend $\sigma_p(A)=\sigma_r(A)= \emptyset$. Beweis ist eine leichte Übung.
 \end{enumerate}
 \end{ex*}
+Sind $A,B$ lineare Operatoren in $H$, dann heißt $B$ \emph{Erweiterung} von $A$ falls $D(A) \subset D(B)$ und $A\phi=B\phi$ für alle $\phi \in D(A)$. Der Operator $A$ \emph{vertauscht} mit $L\in \mathcal L(H)$, falls $LA\subset AL$, d.h. $LD(A)\subset D(A)$ und für alle $\phi \in D(A)$ gilt $LA\phi=AL\phi$.
 \begin{st}\label{1.1}
-Sei $A: D \subset H\to H$ ein lin. Operator mit Resolvente $R$. Dann gilt
+Sei $A: D \subset H\to H$ ein linearer Operator mit Resolvente $R$. Dann gilt
 \begin{enumerate}[a)]
 \item $R(z)-R(w)=(w-z) R(z) R(w)$,
 \item $R(z) R(w)=R(w) R(z)$,
-\item $R(z) A\subset A R(z)=zR(z)-I$
+\item $R(z) A\subset A R(z)=zR(z)-\1$
 \end{enumerate}
 für alle $z,w\in \rho(A)$.
 \end{st}
@@ -154,30 +165,38 @@ Es gilt außerdem $\|R(z_0)\|\ge \frac{1}{\dist(z_0, \sigma(A))}$.
 \begin{proof}
 siehe Satz 1.2 aus dem Skript.
 \end{proof}
-\begin{seg}[Erinnerung]
-Sind $A,B$ lineare Operatoren in $H$, dann heißt $B$ \emph{Erweiterung} von $A$ falls $D(A) \subset D(B)$ und $A\phi=B\phi$ für alle $\phi \in D(A)$. Der Operator $A$ \emph{vertauscht} mit $L\in \mathcal L(H)$, falls $LA\subset AL$, d.h. $LD(A)\subset D(A)$ und für alle $\phi \in D(A)$ gilt $LA\phi=AL\phi$.
-\end{seg}
 \begin{st}
-Sei $A$ ein linearer Operator in $H$, $z_0\in \rho(A)$ und $L\in \mathcal L(H)$. Dann gilt $LR(z_0)=R(z_0)L \implies LA \subset AL \implies LR(z)=R(z)L$ für alle $z\in \rho(A)$.
+Sei $A$ ein linearer Operator in $H$, $z_0\in \rho(A)$ und $L\in \mathcal L(H)$. Dann gilt 
+\[
+LR(z_0)=R(z_0)L \implies LA \subset AL \implies LR(z)=R(z)L
+\]
+für alle $z\in \rho(A)$.
 \end{st}
 \begin{proof}
 siehe Satz 1.4 aus dem Skript.
 \end{proof}
 
-Sei $P\in \mathcal L(H)$ ein Projektor (d.h. $P^2=P$), dann ist auch $(I-P)$ ein Projektor und $H=M \oplus N$, wobei $M=PH=\ker(I-P)$ und $N=(1-P)H=\ker(P)$. D.h. jeder Vektor $\phi\in H$ lässt sich eindeutig zerlegen in $\phi=\phi_1+\phi_2$ mit $\phi_1\in M$ und $\phi_2\in N$. Dabei gilt $\phi_1=P\phi$ und $\phi_2=(1-P)\phi$.
-
-Ist $A$ ein linearer Operator in $H$ welcher mit den Projektoren $P$ vertauscht, also $PA\subset AP$. Dann wird $A$ durch $M=PH, N=(I-P)H$ zerlegt in die beiden Operatoren
+Sei $P\in \mathcal L(H)$ ein Projektor (d.h. $P^2=P$), dann ist auch $(I-P)$ ein Projektor und 
 \[
-A_p:=A \upharpoonright PH: PD(A) \to PH, \quad A \upharpoonright \bar PH: \bar P D(A) \to \bar{P}H
+H=M \oplus N,
+\]
+wobei $M=PH=\ker(I-P)$ und $N=(1-P)H=\ker(P)$. D.h. jeder Vektor $\phi\in H$ lässt sich eindeutig zerlegen in $\phi=\phi_1+\phi_2$ mit $\phi_1\in M$ und $\phi_2\in N$. Dabei gilt $\phi_1=P\phi$ und $\phi_2=(1-P)\phi$.
+
+Ist $A$ ein linearer Operator in $H$ welcher mit den Projektoren $P$ vertauscht, also $PA\subset AP$. Dann wird $A$ durch $M=PH, N=(\1-P)H$ zerlegt in die beiden Operatoren
+\[
+A_P:=A \upharpoonright PH: PD(A) \to PH, \quad A_{\bar{P}}:=A \upharpoonright \bar PH: \bar P D(A) \to \bar{P}H,
 \] 
-wobei $\bar P:=I-P$.
+wobei $\bar P:=\1-P$.
 \begin{lem}\label{1.4}
-Ist $A$ ein abgeschlossener linearer Operator in $H$ und $p\in \mathcal L(H)$ ein Projektion mit $PA \subset AP$. Dann gilt $\sigma(A)=\sigma(A_p)\dot\cup \sigma(A_{\bar{P}})$.
+Ist $A$ ein abgeschlossener linearer Operator in $H$ und $P\in \mathcal L(H)$ ein Projektor mit $PA \subset AP$. Dann gilt 
+\[
+\sigma(A)=\sigma(A_p)\dot\cup \sigma(A_{\bar{P}}).
+\]
 \end{lem}
 \begin{proof}
 Sei $z\in \C$. Dann ist $(z-A):D(A) \to H$ genau dann bijektiv, wenn $z-A_P: PD(A)\to PH$ und $z-A_{\bar{P}}:\bar P D(A) \to \bar P H$ bijektiv sind. Also $\rho(A)=\rho(A_p) \cap \rho(A_{\bar P})$ und somit $\sigma(A)=\sigma(A_P) \cup \sigma(A_{\bar P})$. Tatsächlich gilt
 \[
-(z-A_P)^{-1}=(z-A)^{-1} \upharpoonright PH, \quad (z-A_{\bar P})^{-1} = (z-A)^{-1} \upharpoonright \bar P.
+(z-A_P)^{-1}=(z-A)^{-1} \upharpoonright PH, \quad (z-A_{\bar P})^{-1} = (z-A)^{-1} \upharpoonright \bar PH.
 \]
 \end{proof}
 \section{Rieszprojektoren und Laurentreihe der Resolvente}
@@ -190,7 +209,7 @@ wobei das Integral als Riemannintegral aufgefasst ist.
 \begin{st}\label{1.5}
 \begin{enumerate}[a)]
 \item $P$ ist ein Projektor.
-\item $PA\subset AP=\frac{1}{2\phi} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
+\item $PA\subset AP=\frac{1}{2\pi i} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
 \item $\sigma(A_P)=\{\lambda\}$,\quad $\sigma(A_{\bar P})=\sigma(A) \setminus \{\lambda\}$.
 \end{enumerate}
 \end{st}
@@ -198,7 +217,9 @@ wobei das Integral als Riemannintegral aufgefasst ist.
 Siehe Satz 1.6 des Skripts. Man merke an, dass $\sigma(A)=\{\lambda\} \dot\cup (\sigma(A)\setminus\{\lambda\})$ in zwei abgeschlossene Teile zerfällt.
 \end{proof}
 \begin{nt*}
-Satz \ref{1.5} lässt sich verallgemeinern. Falls $\sigma(A)$ in zwei disjunkte abgeschlossene Teile $\sigma_1$ und $\sigma_2$ zerfällt. D.h. $\sigma(A)=\sigma_1\cup \sigma_2$ mit $\sigma_1\cap \sigma_2=\emptyset$ und $\sigma_1, \sigma_2$ abgeschlossen, wobei $\sigma_1$ kompakt ist und $P\in \mathcal L(H)$ definiert wird durch
+Satz \ref{1.5} lässt sich verallgemeinern. 
+
+Falls $\sigma(A)$ in zwei disjunkte abgeschlossene Teile $\sigma_1$ und $\sigma_2$ zerfällt. D.h. $\sigma(A)=\sigma_1\cup \sigma_2$ mit $\sigma_1\cap \sigma_2=\emptyset$ und $\sigma_1, \sigma_2$ abgeschlossen, wobei $\sigma_1$ kompakt ist und $P\in \mathcal L(H)$ definiert wird durch
 \[
 P=\frac{1}{2\pi i} \oint_\gamma (z-A)^{-1} \, \dx[z],
 \]
@@ -206,7 +227,7 @@ wobei die Windungszahl $n(\gamma, z)=1$ für $z\in \sigma_1$ und $n(\gamma,z)=0$
 \begin{st}\label{1.6}
 \begin{enumerate}[a)]
 \item $P$ ist ein Projektor.
-\item $PA\subset AP=\frac{1}{2\phi} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
+\item $PA\subset AP=\frac{1}{2\pi i} \oint zR(z)\, \dx[z] \in \mathcal L(H)$.
 \item $\sigma(A_P)=\sigma_1$,\quad $\sigma(A_{\bar P})=\sigma_2$.
 \end{enumerate}
 \end{st}
@@ -218,9 +239,9 @@ Nach Satz \ref{1.5} gilt für $z\in B_\eps(\lambda)\setminus\{\lambda\}$
 \]
 wobei $A_P$ und $A_{\bar P}$ die Einschränkungen von $A$ auf $PH$ bzw. $PH$ sind. Ausserdem ist $\sigma(A_p)=\{\lambda\}$, $\sigma(A_{\bar P}) \subset \sigma(A) \setminus\{\lambda\}$. Also gilt
 \[
-(z-A_P)^{-1} = \sum_{n\ge 0} \frac{(A_P-\lambda)^n}{(z-\lambda)^{n+1}}, \quad (z-A_{\bar P})^{-1} \stackrel{\ref{1.2}}=(-1)^n (\lambda-A^n)^{-n-1} (z-\lambda)^n
+(z-A_P)^{-1} = \sum_{n\ge 0} \frac{(A_P-\lambda)^n}{(z-\lambda)^{n+1}}, \quad (z-A_{\bar P})^{-1} \stackrel{\ref{1.2}}=\sum_{n\ge 0}(-1)^n (\lambda-A_{\bar P})^{-n-1} (z-\lambda)^n
 \]
-für alle $z\in B_\eps(\lambda)\setminus\{\lambda\}$. Hierbei sei anzumerken, dass die Laurentreihenentwicklung konvergiert, da der Spektralradius von $(A_P-\lambda)$ gerade $0$ ist. (Näheres siehe Appendix)
+für alle $z\in B_\eps(\lambda)\setminus\{\lambda\}$. Hierbei sei anzumerken, dass die Laurentreihenentwicklung konvergiert, da der Spektralradius von $(A_P-\lambda)$ gerade $0$ ist (Näheres siehe Appendix). Es folgt
 \begin{st}
 Für $0<|z-\lambda|<\eps$ gilt
 \[
@@ -232,10 +253,10 @@ wobei $D:=(A_P-\lambda)P=(A-\lambda)P$ und $S(z):= (z-A_{\bar P})^{-1}\bar P$ di
 \begin{enumerate}[1)]
 \item Da der Hauptteil von $R(z)$, d.h.
 \[
-\sum_{n=1}^\infty D^n(z-\lambda)^{-n-1} + \frac{D}{z-\lambda},
+\sum_{n=1}^\infty D^n(z-\lambda)^{-n-1} + \frac{P}{z-\lambda},
 \]
-konvergent ist für alle $z\neq \lambda$, gilt $\limsup_{n\to \infty} \|D^n\|^{1/n}=0$. Man sagt: $D$ sei \emph{quasi-nilpotent}.
-\item Falls $D$ nilpotent ist, d.h. $D^m=0$ für ein $m\in N$ und $D^{m-1}\neq 0$. Dann ist $\lambda$ ein Eigenwert von $A$. 
+konvergent ist für alle $z\neq \lambda$, gilt $\limsup_{n\to \infty} \|D^n\|^{1/n}=0$. Man sagt: $D$ ist \emph{quasi-nilpotent}.
+\item Falls $D$ nilpotent ist, d.h. $D^m=0$ für ein $m\in N$ und $D^{m-1}\neq 0$, dann ist $\lambda$ ein Eigenwert von $A$. 
 \begin{proof}
 Wähle $\phi \neq 0$ mit $D^{m-1}\phi\neq0$. Dann ist $D(D^{m-1}\phi)=0$, d.h.
 \[
@@ -257,7 +278,7 @@ Nach Frechet-Riesz (genaueres siehe Übung) gilt
 D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig auf } D(A)\}
 \]
 
-\begin{st}\label{2.1}
+\begin{st}\label{1.8}
 \begin{enumerate}[a)]
 \item $A\subset B \implies A^*\supset B^*$.
 \item $A^*$ ist abgeschlossen.
@@ -267,15 +288,15 @@ D(A^*)=\{\phi\in H|\, \eta \mapsto \langle \phi, A\eta\rangle \text{ ist stetig 
 \begin{proof}
 a) wurde in der Übung gezeigt. b) wird in Satz 2.1 aus dem Skript bewiesen. Und c) wird in Satz 2.2 aus dem Skript gezeigt.
 \end{proof}
-\begin{st}\label{2.2}
+\begin{st}\label{1.9}
 Ist A \emph{abgeschlossen}, dann ist $A^*$ dicht definiert und $(A^*)^*=A$.
 \end{st}
 \begin{proof}
 Es ist
 \begin{align*}
-(\phi, \phi^*)\in \Gamma(A^*) &\iff \langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle, \, \forall \eta\in D(A)\\ &\iff D=\langle \phi, A\eta\rangle - \langle \phi^*, \eta\rangle \\ &\iff (\phi, \phi^*) \orth (A\eta, - \eta)
+(\phi, \phi^*)\in \Gamma(A^*) &\iff \langle \phi^*, \eta\rangle = \langle \phi, A\eta\rangle, \, \forall \eta\in D(A)\\ &\iff 0=\langle \phi, A\eta\rangle - \langle \phi^*, \eta\rangle \\ &\iff (\phi, \phi^*) \orth (A\eta, - \eta)
 \end{align*}
-bezüglich des Skalarprodukts $\langle (\phi_1, \phi_2), (\psi_1, \psi_2)\rangle=\langle \phi_1, \psi_1\rangle + \langle \phi_2, \psi_2\rangle$ von $H\times H$. Sei $V:H\times H \to H \times H$ definiert durch $V(\phi, \psi)=(\psi, -\phi)$. Dann ist $V^2=1$ und $V$ ist unitär. Für jeden Teilraum $E\subset H\times H$ gilt also $(VE)^\orth = V(E^\orth)$. (Übung)
+bezüglich des Skalarprodukts $\langle (\phi_1, \phi_2), (\psi_1, \psi_2)\rangle=\langle \phi_1, \psi_1\rangle + \langle \phi_2, \psi_2\rangle$ von $H\times H$. Sei $V:H\times H \to H \times H$ definiert durch $V(\phi, \psi)=(\psi, -\phi)$. Dann ist $V^2=\1$ und $V$ ist unitär. Für jeden Teilraum $E\subset H\times H$ gilt also $(VE)^\orth = V(E^\orth)$. (Übung)
 
 Somit gilt
 \begin{align*}
@@ -283,24 +304,28 @@ Somit gilt
 &\iff (\phi, \phi^*)\in (V\Gamma(A))^\orth.
 \end{align*}
 D.h. 
-\begin{equation}\label{2.1}
+\begin{equation}\label{1.1}
 \Gamma(A^*)=(V\Gamma(A))^\orth=V\Gamma(A)^\orth.
 \end{equation}
 Da $\Gamma(A)$ abgeschlossen ist folgt 
-\begin{equation}\label{2.2}
+\begin{equation}\label{1.2}
 \Gamma(A) = ( \Gamma(A)^\perp)^\perp = (VV \Gamma(A)^\perp)^\perp - V(V\Gamma(A)^\perp)^\perp = V \Gamma(A^*)^\perp
 \end{equation}
-Wäre $D(A^*)$ nicht dicht, dann würde ein $\psi \neq 0$ existieren mit $\psi \perp D(A^*)$, d.h. $(\psi,0) \perp \Gamma(A^*)$, d.h. $(\psi,0) \in \Gamma(A^*)^\perp$ und $(0,-\psi)=V(\phi, c) \in V \Gamma(A^*)^\perp= \Gamma(A)$. Dies steht im Widerspruch zu $A0=0$. Also ist $D(A^*)$ dicht und
+Wäre $D(A^*)$ nicht dicht, dann würde ein $\psi \neq 0$ existieren mit $\psi \perp D(A^*)$, d.h. $(\psi,0) \perp \Gamma(A^*)$, d.h. $(\psi,0) \in \Gamma(A^*)^\perp$ und 
 \[
-\Gamma((A^*)^*)\stack{\eqref{2.1}}= V \Gamma(A^*)^* \stack{\eqref{2.2}}= \Gamma(A).
+(0,-\psi)=V(\psi, 0) \in V \Gamma(A^*)^\perp= \Gamma(A). 
+\]
+Dies steht im Widerspruch zu $A0=0$. Also ist $D(A^*)$ dicht und
+\[
+\Gamma((A^*)^*)\stack{\eqref{1.1}}= V \Gamma(A^*)^* \stack{\eqref{1.2}}= \Gamma(A).
 \]
 Daraus folgt $(A^*)^*=A$.
 \end{proof}
-\begin{st}\label{2.3}
-Ist $A$ dicht definiert und abgeschlossen, dann ist $z\in \R(A)$ genau dann, wenn $\overline z \in \rho(A^*)$ und es gilt $(\overline z - A^*)^{-1} =((z-A)^{-1})^*$.
+\begin{st}\label{1.10}
+Ist $A$ dicht definiert und abgeschlossen, dann ist $z\in \rho(A)$ genau dann, wenn $\overline z \in \rho(A^*)$ und es gilt $(\overline z - A^*)^{-1} =((z-A)^{-1})^*$.
 \end{st}
 \begin{proof}
-Wegen $(z-A)^* =(\overline z-A^*)$ und $(A^*)^*=A$ nach Satz \ref{2.2}. Es genügt zu zeigen, dass wenn $0 \in \rho(A)$ auch $0 \in \rho(A^*)$ und $(A^*)^{-1} = (A^{-1})^*$.
+Wegen $(z-A)^* =(\overline z-A^*)$ und $(A^*)^*=A$ nach Satz \ref{1.2} genügt es zu zeigen, dass wenn $0 \in \rho(A)$ auch $0 \in \rho(A^*)$ und $(A^*)^{-1} = (A^{-1})^*$.
 
 Sei $0 \in \rho(A)$. D.h. $A: D\to H$ bijektiv und $A^{-1} \in \mathcal L(H)$. Wir zeigen $(A^{-1})^* A^*=1$ auf $D(A^*)$ und dass $A^*(A^{-1})^*=1$ auf $H$ ist. Sei $\phi \in D(A^*)$ und $\eta \in H$, dann folgt
 \[
@@ -326,11 +351,11 @@ mit $\phi, \psi \in H$.
 \begin{df}
 Sei $A: D\subset H \to H$  dicht definiert. Dann heißt $A$ \emph{symmetrisch}, falls $A\subset A^*$. D.h. $A$ ist genau dann symmetrisch wenn $\overline D=H$ und $\< \phi, A\psi\> = \< A\phi, \psi\>$ für alle $\phi, \psi \in D$. 
 
-$A$ heißt \emph{selbstadjungiert} falls $A^*=A$, $A$ genau dann selbstadjungiert wenn A symmetrisch ist und $D(A^*)=D(A)$. 
+$A$ heißt \emph{selbstadjungiert} falls $A^*=A$. $A$ ist genau dann selbstadjungiert wenn A symmetrisch ist und $D(A^*)=D(A)$. 
 \end{df}
 
 \begin{ex*}
-$h\in L^2(\R)$ und $A: D \subset H \to H$ mit $D=C_0^\infty(\R)$ gegeben durch $A\phi = -i \phi'$. Dann ist $A\subset A^*$.
+Sei $H= L^2(\R)$ und $A: D \subset H \to H$ mit $D=C_0^\infty(\R)$ gegeben durch $A\phi = -i \phi'$. Dann ist $A\subset A^*$.
 \end{ex*}
 \begin{proof}
 $\overline{D}=H$ und für $\phi, \psi \in D$ gilt
@@ -347,7 +372,7 @@ Sei $A\subset A^*$. Dann sind äquivalent.
 \begin{enumerate}[a)]
 \item $A^*=A$
 \item $\sigma(A) \subset \R$
-\item Es gibt $z_+ \in \C_+, z_- \in \C_i$ mit $z_\pm \in \rho(A9$.
+\item Es gibt $z_+ \in \C_+, z_- \in \C_i$ mit $z_\pm \in \rho(A)$.
 \end{enumerate}
 wobei $\C_+=\{z\in \C| \Im(z) >0\}$ und $C_-= C^*_+$.
 \end{st}
@@ -2003,9 +2028,9 @@ wobei
 \[
 \Big | \sum_{i=1}^N (\gamma(t_i) - \lambda)^{-1} \chi_{\sigma(A)}(\lambda) \dot \gamma(t_i) \Delta t \Big | \le \frac{1}{\dist(\Tr(\gamma), \sigma(A))} (L(\gamma)+1)
 \]
-für $N$ hinreichend groß und $L$ die Länge von $\gamma$. Also gilt \fixme
+für $N$ hinreichend groß und $L$ die Länge von $\gamma$. Also gilt
 \begin{align*}
-%\Phi(\int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)} \, \dx[z]) \phi= \lim_{N\to \infty \sum_{i=1}^N \Phi((\gamma(t_i)-\lambda)^{-1} \chi_\sigma(A)) \dot \gamma(t_i) \Delta t \phi \\
+\Phi(\int_\gamma (z-\lambda)^{-1} \chi_{\sigma(A)} \, \dx[z]) \phi= \lim_{N\to \infty} \sum_{i=1}^N \Phi((\gamma(t_i)-\lambda)^{-1} \chi_\sigma(A)) \dot \gamma(t_i) \Delta t \phi \\
 &= \lim_{N\to \infty} \sum_{i=1}^N (\gamma(t_i) -A)^{-1} \dot \gamma(t_i) \Delta t \phi\\
 &= \int (z-A)^{-1} \, \dx[z] \phi
 \end{align*} 
@@ -2121,25 +2146,26 @@ Also
 2 fHf = f^2 H + Hf^2 - [ [H,f]f].
 \]
 \end{proof}
-%Die Voraussetzungen des Lemmas ist z.B. erfüllt, wenn $D(H)=H^2(\R^n)$ und $f\in C^2(\R^n)$ mit $\partial^\alpha f \in L^\infty(\R^n)$ für $|\alpha|\le 2$. (siehe Satz \ref{5.8})
+Die Voraussetzungen des Lemmas ist z.B. erfüllt, wenn $D(H)=H^2(\R^n)$ und $f\in C^2(\R^n)$ mit $\partial^\alpha f \in L^\infty(\R^n)$ für $|\alpha|\le 2$. (siehe Satz \ref{5.8})
+
 Dann gilt für $\phi \in H^2(\R^n)$
 \[
 \Delta(f\phi) = (\Delta f) \phi + 2\nabla f \cdot \nabla \phi + f\Delta \phi
 \]
 und somit
-%\begin{align*}
-%[\Delta,f] \phi &= \Delta(f\phi) - f\Delta \phi\\
-%&= (\Delta f ) \phi + 2\nabla f \cdot \nabla \phi.\\
-%[\Delta,f] f \phi &= f[\Delta,f] \phi + 2 |\nabla f|^2 \phi
-%\end{align*}
+\begin{align*}
+[\Delta,f] \phi &= \Delta(f\phi) - f\Delta \phi\\
+&= (\Delta f ) \phi + 2\nabla f \cdot \nabla \phi.\\
+[\Delta,f] f \phi &= f[\Delta,f] \phi + 2 |\nabla f|^2 \phi
+\end{align*}
 und es folgt 
 \[
 [[\Delta,f] f] \phi = 2|\nabla f|^2 \phi
 \]
 Für einen Schrödinger-Operator $H=-\Delta + V$ mit $D(H)=H^2(\R^n)$ gilt also auf $D(H)$ mit Lemma \ref{7.1}
-%\begin{equation}
-%fHf = \frac{1}{2} (f^2 H+ Hf^2) + |\nabla f|^2. \tag{IMS} \label{IMS}
-%\end{equation}
+\begin{equation}
+fHf = \frac{1}{2} (f^2 H+ Hf^2) + |\nabla f|^2. \tag{IMS} \label{IMS}
+\end{equation}
 Man bezeichnet dies als IMS-Formel, denn
 \begin{equation} 
 [[H,f]f] = -[[\Delta,f] f] \label{7.2}
@@ -2150,15 +2176,15 @@ H=(-i\nabla -A(x))^2 + V.
 \]
 Im Folgenden nehmen wir an, dass $H=H^*$ mit $D(H)\subset L^2(\R^n)$, dass $H$ nach unten beschränkt ist, d.h. $\< \phi, H, \phi\>\ge M \| \phi \|^2$ für ein $M\in \R$, und
 \begin{enumerate}[a)]
-%\item $fD(H) \subset D(H)$ für $f\in C^\infty(\R^n)$ mit $\delta^\alpha f \in L^\infty$ wenn $|\alpha| \le 2$.
+\item $fD(H) \subset D(H)$ für $f\in C^\infty(\R^n)$ mit $\delta^\alpha f \in L^\infty$ wenn $|\alpha| \le 2$.
 \item $[[H,f]f] = -2|\nabla f|^2$
 \end{enumerate}
 
 Für $R>0$ definieren wir
-%\begin{align*}
-%D_R&:= \{\phi \in D(H) | \supp(\phi) \subset \{ |x|>R\}\}\\
-%\sum_{R}&:=\inf\{\< \phi, H\phi\>| \phi \in D_R, \| \phi \| =1\}
-%\end{align*}
+\begin{align*}
+D_R&:= \{\phi \in D(H) | \supp(\phi) \subset \{ |x|>R\}\}\\
+\sum_{R}&:=\inf\{\< \phi, H\phi\>| \phi \in D_R, \| \phi \| =1\}
+\end{align*}
 Wir bezeichnen mit
 \[
 \Sigma := \lim_{R\to \infty} \Sigma_k \le \infty
@@ -2189,10 +2215,10 @@ I_{\infty, R}(x) &= I_\infty(|x|/R)
 \end{align*}
 für $x\in \R^n$. \fixme[fig überprüfen]
 Aus 
-%\begin{align*}
-%I_{0,R} H J_{0,R} &= \frac{1}{2} (I_{0,R)^2 H + H I_{0,R}^2) + |\nabla I_{0,R}|^2\\
-%I_{\infty, R} H I_{\infty,R}&= \frac{1}{2} (I_{\infty,R}^2 H + H I_{\infty,R}^2) + |\nabla I_{\infty, R}|^2
-%\end{align*}
+\begin{align*}
+I_{0,R} H J_{0,R} &= \frac{1}{2} (I_{0,R}^2 H + H I_{0,R}^2) + |\nabla I_{0,R}|^2\\
+I_{\infty, R} H I_{\infty,R}&= \frac{1}{2} (I_{\infty,R}^2 H + H I_{\infty,R}^2) + |\nabla I_{\infty, R}|^2
+\end{align*}
 und $I_{0,R}^2 + I_{\infty,R}^2 \equiv1$ folgt
 \[
 H= I_{0,R} H I_{0,R} + I_{\infty,R} H I_{\infty, R} -| \nabla I_{o,R}|^2 - | \nabla I_{\infty, R}|^2.
@@ -2210,9 +2236,9 @@ wobei $\< \phi_n, H\phi_n \> \to \lambda$ mit $n\to \infty$. und $\| I_{0,R} \ph
 (H+i)\phi_n = (H-\lambda) \phi + (\lambda +i) \phi_n \rightharpoonup 0
 \]
 für $n\to \infty$ und $I_{(0,R)}(H+i)^{-1}$ ist kompakt. Somit ist
-%\[
-%I_{0,R}\phi_n = \underbraces{I_{0,R}(H+i)^{-1}}_{\text{kompakt}} \underbraces{(H+i) \phi_n}_{\rightharpoonup 0} \to 0
-%\]
+\[
+I_{0,R}\phi_n = \underbrace{I_{0,R}(H+i)^{-1}}_{\text{kompakt}} \underbrace{(H+i) \phi_n}_{\rightharpoonup 0} \to 0
+\]
 für $n\to \infty$.
 \end{seg}
 Es folgt
@@ -2674,7 +2700,7 @@ Sei $\lambda_k \in \sigma(\overline{A_k})$ und sei $(\phi_k^{(m)})_{m\ge 0}$ ein
 
 Dann gilt \fixme
 \begin{align*}
-%\|(A- \sum \lambda_k)  \phi_1^{(m)} \otimes  \cdots \otimes \otimes \phi_n^{(m)}\| &\le \sum_{k=1}^n \| \phi_1^{(m)} \otims \cdots \otimes (A_k-\lambda_k) \phi_k^{(m)} \phi_k^{(m)} \otimes \cdots \phi_n^{(m)}\|\\
+\|(A- \sum \lambda_k)  \phi_1^{(m)} \otimes  \cdots \otimes \phi_n^{(m)}\| &\le \sum_{k=1}^n \| \phi_1^{(m)} \otimes \cdots \otimes (A_k-\lambda_k) \phi_k^{(m)} \phi_k^{(m)} \otimes \cdots \phi_n^{(m)}\|\\
 &= \sum_{k=1}^n \| (A_k - \lambda_k) \phi^{(m)}_k \| \to 0
 \end{align*}
 für $m\to \infty$. Also ist $\lambda = \sum \lambda_k \in \sigma(A)$. Da $\sigma(A)$ abgeschlossen, dann folgt
