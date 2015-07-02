@@ -888,7 +888,7 @@ Nach Definition ist $\phi \in D(\overline{A})$ genau dann wenn eine Folge $(\phi
 Sei $A$ dicht definiert und abschließbar. Dann gilt $\overline{A}^*=A^*$.
 \end{lem}
 \begin{proof}
-Sei $A\subset \overline{A}$ dann folgt $A^* \supset (\overline{A})^*$ nach einer Übungsaufgabe (\fixme: welche?). Es bleibt noch zu zeigen, dass $A^*\subset(\overline{A})^*$. Sei $\phi \in D(A^*)$, so gilt
+Sei $A\subset \overline{A}$ dann folgt $A^* \supset (\overline{A})^*$ (vgl. Übung). Es bleibt noch zu zeigen, dass $A^*\subset(\overline{A})^*$. Sei $\phi \in D(A^*)$, so gilt
 \[
 \< \phi, A \eta\> =\<A^* \phi, \eta\>
 \]
@@ -1040,7 +1040,7 @@ i \dot \phi = A(t) \phi, \quad \phi(s)=\eta.
 \end{st}
 \begin{proof}
 Sei $I \subset J$ ein kompaktes Teilintervall und $M= \sup_{\tau \in I} \|A(\tau)\|$. Aus $\sup_{\tau \in I} \|A(\tau) \phi\|<\infty$ und dem Prinzip über die gleichmäßige Beschränktheit 
-\fixme
+folgt $M\le \infty$.
 
 Also gilt für alle $s, t \in I, s<t$
 \[
@@ -1220,18 +1220,18 @@ Es folgt, dass die Reihe $\sum_{n} \dot W_n(t,s) \phi$ absolut und gleichmäßig
 was bezüglich $t,s$ stetig. Also ist $t \mapsto U(t,s) \phi$ stetig differenzierbar für $\phi \in D(A)$. Dass $U(t,s)$ ein unitärer Propagator ist, ist eine Übungsaufgabe.
 \end{proof}
 
-\begin{nt*}
-\fixme Mit letzteren Satz folgt
-\begin{align*}
-U(t,s) \phi- U_0(t,s) \phi &= U_0(t, r) U(r,s) \phi\big|_{r=s}^{r=t}\\
-&= \int_{s}^t \frac{\delta}{\delta r} U_0(t,r) U(r,s) \phi \, \dx[r]\\&= \int_s^t U_0(t,r) (iA_0-i(A_0+B(r))) U(r,s) \phi \, \dx[r] \\ &= -i \int_s^t U_0(t,r) B(r) U(r,s) \phi \, \dx[r].
-\end{align*}
-Dies kann man iterieren und erhält
-\begin{align*}
-U(t,s) \phi &= U_0(t,s) \phi - i \int_s^t U_0(t,r) B(r) U_0(r,s) \phi \, \dx[r] \\ &+ (-i)^2 \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] U_0(t, t_1) B(t_1) ....
-= \sum_{n=0}^\infty W_n(t,s) \phi.
-\end{align*}
-\end{nt*}
+%\begin{nt*}
+%\fixme Mit letzteren Satz folgt
+%\begin{align*}
+%U(t,s) \phi- U_0(t,s) \phi &= U_0(t, r) U(r,s) \phi\big|_{r=s}^{r=t}\\
+%&= \int_{s}^t \frac{\delta}{\delta r} U_0(t,r) U(r,s) \phi \, \dx[r]\\&= \int_s^t U_0(t,r) (iA_0-i(A_0+B(r))) U(r,s) \phi \, \dx[r] \\ &= -i \int_s^t U_0(t,r) B(r) U(r,s) \phi \, \dx[r].
+%\end{align*}
+%Dies kann man iterieren und erhält
+%\begin{align*}
+%U(t,s) \phi &= U_0(t,s) \phi - i \int_s^t U_0(t,r) B(r) U_0(r,s) \phi \, \dx[r] \\ &+ (-i)^2 \int_s^t \dx[t_1] \int_s^{t_1} \dx[t_2] U_0(t, t_1) B(t_1) ....
+%= \sum_{n=0}^\infty W_n(t,s) \phi.
+%\end{align*}
+%\end{nt*}
 
 \begin{st}[Kato 1953] \label{4.4}
 Sei $A(t): D \subset H \to H,$ $t\in J$ eine Familie von selbstadjungierte Operatoren mit $D(A(t))=D$ für alle $t\in J$. Falls $t \mapsto A(t) \phi$ auf $J$ stetig differenzierbar ist für alle $\phi \in D$. Dann existiert ein unitärer Propagator $U: J \times J \to \mathcal L(H)$ mit
@@ -1269,7 +1269,7 @@ Z. B. kann $\sigma_1(s)=\{E(s)\}$ wobei $E(s)$ diskreter Eigenwert von $H(s)$ is
 \[
 P(s)=\frac{1}{2\pi i} \oint_\gamma (z-H(s))^{-1} \, \dx[z]
 \]
-wobei $\gamma$ ein glatter Weg ist, der weder $\sigma_1$ noch $\sigma_2$ schneidet, aber $\sigma_1$ ein Mal umrandet. Insbesondere hängt $\gamma$ von $s$ ab. \fixme[fig1]
+wobei $\gamma$ ein glatter Weg ist, der weder $\sigma_1$ noch $\sigma_2$ schneidet, aber $\sigma_1$ ein Mal umrandet. Insbesondere hängt $\gamma$ von $s$ ab. %\fixme[fig1]
 
 Wir studieren die Lösung von
 \begin{equation}\label{3.3}
@@ -1439,24 +1439,26 @@ für $\tau \to \infty$.
 \begin{proof}
 Es folgt
 \begin{align*}
-\|(1-P(s))U(s) P(0)\| &\stackrel{Lem. \ref{8.5}}= \|(1-P(s))(U(s)-U_A(s))P(0)\|\\ &\le \|U(s)-U_A(s)\| = \mathcal O(\frac{1}{\tau})
+\|(1-P(s))U(s) P(0)\| &\stackrel{Lem. \ref{4.5}}= \|(1-P(s))(U(s)-U_A(s))P(0)\|\\ &\le \|U(s)-U_A(s)\| = \mathcal O(\frac{1}{\tau})
 \end{align*}
 nach Theorem \ref{4.9}.
 \end{proof}
 
-Es gilt $U_A(t,s) P(s)=P(t) U_A(T,s)$. Wir betrachten Schrödingergleichung der Form
-\[
-i \dot \phi = H(t/ \tau) \phi, \quad s=t/\tau, \quad \frac{d}{ds} = \tau \frac{d}{dt}
-\]
-mit $\tilde \phi = \phi(t) = \phi(\tau s)$ und erhalten die Modifikation
-\[
-i \frac{d}{ds} \tilde \phi = \tau \dot \phi (\tau s) = \tau H(s)  \phi(\tau s) = \tau H(s) \tilde \phi(s)
-\]
+%\fixme Wie kommt das hierhin.
 
-\begin{seg}[Annahme]
-für alle $\phi \in D$ ist $H(s) \phi$ stetig differenzierbar in S, dann gibt es ein $U(t_1, t_2)$.
-Und ein großes \fixme[fig2].
-\end{seg}
+%Es gilt $U_A(t,s) P(s)=P(t) U_A(T,s)$. Wir betrachten Schrödingergleichung der Form
+%\[
+%i \dot \phi = H(t/ \tau) \phi, \quad s=t/\tau, \quad \frac{d}{ds} = \tau \frac{d}{dt}
+%\]
+%mit $\tilde \phi = \phi(t) = \phi(\tau s)$ und erhalten die Modifikation
+%\[
+%i \frac{d}{ds} \tilde \phi = \tau \dot \phi (\tau s) = \tau H(s)  \phi(\tau s) = \tau H(s) \tilde \phi(s)
+%\]
+%
+%\begin{seg}[Annahme]
+%für alle $\phi \in D$ ist $H(s) \phi$ stetig differenzierbar in S, dann gibt es ein $U(t_1, t_2)$.
+%Und ein großes \fixme[fig2].
+%\end{seg}
 
 \subsection{Adiabatisches Theorem ohne spektrale Lücke}
 
@@ -1496,11 +1498,13 @@ für $\eps\to 0$ da $\| Y_\eps(r)\| \to 0$ für fast alle $r\in [0,1]$ (vgl. Bla
 \end{proof}
 
 \subsection{Anwendungen}
-
+\begin{center}
+\includegraphics{fig4.png}
+\end{center}
 \begin{enumerate}[1)]
-\item \fixme[fig4]
-$P(s)$ sei spektraler Projektor zu $E(s)$ für $s\neq s_0$ und $E(s)$ sei diskreter Eigenwert.
-\item Eingebetteter Eigenwert \fixme[fig4]
+\item
+$P(s)$ sei spektraler Projektor zu $E(s)$ für $s\neq s_0$ und $E(s)$ sei diskreter Eigenwert (links).
+\item Eingebetteter Eigenwert (rechts).
 $E(s)=\inf \sigma(H(s))$ ein Eigenwert endlicher Vielfachheit und sei $P(s)$ Eigenprojektor zu $E(s)$.
 \end{enumerate}
 
@@ -1613,9 +1617,9 @@ Sei $u\in H^s(\R^n)$ und $k\in \N_0$ mit $k<s- \frac{n}{2}$. Dann gilt für alle
 \begin{ex*}
 Wir wissen, dass $H^2(\R^2)=D(-\Delta)$ und nach Satz \ref{4.3} gilt:
 \begin{itemize}
-\item $\phi \in H^2(\R^3) \implies \phi \in C(\R^3)$ und $\phi(x)\to 0$ ($|x|\to \infty$)
+\item $\phi \in H^2(\R^3) \implies \phi \in C(\R^3)$ und $\phi(x)\to 0$ ($|x|\to \infty$),
+\item $\phi \in H^1(\mathbb R)\implies \phi \in C^1(\mathbb R)$ und $\phi(x), \phi'(x)\to 0$ ($|x|\to \infty$).
 \end{itemize}
-\fixme
 \end{ex*}
 
 
@@ -1650,9 +1654,10 @@ Hierbei sei
 \[
 D(\mathrm D^\alpha) = \{ u \in L^2| p^{\alpha} \hat u(p) \text{ ist in } L^2\}
 \]
-der Definitionsbereich von $\mathrm D^\alpha$. 
-\fixme
-
+der Definitionsbereich von $\mathrm D^\alpha$. Aus b) folgt $u\in D(\mathrm D^\alpha)$ und für alle $\phi \in C_c^\infty(\R^n)$ gilt
+\[
+\< \phi, \mathrm D^\alpha u\>= \< D^\alpha \phi, u\>,
+\]
 was äquivalent ist zu (a). Umgekehrt folgt aus (a), dass für alle $\phi \in C_0^\infty(\R^n)$ gilt:
 \[
 (-1)^{|\alpha|} \int \overline{\partial^\alpha \phi(x)} u(x) \, \dx = \int \overline{\phi(x)} \partial^\alpha u(x) \, \dx
@@ -1721,7 +1726,7 @@ Offenbar liegt $V(x)$ in der Klasse $L^2+L^\infty$, denn für $\eps>0$ sei $\chi
 \begin{lem}
 Ist $V\in L^2(\R^n)$, dann existiert für jedes $\eps>0$ eine Zerlegung $V_2+V_\infty$ mit $\| V_2\| <\eps$.
 \end{lem}
-\begin{proof} \fixme
+\begin{proof} %\fixme
 Sei $\chi_N$ die charakterische Funktion auf $\{x\in \R^n| |V(x)|\le N\}$ für $N \in \N$. Daraus folgt
 \[
 |V|^2 \ge |V|^2(1-\chi_N) \to 0
@@ -1779,7 +1784,7 @@ und es folgt
 \[
 \| V_{ik} \phi\| \le \eps \| \Delta \phi \| + C_\eps \| \phi \|. 
 \]
-Also \fixme
+Also %\fixme
 \begin{align*}
 \Bigg \|\bigg ( \sum_{k=1}^N V_k &+ \sum_{i<j} V_{ik}\bigg) \phi \Bigg \|^2_{L^2(\R^{3N})}
 \\ &\le \big (\frac{N(N+1)}{2}\big)^2 \eps \| \Delta \phi \|^2_{L^2(\R^{3N})} + \big ( \frac{ N(N+1)}{2} \big )^2 C_\eps \| \phi \|^2_{L^2(\R^{3N})}.
@@ -1804,7 +1809,7 @@ wobei $\alpha=\frac{e^2}{hc} \approx \frac{1}{137}$ die \emph{Feinstrukturkonsta
 U:L^2(\R^{3N} \to L^2(\R^{3N}), \quad (U\phi) (x) := \lambda^{\frac{3}{2}N} \phi(\lambda x); \lambda>0.
 \]
 $U$ ist isometrisch und bijektiv, also \emph{unitär}. Es folgt
-\fixme
+%\fixme
 \[
 U H_{N,z} U^{-1} = \sum_{k=1}^N \big(- \frac{\hslash^2}{2m\lambda^2} \Delta_{x_k} - \frac{z e^2}{\lambda|x_k|} \big ) + \sum_{i<k} \frac{e^2}{\lambda|x_i-x_k|}.
 \]
@@ -1844,7 +1849,7 @@ Weiterhin gilt für alle $f\in \mathcal B(R)$:
 \end{enumerate}
 \end{st}
 \begin{proof}
-vgl. Vorlesung Spektraltheorie. (\fixme[bessere Quelle?])
+vgl. Vorlesung Spektraltheorie. %(\fixme[bessere Quelle?])
 \end{proof}
 
 \begin{ex*}
@@ -2060,7 +2065,7 @@ $\lambda \in \sigma_{\text{disc}}(A)$ falls $\lambda \in \sigma(A)$, $B_\eps(\la
 \[
 \dim(\frac{1}{2\pi i} \oint_{|z-\lambda|= \eps/2} (z-A)^{-1 } \, \dx[z]) H < \infty
 \]
-genau dann wenn $\dim(P_{\{\lambda\}}H) < ‌\infty$ nach Satz \ref{6.5}. \fixme
+genau dann wenn $\dim(P_{\{\lambda\}}H)<\infty$ nach Satz \ref{6.5}. %\fixme
 \end{seg}
 \begin{thm}
 Sei $A^*=A$ und $P$ das Spektralmaß von $A$. Dann gilt:
@@ -2072,7 +2077,7 @@ Sei $A^*=A$ und $P$ das Spektralmaß von $A$. Dann gilt:
 \end{thm}
 \begin{proof}
 \begin{enumerate}[a)]
-Nach Theorem 3 \fixme gilt $\sigma(A)=\supp(P)$. Also ist $\lambda \in \sigma(A)$ genau dann wenn $\lambda \in \supp(P)$, genau dann wenn $P_u\neq 0$ für jede Umgebung $\lambda \in U$, genau dann wenn $P_{(\lambda-\eps, \lambda + \eps)} \neq 0$ für alle $\eps>0$.
+Nach Theorem 3 gilt $\sigma(A)=\supp(P)$. Also ist $\lambda \in \sigma(A)$ genau dann wenn $\lambda \in \supp(P)$, genau dann wenn $P_u\neq 0$ für jede Umgebung $\lambda \in U$, genau dann wenn $P_{(\lambda-\eps, \lambda + \eps)} \neq 0$ für alle $\eps>0$.
 \item Es ist $x\in \sigma_{\text{disc}}(A)$ genau dann gilt, wenn $\lambda \in \sigma(A)$ und es ein $\eps>0$ gibt mit $B_\eps(\lambda)\cap \sigma(A)=\{\lambda\}$ und $\dim P_{\{\lambda\}} H < \infty$.
 Also wenn $\lambda \in \sigma_{\text{disc}}(A)$, dann existiert ein $\eps>0$ mit $P_{(\lambda-\eps, \lambda + \eps)}= P_{\{\lambda\}}$. Also ist $\dim P_{(\lambda- \eps, \lambda + \eps)} H < \infty$. Dann gilt
 \[
@@ -2089,8 +2094,8 @@ Also ist $\lambda \in \sigma_{\text{disc}}(A)$
 Sei $A^*=A$. Dann ist $\lambda \in \sigma_{\text{ess}}(A)$ genau dann, wenn eine Folge $(\phi_n)$ existiert mit $\phi_n\in D(A), \|\phi_n\|=1$ mit $\phi_n \rightharpoonup 0$ und $\|(A-\lambda) \phi_n\| \to 0$. Man nennt diese Folge auch \emph{Weyl-Folge}.
 \end{st}
 
-\begin{proof}
-Sei $\lambda\in \sigma_{\text{ess}}(A)$ und sei $P_n:= P_{(\lambda-1/n, \lambda+ 1/n)}$. Wir konstruieren \emph{rekursiv} eine Orthonormalfolge $(\phi_n)$ mit $\phi_n\in P_n H$: $\phi_1 \in P_1H$ sei normiert aber ansonsten beliebig. Sind $\phi_1, ..., \phi_{n-1}$ konstruiert, dann existiert $\phi_n \in P_n H \cap \{\phi_1... \phi_{n-1}\}^\perp$ mit $\|\phi_n \| =1$, denn $\dim P_n H=\infty$ nach Theorem 6 \fixme. es gilt $\phi_n \rightharpoonup 0$ mit $\phi_n \in D(A)$ und es folgt
+\begin{proof} %\fixme
+Sei $\lambda\in \sigma_{\text{ess}}(A)$ und sei $P_n:= P_{(\lambda-1/n, \lambda+ 1/n)}$. Wir konstruieren \emph{rekursiv} eine Orthonormalfolge $(\phi_n)$ mit $\phi_n\in P_n H$: $\phi_1 \in P_1H$ sei normiert aber ansonsten beliebig. Sind $\phi_1, ..., \phi_{n-1}$ konstruiert, dann existiert $\phi_n \in P_n H \cap \{\phi_1... \phi_{n-1}\}^\perp$ mit $\|\phi_n \| =1$, denn $\dim P_n H=\infty$ nach Theorem 6. Es gilt $\phi_n \rightharpoonup 0$ mit $\phi_n \in D(A)$ und es folgt
 \begin{align*}
 \|(A-\lambda) \phi_n \| &\le \| (A-\lambda) P_n\| = \| \Phi(x-\lambda) \Phi(\chi_{(\lambda-1/n, \lambda+1/n)}) \|\\
 &= \| \Phi((x-\lambda) \chi_{(\lambda-1/n), \lambda + 1/n)} \| \le \frac{1}{n} \to 0
@@ -2153,7 +2158,7 @@ fHf= \frac{1}{2} (f^2H +Hf^2) - \frac{1}{2} ([H,f]f)
 wobei $f= M_f$ und $[H,f] = Hf-fH$. 
 \end{lem}
 \begin{proof}
-Zunächst können wir umschreiben \fixme
+Zunächst können wir umschreiben
 \begin{align*}
 fHf &= f^2 H + f[H,f] \\
 fHf &= Hf^2 + [f,H] f \\
@@ -2231,7 +2236,7 @@ Sei $\lambda \in \sigma_{\text{ess}}(H)$ und sei $\phi_n)$ eine zugehörige Weyl
 I_{0,R}(x) &= I_0(|x|/R)\\
 I_{\infty, R}(x) &= I_\infty(|x|/R)
 \end{align*}
-mit $x\in \R^n$. \fixme[fig überprüfen]
+mit $x\in \R^n$. %\fixme[fig überprüfen]
 Aus 
 \begin{align*}
 I_{0,R} H J_{0,R} &= \frac{1}{2} (I_{0,R}^2 H + H I_{0,R}^2) + |\nabla I_{0,R}|^2\\
@@ -2726,10 +2731,11 @@ Also ist $A$ wesentlich selbstadjungiert und $\overline{A\upharpoonright D} = A$
 Es gilt $\sum_{k=1}^n \sigma(\overline{A_k})$.
 Sei $\lambda_k \in \sigma(\overline{A_k})$ und sei $(\phi_k^{(m)})_{m\ge 0}$ eine normierte Folge in $D(\overline{A_k})$ mit $\| (\overline{A_k} -\lambda_k) \phi_k^{(m)}\| \to 0$ für $m\to \infty$.
 
-Dann gilt \fixme
+Dann gilt %\fixme
 \begin{align*}
-\|(A- \sum \lambda_k)  \phi_1^{(m)} \otimes  \cdots \otimes \phi_n^{(m)}\| &\le \sum_{k=1}^n \| \phi_1^{(m)} \otimes \cdots \otimes (A_k-\lambda_k) \phi_k^{(m)} \phi_k^{(m)} \otimes \cdots \phi_n^{(m)}\|\\
-&= \sum_{k=1}^n \| (A_k - \lambda_k) \phi^{(m)}_k \| \to 0
+&\|(A- \sum \lambda_k)  \phi_1^{(m)} \otimes  \cdots \otimes \phi_n^{(m)}\| \\
+&\ \qquad\le \sum_{k=1}^n \| \phi_1^{(m)} \otimes \cdots \otimes (A_k-\lambda_k) \phi_k^{(m)} \phi_k^{(m)} \otimes \cdots \phi_n^{(m)}\|\\
+&\ \qquad= \sum_{k=1}^n \| (A_k - \lambda_k) \phi^{(m)}_k \| \to 0
 \end{align*}
 für $m\to \infty$. Also ist $\lambda = \sum \lambda_k \in \sigma(A)$. Da $\sigma(A)$ abgeschlossen, dann folgt
 \[
@@ -2766,7 +2772,7 @@ Diese Ungleichungen für $\phi \in D(A) \otimes D(B)$ überträgt sich (durch ei
 \|(A+B-z) \phi \| \ge \delta \| \phi \|
 \]
 und somit $z\not\in \sigma(A+B)$.
-\end{seg} \fixme
+\end{seg} %\fixme
 \end{proof}
 
 \begin{ex*}
