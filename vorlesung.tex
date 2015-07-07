@@ -109,7 +109,7 @@ Das \emph{Punktspektrum} ist gegeben durch
 \begin{seg}[stetiges Spektrum]
 Das \emph{kontinuierliche Spektrum} ist gegeben durch
 \[
-\sigma_c(A)=\{z\in \C|\, (z-A): D\to H \text{ injektiv, nicht invertierbar aber } \overline{(z-A)D}= H\}.
+\sigma_c(A)=\{z\in \C|\, (z-A): D\to H \text{ injektiv, } \neg \text{ invertierbar aber } \overline{(z-A)D}= H\}.
 \]
 \end{seg}
 \begin{seg}[Resdual-Spektrum]
@@ -515,7 +515,7 @@ Sei $\tilde V = V- E^{(1)}$ und $\bar P_0 = 1- P_0$. Wegen $P_0 \psi_\kappa = \p
 &= (\lambda-H_0) \psi_\kappa - \kappa \tilde V \psi_\kappa + (\Delta E) \psi_\kappa
 \end{align*}
 mit $\tilde V= E^{(1)} - V$ und damit
-\begin{equation}\label{2.1}
+\begin{equation}\label{eq:2.1}
 (\lambda-H_0) \Delta \psi = \kappa \tilde V \psi_\kappa - (\Delta E) \psi_\kappa.
 \end{equation}
 \begin{seg}[Projektion auf $P_0H$]
@@ -526,7 +526,7 @@ Es folgt
 Also $\Delta E= \kappa \< \psi_0^*, \tilde V \psi_\kappa\>$ wegen $\< \psi_0^*, \psi_\kappa\>=1$ wie zu erwarten war.
 \end{seg}
 \begin{seg}[Projektion auf $\bar P_0 H$]
-Es folgt aus \eqref{2.1}
+Es folgt aus \eqref{eq:2.1}
 \[
 \Delta \psi = \kappa S_0(\lambda) \tilde V \psi_k - \Delta E S_0(\lambda) \Delta \phi,
 \]
@@ -1082,14 +1082,14 @@ stetig. Falls $\phi$ stetig differenzierbar ist, dann ist  auch $\Phi$ stetig di
 \end{lem}
 \begin{proof}
 Es ist
-\begin{equation}\label{3.2}
+\begin{equation}\label{eq:3.2}
 \Phi(t+\eps)-\Phi(t)=\int_0^t U(s) (\phi(t+\eps-s) - \phi(t-s))\, \dx[s] + \int_t^{t+\eps} U(s) \phi(t+\eps-s) \, \dx[s].
 \end{equation}
 Es folgt
 \[
 \| \Phi(t+\eps)- \Phi(t)\| \le \int_0^t \|\phi(t+\eps-s)- \phi(t-s) \| \dx[s] + \int_t^{t+\eps} \|\phi(t+\eps-s)\| \,\dx[s] \to 0
 \]
-mit $\eps \to 0$. Sei nun $\phi(t)$ stetig differenzierbar. Nach \eqref{3.2} folgt
+mit $\eps \to 0$. Sei nun $\phi(t)$ stetig differenzierbar. Nach \eqref{eq:3.2} folgt
 \begin{align*}
 \frac{1}{\eps} ( \phi(t+\eps)-\phi(t)) &= \int_0^t U(s) \frac{1}{\eps} ( \phi(t+\eps-s)-\phi(t-s))\,\dx[s]\\
 &+ \frac{1}{\eps} \int_t^{t+\eps} U(s) \phi(t+\eps-s)\, \dx[s] \\ &\to \int_0^t U(s)\dot \phi(t-s) \dx[s] + U(t) \phi(0)
@@ -1272,14 +1272,14 @@ P(s)=\frac{1}{2\pi i} \oint_\gamma (z-H(s))^{-1} \, \dx[z]
 wobei $\gamma$ ein glatter Weg ist, der weder $\sigma_1$ noch $\sigma_2$ schneidet, aber $\sigma_1$ ein Mal umrandet. Insbesondere hängt $\gamma$ von $s$ ab. %\fixme[fig1]
 
 Wir studieren die Lösung von
-\begin{equation}\label{3.3}
+\begin{equation}\label{eq:3.3}
 i \dot \phi = H(\frac{t}{\tau}) \phi,\quad \phi(0)= P(0) \phi(0)
 \end{equation}
 für $t\in [0, \tau]$ im Grenzwert $\tau \to \infty$. Das Ziel ist zu zeigen, dass
 \[
 \sup_{t\in [0, \tau]} \| (1- P(t)) \phi(t) \| \to 0
 \]
-für $\tau \to \infty$. D.h. Überränge von $P(0) H$ nach $(1- P(t))H$ sind unmöglich (beziehungsweise sehr unwahrscheinlich) im Grenzwert $\tau \to \infty$. Wir definieren $s=\frac{t}{\tau}$, dann wird \eqref{3.3} äquivalent zu
+für $\tau \to \infty$. D.h. Überränge von $P(0) H$ nach $(1- P(t))H$ sind unmöglich (beziehungsweise sehr unwahrscheinlich) im Grenzwert $\tau \to \infty$. Wir definieren $s=\frac{t}{\tau}$, dann wird \eqref{eq:3.3} äquivalent zu
 \[
 i \dot \phi(s) = \tau H(s) \phi(s), \quad \phi(0)= P(0) \phi(0)
 \]
@@ -1288,7 +1288,7 @@ wobei $s\in [0,1]$. Wir nehmen an:
 \item $s\to H(s) \phi$ ist $C^1$ für alle $\phi\in D$
 \item $s\mapsto P(s)$ ist von der Klasse $C^2(I)$.
 \end{enumerate}
-Annahme (ii) kann aus mehr Regularität von $s\mapsto H(s) \phi$ hergeleitet werden. Annahme (i) garantiert nach dem Satz von Kato \ref{3.4} die Existenz des Propagators $U(t,s)$ mit
+Annahme (ii) kann aus mehr Regularität von $s\mapsto H(s) \phi$ hergeleitet werden. Annahme (i) garantiert nach dem Satz von Kato \ref{4.4} die Existenz des Propagators $U(t,s)$ mit
 \[
 i \frac{d}{dt} U(t,s) \phi= \tau H(s) U(t,s) \phi, \quad U(t,t) = I.
 \]
@@ -1297,7 +1297,7 @@ Wir definieren eine \emph{adiabatische} Evolution $U_A(t,s)$ durch die Schrödin
 H_A(s):= H(s) + \frac{i}{\tau} [\dot P(s), P(s)].
 \]
 und $[\dot P, P]:= \dot P P - P \dot P$ den Kommutator definiert.
-\begin{lem} Für alle $t,s \in I, \tau >0$ ist
+\begin{lem}\label{4.5} Für alle $t,s \in I, \tau >0$ ist
 \[
 U_A(t,s) P(s) = P(t) U_A(t,s).
 \]
@@ -1758,7 +1758,7 @@ wobei $N$ die Anzahl der Elektronen sei. Hierbei beschreibt $V_k$ die Wechselwir
 (V_k \cdot \phi)(x_1,...,x_N)&:= V(x_k) \phi(x_1,...,x_N), x_1, ...,x_N \in \R^3\\
 (V_{ik} \cdot \phi)(x_1,...,x_N)&:= W(x_i-x_k) \phi(x_1,..., x_N)
 \end{align*}
-\begin{thm}[Kato 1951]
+\begin{thm}[Kato 1951]\label{5.12}
 Falls $V,W\in L^2+L^\infty(\R^3)$ dann ist \eqref{4.3} selbstadjungiert auf $H^2(\R^{3N})$ und wesentlich selbstadjungiert auf $C_0^\infty(\R^{3N})$.
 \end{thm}
 \begin{proof}
@@ -1804,7 +1804,7 @@ Der Operator $H_{N,z}$ aus Korrolar \ref{5.7} unitär äquivalent ist zu
 \[
 2\alpha^2 mc^2 \bigg[ \sum_{k=1}^N \big ( - \Delta_{x_k} - \frac{z}{|x_k|} \big ) + \sum_{i<k} \frac{1}{|x_i-x_j|} \bigg ]
 \]
-wobei $\alpha=\frac{e^2}{hc} \approx \frac{1}{137}$ die \emph{Feinstrukturkonstante}. Wir definieren
+wobei $\alpha=\frac{e^2}{\hslash c} \approx \frac{1}{137}$ die \emph{Feinstrukturkonstante}. Wir definieren
 \[
 U:L^2(\R^{3N} \to L^2(\R^{3N}), \quad (U\phi) (x) := \lambda^{\frac{3}{2}N} \phi(\lambda x); \lambda>0.
 \]
@@ -1949,7 +1949,7 @@ siehe Satz 7.6 aus dem Vorlesungsskript.
 
 \section{Spektralsatz}
 Für beliebige messbare $f: \R \to \C$ definieren wir einen (unbeschränkten) Operator $\Phi(f)$ durch
-\begin{equation}\label{6.1}
+\begin{equation}\label{eq:6.1}
 D(\Phi(f))= \Phi(\frac{1}{1+|f|}) H, \quad \Phi(f) \phi = \Phi(\frac{f}{1+|f|}) \gamma
 \end{equation}
 falls $\phi = \Phi(\frac{1}{1+|f|}) \gamma$.
@@ -2458,12 +2458,12 @@ Falls $Z>N-1$ dann hat $H_N$ unendlich viele diskrete Eigenwerte unterhalb von $
 \begin{nt*}
 \begin{enumerate}[1)]
 \item Ein System von $N$ identischen Fermionen (wie z.B. Elektronen) wird durch eine normierte Funktion $\psi \in L^2(\R^{3N})$ (genauer $L^2( \R^3 \times \{1,2\})^N$) beschrieben mit
-\begin{equation}\label{7.1}
+\begin{equation}\label{eq:7.1}
 	\psi(x_{\sigma_1} ... x_{\sigma_n}) = \sgn (\sigma) \psi(x_1,...x_N)
 \end{equation}
 für jede Permutation $\sigma$ auf $\{1,..., N\}$. Der Hilbertraum ist also der Raum
 \[
-	H_{N,a} = \{ \psi \in L^2(\R^{3N})| \psi \text{ erfüllt } \eqref{7.1}\} 
+	H_{N,a} = \{ \psi \in L^2(\R^{3N})| \psi \text{ erfüllt } \eqref{eq:7.1}\} 
 \]
 Ist $P$ der Orthogonalprojektor von $L^2(\R^{3N})$ auf $H_N$, dann gilt $PH_N \subset H_N P$. Somit ist der auf $H_N$ eingeschränkte Hamiltonoperator
 \[
