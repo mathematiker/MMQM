@@ -1499,7 +1499,7 @@ für $\eps\to 0$ da $\| Y_\eps(r)\| \to 0$ für fast alle $r\in [0,1]$ (vgl. Bla
 
 \subsection{Anwendungen}
 \begin{center}
-\includegraphics{fig4.png}
+\includegraphics[width=.80\textwidth]{fig4.png}
 \end{center}
 \begin{enumerate}[1)]
 \item
@@ -2308,7 +2308,7 @@ kompakt.
 \end{nt*}
 \begin{ex*}
 Sei $H=-\Delta+V$ in $L^2(\R^n)$ mit $n\le 3$ und $V\in L^2 + L^\infty$ mit $V(x)\to 0$ für $|x|\to \infty$. Dann sind alle Annahmen erfüllt (Übung) und $\Sigma=0$. Also $\inf \sigma_{\text{ess}}(H) = 0$.
-\fixme[fig5]
+%\fixme[fig5]
 \end{ex*}
 
 \section{HVZ-Theorem und Existenz neutraler Atome und Moleküle}
@@ -2601,7 +2601,7 @@ Dann ist $L$ dicht definiert und isometrisch nach (i), hat also eine eindeutige 
 \end{seg}
 \end{proof}
 
-\fixme[Irgenwas ist hier eigenartig]
+%\fixme[Irgenwas ist hier eigenartig]
 \begin{kor}\label{8.4}
 \begin{enumerate}[a)]
 \item $L^2(\R^n)\otimes L^2(\R^m)$ ist isomorph zu $L^2(\R^n \times R^m)$. Vermöge $\phi \otimes \psi \mapsto \phi(x) \psi(y)$.
@@ -2609,9 +2609,7 @@ Dann ist $L$ dicht definiert und isometrisch nach (i), hat also eine eindeutige 
 \end{enumerate}
 \end{kor}
 \begin{proof}
-\begin{enumerate}[a)]
-\item \fixme
-\item Sei $\pi: L^2(M) \times H \to L^2(M, H)$ definiert durch $\pi(f,\phi)= f(x) \phi$. Dann ist $\pi$ linear und erfüllt (i) von Satz \ref{8.3}
+Sei $\pi: L^2(M) \times H \to L^2(M, H)$ definiert durch $\pi(f,\phi)= f(x) \phi$. Dann ist $\pi$ linear und erfüllt (i) von Satz \ref{8.3}
 \begin{align*}
 \< \pi(f, \phi), \pi(g, \psi)\> &= \int \dx[\mu] \< f(x) \phi, g(x) \psi\>_H\\
 &= \int \dx[\mu] \overline{f(x)} g(x) \< \phi, \psi\>_H = \< f,g\>_{L^2} \< \phi, \psi \>_H. 
@@ -2639,7 +2637,6 @@ für $n\to \infty$. Außerdem gilt $\< \psi, \psi_N\> = \< \psi_N, \psi_N\>$. Es
 &= \|\psi \|^2 - \< \psi, \psi_N\> \to 0 
 \end{align*}
 für $N\to \infty$.
-\end{enumerate}
 \end{proof}
 \begin{nt*}
 Die Konstruktion der Tensorprodukts des Satzes \ref{8.3} lässt sich auf $n\ge 2$ Faktoren verallgemeinern. ist $(\phi_k^{(i)})_{k\ge 0}$ eine ONB von $H_i$, dann ist $(\phi^{(1)}_{k_1} \otimes \phi_{k_2}^{(2)} \otimes \cdots \phi_{k_n}^{(n)})$ eine ONB von $H_1 \otimes H_2 \otimes \cdots \otimes H_n$.
@@ -2706,9 +2703,9 @@ Dann
 \begin{align*}
 \|(A\otimes B) (\phi_1 \otimes \phi_2) \| &= \| A \phi_1 \otimes B \phi_2\|\\
 &= \| A\phi_1\| \cdot \| B \phi_2\| \\
-&\ge ( \| A \| - \eps) (\| B\| - \eps) = \| A \| \cdot \|B\| 
+&\ge ( \| A \| - \eps) (\| B\| - \eps) = \| A \| \cdot \|B\|.
 \end{align*}
-\fixme
+%\fixme
 \end{proof}
 
 \begin{st}\label{8.7}
@@ -2784,7 +2781,7 @@ Dann ist nach obigem Satz
 \[
 \sigma(A\otimes 1 + 1 \otimes A) = \overline{\sigma(A) + \sigma(A)}
 \]
-was eine Überlagerung motiviert. \fixme[Abbildungen der Spektra]
+was eine Überlagerung motiviert. %\fixme[Abbildungen der Spektra]
 \end{ex*}
 
 \begin{kor}
@@ -2857,7 +2854,8 @@ b(f) (\phi_1 \otimes \cdots \otimes \phi_n) &= \< f, \phi_1 \> \phi_2 \otimes \c
 b^*(f) N &= (N-1) b^*(f)\\
 b(f) N &= (N+1) b(f).
 \end{align*}
-\fixme Analoge Gleichungen gelten für jede Funktion von $N$. Insbesondere lassen $b(f)$ und $b^*(f)$ den Raum $D(N^{1/2})$ invariant.
+%\fixme 
+Analoge Gleichungen gelten für jede Funktion von $N$. Insbesondere lassen $b(f)$ und $b^*(f)$ den Raum $D(N^{1/2})$ invariant.
 \section{Antisymmetrischer Fockraum und CAR}
 Sei $(\phi_n)$ eine ONB von $h$. Zu jeder Permutation $\sigma= \{1,..., n\}$ definieren wir einen linearen Operator $\sigma\in\mathcal L(\otimes^n h)$ durch
 \[
@@ -2960,7 +2958,7 @@ Also
 \]
 und es folgt die Behauptung.
 \end{proof}
-\fixme
+%\fixme
 \begin{st}
 Für die (fermiaischen) Erzeugungs- und Vernichtungsoperatoren $a(f), a^*(g)$ in $F_-(h)$ gilt:
 \begin{enumerate}[a)]
